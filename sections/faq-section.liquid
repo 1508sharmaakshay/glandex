@@ -52,7 +52,7 @@
                 <div class="right_content">
                     {% if section.settings.product_image != blank %}
                     <div class="product_image">
-                        <img src="{{ section.settings.product_image | img_url: 'original' }}" alt="product_image" />
+                        <img class="lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ section.settings.product_image | img_url: 'original' }}" alt="product_image" />
                     </div>
                     {% endif %}
                     {% if section.settings.product_tagline != blank %}
@@ -67,7 +67,7 @@
                         <div class="natural_slider_item">
                             <div class="natural_slider_item_inner">
                                 <div class="image">
-                                    <img src="{{ block.settings.natural_image | img_url: 'original' }}"
+                                    <img class="lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ block.settings.natural_image | img_url: 'original' }}"
                                         alt="product_image" />
                                 </div>
                                 {% if block.settings.name != blank or block.settings.info != blank %}
@@ -157,9 +157,3 @@
 	}]
 }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}

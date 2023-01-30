@@ -1,4 +1,4 @@
-jQuery(document).ready(function () {
+setTimeout(function () {
 
   $('.template-collection .feature-product .product').each(function(){
     $(this).find('.form .variants-product').change(function(){

@@ -1,10 +1,9 @@
-{% style %}
+<style>
   .offers_section_main-{{ section.id }} {
     background-color: {{ section.settings.color_background }};
     color: {{ section.settings.color_text }};
   }
-{% endstyle %}
-
+</style>
 <div class="offers_section_main offers_section_main-{{ section.id }}">
     <div class="offers_section_main_inner"
         {% if section.settings.background_image != blank %}style="background-image:url({{ section.settings.background_image | img_url: 'original' }})"
@@ -226,9 +225,3 @@
 	}]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}

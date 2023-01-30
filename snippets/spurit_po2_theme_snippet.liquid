@@ -70,12 +70,10 @@ body:not(.spo-loaded) [name="goto_pp"],
 body:not(.spo-loaded) [name="goto_amazon_payments"] {opacity: 1; pointer-events: all}
     </style>
 </noscript>
-<script>
-  (function() {
-    setTimeout(() => document.querySelector('body').classList.add('spo-loaded'), 5000)
-  })();
+<script type="lazyload2">
+  setTimeout(function() {
+      document.querySelector('body').classList.add('spo-loaded');
+  }, 6000);
 </script>
-
-    <script src="https://amaicdn.com/preorder2/common.js"></script>
-
-<script src="https://www.google.com/recaptcha/api.js?render=6LeTRAoeAAAAACKeCUlhSkXvVTIwv0_OgDTqgYsa"></script>
+<script type="lazyload2" data-src="https://amaicdn.com/preorder2/common.js"></script>
+<script type="lazyload2" data-src="https://www.google.com/recaptcha/api.js?render=6LeTRAoeAAAAACKeCUlhSkXvVTIwv0_OgDTqgYsa"></script>

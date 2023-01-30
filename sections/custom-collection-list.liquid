@@ -15,10 +15,10 @@
 	            	<div class="item_data desktop_only" data-tab="tab{{count}}">
                     	<div class="item_icon">
                 	      {% if block.settings.collection_icon != blank %}
-            	          	<img class="icon-collection normal" src="{{ block.settings.collection_icon | img_url: 'original' }}" alt="block.settings.product_image" >
+            	          	<img class="icon-collection normal lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ block.settings.collection_icon | img_url: 'original' }}" alt="block.settings.product_image" >
         	              {% endif %}
     	                  {% if block.settings.collection_icon_hover != blank %}
-	                      	<img class="icon-collection hover" src="{{ block.settings.collection_icon_hover | img_url: 'original' }}" alt="block.settings.product_image" >
+	                      	<img class="icon-collection hover lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ block.settings.collection_icon_hover | img_url: 'original' }}" alt="block.settings.product_image" >
                       	{% endif %}
                     	</div>
                     	{% if block.settings.collection_text != blank %}
@@ -38,7 +38,7 @@
                       <a href="{{ collection_url }}">
                         <div class="image">
                           {% if block.settings.collection_image != blank %}
-            	          	<img class="icon-collection normal" src="{{ block.settings.collection_image | img_url: 'thumbnail' }}" alt="block.settings.product_image" >
+            	          	<img class="icon-collection normal lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ block.settings.collection_image | img_url: 'thumbnail' }}" alt="block.settings.product_image" >
         	              {% endif %}
                         </div>
                         <div class="content">
@@ -90,7 +90,7 @@
               </div>	
               <div class="right_image">
               	{% if block.settings.collection_image != blank %}
-                	<img class="icon-collection normal" src="{{ block.settings.collection_image | img_url: 'original' }}  alt="block.settings.product_image" >
+                	<img class="icon-collection normal lazy2" src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" data-src="{{ block.settings.collection_image | img_url: 'original' }}  alt="block.settings.product_image" >
                 {% endif %}
               </div>	
          	</div>
@@ -171,9 +171,3 @@
 	}]
   }
 {% endschema %}
-
-{% stylesheet %}
-{% endstylesheet %}
-
-{% javascript %}
-{% endjavascript %}
