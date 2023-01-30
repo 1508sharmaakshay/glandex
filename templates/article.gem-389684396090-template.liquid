@@ -1,0 +1,230 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+<link data-instant-track rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-389684396090.css' | asset_url }}" class="gf_page_style">
+<!--GEM_HEADER_END-->
+{%- assign number_of_comments = article.comments_count -%}
+
+{% if comment %}
+  {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+{% endif %}
+
+{% if section.settings.image_hero and article.image %}
+  <div class="collection-hero">
+    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    <img class="collection-hero__image image-fit lazyload"
+      src=""
+      data-src="{{ img_url }}"
+      data-aspectratio="{{ article.image.aspect_ratio }}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      alt="{{ article.image.alt | escape }}">
+    <noscript>
+      <img class="collection-hero__image image-fit"
+        src="{{ article.image | img_url: '1400x' }}"
+        alt="{{ article.image.alt | escape }}">
+    </noscript>
+
+    <div class="collection-hero__content">
+      <div class="page-width">
+        <header class="section-header section-header--hero">
+          <div class="section-header__shadow">
+            {%- include 'breadcrumbs' -%}
+            {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+              <div class="article__date">
+                {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                    {%- include 'filter-out-custom-tags' -%}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                  {% endfor %}
+                {% endif %}
+                {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                  <a href="#comments">
+                    {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                  </a> &middot;
+                {% endif %}
+                {% if section.settings.blog_show_date %}
+                  {{ article.published_at | time_tag: format: 'month_day_year' }}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <h1 class="section-header__title">
+              {{ article.title }}
+            </h1>
+
+            {% if section.settings.blog_show_author %}
+              <div class="article__author">by {{ article.author }}</div>
+            {% endif %}
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="page-width page-content">
+
+  <div class="grid">
+    <article class="grid__item widescreen--six-tenths widescreen--push-two-tenths medium-up--two-thirds medium-up--push-one-sixth article" itemscope itemtype="http://schema.org/Article">
+
+      {%- unless section.settings.image_hero and article.image -%}
+        {%- include 'breadcrumbs' -%}
+
+        <header class="section-header">
+          {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+            <div class="article__date">
+              {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                {% for tag in article.tags %}
+                  {%- include 'filter-out-custom-tags' -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                {% endfor %}
+              {% endif %}
+              {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                <a href="#comments">
+                  {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                </a> &middot;
+              {% endif %}
+              {% if section.settings.blog_show_date %}
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              {% endif %}
+            </div>
+          {% endif %}
+          <h1 class="section-header__title">{{ article.title }}</h1>
+          {% if section.settings.blog_show_author %}
+            <div class="article__author">by {{ article.author }}</div>
+          {% endif %}
+        </header>
+      {%- endunless -%}
+
+      <div class="article__body rte" itemprop="articleBody">
+        <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor">
+<div data-label="Heading" id="e-1593091782659" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1593091782659"><div class="elm text-edit gf-elm-center gf-elm-left-md gf-elm-left-sm gf-elm-left-xs gf-elm-center-lg" data-gemlang="en" data-exc=""><h4>Bored at home? Now is the purrrfect time to get in touch with your inner groomer!</h4></div></div><!--gfsplit--><div data-label="Text Block" id="e-1593091816414" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1593091816414"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p><!--StartFragment--></p><p style="text-align: inherit!important;">The Sun is shining and the weather is finally warming up, could there be a better time to brush up on your grooming skills? During times like these, being at home more often is a constant reminder that a house is truly not a home without paw prints!<br></p><!--EndFragment--></div></div><!--gfsplit--><div data-label="Image" id="e-1593104223227" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1593104223227"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/cute-dog-towel-furbliss.jpg?v=1593105563" alt="How to groom your dog at home" class="gf_image" data-gemlang="en"></div></div><!--gfsplit--><div data-label="Heading" id="e-1593091782586" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1593091782586"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>Benefits of Grooming your Pet At-Home</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1593091909304" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1593091909304"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p><!--StartFragment--></p><p style="text-align: inherit!important;"><b>Bonding With Your Pets</b><br>With the busy lives we lead, it can be difficult to spend as much time as one would like to with our pets. Grooming can be used as a bonding opportunity to ensure you and your pets are getting to spend as much quality time together as possible.<br><br><b>Cut Down On Expenses</b><br>Let’s be honest—professional groomers can be pricey! Grooming at home as opposed to frequently visiting a groomer will help to reduce expenses.<br><br><b>Reduced Shedding</b><br>Brushing your pets every day can help to prevent broken and loose hair from falling later! It also prepares the coat for healthy growth which reduces the chance of developing mats and future skin issues.<br></p><!--EndFragment--></div></div><!--gfsplit--><div data-label="Image" id="e-1593091937389" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1593091937389"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/Dog-Cat-Furbliss-Brush-01019854.jpg?v=1593016762" alt="Gooming your pets at home" class="gf_image" data-gemlang="en"></div></div><!--gfsplit--><div data-label="Heading" id="e-1593092009957" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1593092009957"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>Safety While Grooming Your Pet</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1593092030363" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1593092030363"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>Safety first! Here are some tips on safety precautions to take while grooming your pets.</p></div></div><!--gfsplit--><div data-label="Icon List" id="m-1593092056138" class="module-wrap" data-icon="gpicon-iconlist" data-ver="1.0" data-id="1593092056138"><div class="module gf_module-center gf_module-center-lg gf_module--md gf_module--sm gf_module--xs "><ul class="gf_icon-list"><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="1" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092056138-1" class="element-wrap" data-id="1593092056138-1" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="1" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092056138-2" class="element-wrap" data-id="1593092056138-2" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Avoid using scissors, metal brushes, or anything that could (if misused) potentially harm your pet</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="2" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092056138-3" class="element-wrap" data-id="1593092056138-3" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="2" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092056138-4" class="element-wrap" data-id="1593092056138-4" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Avoid grooming on high surfaces</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="3" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092056138-5" class="element-wrap" data-id="1593092056138-5" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="3" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092056138-6" class="element-wrap" data-id="1593092056138-6" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left">Do not leave pets unattended in the tub or on a high surface.</div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="4" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092224163" class="element-wrap" data-id="1593092224163" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="4" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092224180" class="element-wrap" data-id="1593092224180" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Keep your pets on a leash while grooming to ensure they do not run away</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="5" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092223149" class="element-wrap" data-id="1593092223149" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="5" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092223215" class="element-wrap" data-id="1593092223215" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Always exercise caution when washing or grooming near your pet’s eyes, ears, or other sensitive areas</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="6" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1593092259718" class="element-wrap" data-id="1593092259718" data-icon="gpicon-icon" data-ver="1.0"><div class="elm gf-elm-center gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px; color: rgb(0, 0, 0);"><i class="gf_icon fa fa-paw"></i></div></div></div></span><div class="gf-il-content item-content" data-index="6" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1593092259646" class="element-wrap" data-id="1593092259646" data-icon="gpicon-textblock" data-ver="1"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Remember to always be gentle and keep your grooming equipment clean</p></div></div></div></li></ul></div></div><!--gfsplit--><div data-label="Heading" id="e-1593092355669" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1593092355669"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>Grooming to Maintain a Healthy Skin &amp; Coat</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1593092395746" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1593092395746"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>Pets depend on their humans to maintain their grooming requirements and help keep them looking and feeling their best!<br><br><b>Avoiding infections</b><br>A quick brushing is a great way to make an all-over check to be sure there is nothing that needs veterinary attention, such as lumps, bumps, or skin problems!<br><br><b>Rinsing Allergic Contaminants Off Skin</b><br>Pets can up pick pollutants while outside—pollen, dust, fleas, and ticks can all hitch a ride on your pet and end up in your house. They can also cause allergic reactions in some pets, resulting in itching and hair loss. Regularly grooming your pet will help support a healthy coat and healthy skin!<br><br><b>Exfoliating &amp; DeShedding</b><br>Exfoliation has many benefits, including stimulation of oxygen-rich blood to feed and nourish the skin's surface, detoxification, and helping to remove toxins along with other unhealthy debris. By regularly brushing your pets you are helping them rid of dead skin cells and excess hair which in time will help to reduce your pet’s overall shedding and leave your pet’s coat healthy and shining! We have all heard the saying “look good, feel good”– this saying applies to pets too! A clean pet is indeed a happy pet.</p></div></div><!--gfsplit--><div data-label="Image" id="e-1593106157896" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1593106157896"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-lg gf-elm-center-md gf-elm-center-sm gf-elm-center-xs" data-exc=""><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/Furbliss-Puppy-in-bath-isolated.jpg?v=1593106649" alt="How to give dog bath at home" class="gf_image" data-gemlang="en"></div></div><!--gfsplit--><div data-label="Heading" id="e-1593092471499" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1593092471499"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>At-home Grooming has Never been Easier!</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1593092490152" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1593092490152"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>With a plethora of products on the market, finding the perfect grooming supplies for your even more perfect pet can become overwhelming. Look no further! Our <a href="https://www.vetniquelabs.com/collections/furbliss-grooming" target="_blank" title="Furbliss Pet Grooming Shampoo for Dogs and Cats" rel="noopener noreferrer">Furbliss Grooming Products</a> use premium ingredients and luxurious botanical extracts to moisturize  and deodorize the skin and coat, leaving it shiny, healthy, and smelling amazing!</p><p><br></p><p><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/Furbliss-Invigorating-leaf.jpg?v=1593016074" style="float: right;" alt="Furbliss Invigorating Grooming Pet Shampoo for Dogs and Cats" width="150" height="308"></p><p><strong>Furbliss Shampoo &amp; Conditioner</strong><br>It all starts with a great shampoo—with two different scent options, Furbliss shampoo not only keeps your pet smelling their best but also leaves no wet dog smell! Your pet will smell great for days on end with a shiny coat and healthy skin.<br><br>After shampooing, it is important to condition your pet’s fur. Conditioners help de-tangle fur and provide a relaxing treatment for all pets! Furbliss Conditioner contains shea butter– a well-known moisturizer, safflower oil– which improves circulation, and aloe vera– which repairs skin cells and gives the fur a beautiful shine!</p><p><br></p><p><strong>Furbliss Brushes</strong><br>Unlike other pet brushes, our revolutionary multi-function Furbliss brush is made of medical-grade silicone, which is great for attracting fur and dirt! Furbliss brushes can be used for brushing, de-shedding, <a href="https://www.vetniquelabs.com/blogs/vets-corner/benefits-of-pet-massages" target="_blank" title="Benefits of Pet Massages" rel="noopener noreferrer">massaging</a>, cleaning, and exfoliating. Veterinarians recommend the <a href="https://www.vetniquelabs.com/collections/furbliss-brushes" target="_blank" title="Furbliss DeShedding Pet Brush for Dogs and Cats" rel="noopener noreferrer">Furbliss Pet Brush</a> for all pets as it is safe, stimulates your pets’ circulation, stimulates muscles and joints, and is the only brush recommended for pets with skin allergies!</p><p><br></p><p><strong>Furbliss Grooming Spray</strong><br><a href="https://www.vetniquelabs.com/collections/furbliss-pet-brush/products/furbliss-refreshing-spray-for-dogs-cats-4-oz" target="_blank" title="Furbliss Grooming Spray for Dogs and Cats" rel="noopener noreferrer">Furbliss Refreshing Spray</a> is a great way to quickly freshen up your pet’s coat! Using only botanical extracts to moisturize and freshen the skin and coat between bath times, Furbliss Refreshing Spray will leave your pet’s fur soft, healthy, and smelling great!<br><br>Also available is <a href="https://www.vetniquelabs.com/collections/furbliss-pet-brush/products/furbliss-calming-spray-for-dogs-cats-4-oz-2" target="_blank" title="Furbliss Calming Grooming Spray for Dogs and Cats" rel="noopener noreferrer">Furbliss Calming Spray</a>—made with a relaxing and aromatic essential oil blend, our Calming Spray is  great for anxiety associated with stressful situations such as thunderstorms, vet visits, and car rides.</p><p><br></p><p><strong>Furbliss Wipes</strong><br>For daily hygiene and routine cleaning of dogs and cats, <a href="https://www.vetniquelabs.com/collections/furbliss-pet-brush/products/furbliss-pet-wipes-100-ct" target="_blank" title="Furbliss Hygienic Pet Grooming Wipes for Dogs and Cats" rel="noopener noreferrer">Furbliss Wipes</a> are a perfect choice! Available in unscented or refreshing scent, the hypoallergenic formula contains all-natural ingredients including Vitamin E, Aloe, and Skin Conditioners to keep your pet’s coat shiny and healthy. They also contain Deoplex®, an enzymatic deodorizer to eliminate unpleasant odors between bath time. These ultra-thick moist wipes are gentle enough for everyday use, making cleaning faces, paws, and everything in-between quick, easy, and (most importantly) effective!</p></div></div><!--gfsplit-->
+</div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+
+      </div>
+
+      {% if section.settings.social_sharing_blog %}
+        {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+      {% endif %}
+
+      {% if blog.comments_enabled? %}
+
+        {% if number_of_comments > 0 %}
+          <hr class="hr--large">
+          <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+          <hr class="hr--small hr--clear">
+        {% endif %}
+
+        {% paginate article.comments by 5 %}
+          
+          <div id="comments">
+
+            {% if comment and comment.errors == blank %}
+              <hr class="hr--small hr--clear">
+              <p class="note note--success">
+                {% if blog.moderated? %}
+                  {{ 'blogs.comments.success_moderated' | t }}
+                {% else %}
+                  {{ 'blogs.comments.success' | t }}
+                {% endif %}
+              </p>
+            {% endif %}
+
+            {% if number_of_comments > 0 %}
+              <ul class="no-bullets">
+                
+                {% if comment and comment.errors == blank %}
+                  <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                    {% include 'comment' %}
+                  </li>
+                {% endif %}
+
+                {% for comment in article.comments %}
+                  <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                    {% include 'comment' %}
+                  </li>
+
+                  {% unless forloop.last %}
+                    <li><hr class="hr--clear"></li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>
+
+              {% if paginate.pages > 1 %}
+                {% include 'pagination' %}
+              {% endif %}
+
+            {% endif %}
+
+            <hr class="hr--large">
+
+            <header class="section-header{% unless settings.type_headers_align_text %} section-header--with-link{% endunless %}">
+              <h3 class="section-header__title">{{ 'blogs.comments.title' | t }}</h3>
+            </header>
+
+            <div class="form-vertical">
+              {% form 'new_comment', article %}
+
+                {{ form.errors | default_errors }}
+
+                <div class="grid grid--small">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'author' %} error{% endif %}" type="text" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'email' %} error{% endif %}" type="email" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  </div>
+                </div>
+
+                <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+                <textarea class="input-full{% if form.errors contains 'body' %} error{% endif %}" name="comment[body]" id="CommentBody">{{ form.body }}</textarea>
+
+                {% if blog.moderated? %}
+                  <p><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+                {% endif %}
+
+                <button type="submit" class="btn btn--secondary">
+                  {{ 'blogs.comments.post' | t }}
+                </button>
+
+              {% endform %}
+            </div>
+
+          </div>
+        {% endpaginate %}
+      {% endif %}
+
+      <hr class="hr--large">
+
+    </article>
+
+  </div>
+
+  <div class="text-center">
+    <a href="{{ blog.url }}" class="btn return-link">{% include 'icon-arrow-left' %} {{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+  </div>
+</div>
+
+
+
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-389684396090.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

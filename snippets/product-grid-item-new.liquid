@@ -1,0 +1,97 @@
+<div class="product" tags="{{ product.tags | join: ', ' }}" product_id="{{product.id}}">
+    <div class="front-card">
+       {% for tag in product.tags %}
+        {% if tag contains 'for-dogs' %}
+             <div class="new-tag new-tag--absolute"> Specially Formulated for Dogs</div>  
+       {% elsif tag contains 'for-cats' %}
+             <div class="new-tag new-tag--absolute"> Specially Formulated for Cats </div>
+        {% endif %}
+      {% endfor %}
+        <div class="container-imgs">
+            {% comment %} <div class="exclamation">
+                <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-info fa-w-6 fa-2x"><path fill="currentColor" d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z" class=""></path></svg>
+            </div> {% endcomment %}
+            <a href="{{ product.url }}" style="margin: auto;"><img class="img-product" src="{{ product.featured_image | img_url: 'original' }}" alt="{{ product.title }}"></a>
+        </div>
+        <div class="container-text">
+            <a href="{{ product.url }}" style="margin: auto;">
+                <p class="title-product">
+                {{ product.title }}
+                </p>
+            </a>
+            {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+
+          {% comment %}
+            <p class="price price-{{ product.id }}">
+                From {{ product.price | money }}
+            </p>
+          {% endcomment %}
+           <p class="price price-{{ product.id }} price-new ">
+              {% if product.variants %}
+                {% assign variant_size = product.variants | size %}
+                {% if variant_size > 1 %}
+                  <span class="variant_text1">Starting at</span>
+                  {% endif %}
+              {% endif %}
+                <span class="original_price" data-original="{{ product.selected_or_first_available_variant.price }}">{{ product.selected_or_first_available_variant.price | money }} </span>
+              <span class="compare-price-new" data-out-price="{{ product.selected_or_first_available_variant.compare_at_price }}">{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+            </p>
+          
+          </div>
+        {% form 'product', product %}
+            <div class="form">
+                {% assign variants = product.variants %}
+                {% assign variants_size = variants | size %}
+                <select class="variants-product" name="id" {% if variants_size <= 1 %} style="display:none;" {% endif %} data-id="{{ product.id }}">
+                    {% for variant in variants %}
+                        <option class="option-{{ variant.id }}" value="{{ variant.id }}" data-productid="{{ variant.id }}" data-price="{{ variant.price | money }}" data-compare-price="{{ variant.compare_at_price | money }}" data-out-price="{{ variant.price }}">{{ variant.title }}</option>
+                    {% endfor %}
+                </select>
+                <div class="btn-buy show-btn-buy" data-id="{{ product.id }}" firstid="{{product.variants.first.id}}">
+                    Buy Now
+                </div>
+                <button type="submit" name="add" id="AddToCart-{{ product.id }}" class="btn-cart add-to-cart">
+                    Add To Cart
+                </button>
+                <div class="hidden-button-{{ product.id }}" style="display:none;">
+                    {{ form | payment_button }}
+                </div>
+            </div>
+        {% endform %}
+    </div>
+    <div class="back-card">
+        {% if product.metafields.spr.reviews %}
+            {% capture review_data %}{{ product.metafields.spr.reviews }}{% endcapture %}
+            {% assign review_data1 = review_data | split: "reviewCount" %} 
+            {% assign review_data2 = review_data1[1] | split: "=" %}
+            {% assign review_data3 = review_data2[1] | split: '"' %}
+            {% assign review_count_value = review_data3[1] | plus: 1 | minus: 1 %}
+        {% endif %}
+        <div class="container-close">
+            <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-times fa-w-10 fa-3x"><path fill="currentColor" d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z" class=""></path></svg>
+        </div>
+        <span class="shopify-product-reviews-badge" data-id="{{ product.id }}"></span>
+        <p class="title-review">
+            {% if review_count_value %}
+                {{ review_count_value }} Reviews
+            {% else %}
+                0 Reviews
+            {% endif %}
+        </p>
+        <p class="satisfaction">
+            {{ product.metafields.arena.satisfaction }}
+        </p>
+        <p class="gluten">
+            {{ product.metafields.arena.gluten }}
+        </p>
+        <p class="corn">
+            {{ product.metafields.arena.corn }}
+        </p>
+        <p class="no-artificial">
+            {{ product.metafields.arena.noartificial }}
+        </p>
+        <p class="preservatives">
+            {{ product.metafields.arena.perservatives }}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,264 @@
+<div class="text-shipping">
+    <p>Free shipping on order over $30</p>
+  </div>
+  
+  <div class="new-filter">
+    <p class="filter-text">
+      {{ collection.all_products_count }} products &nbsp;&nbsp; | &nbsp;&nbsp; Filter By:
+    </p>
+    <div class="container-input">
+      <p class="text-input">
+        Pet
+      </p>
+      {% assign currentcollection = collection.handle %}
+      <select class="select-pet">
+        <option value="all" selected>All</option>
+        <option value="for-dogs" {% if currentcollection == 'glandex-for-dogs' %} selected {% endif %}>Dogs</option>
+        <option value="for-cats" {% if currentcollection == 'glandex-for-cats' %} selected {% endif %} >Cats</option>
+      </select>
+    </div>
+    <div class="container-input sort">
+      {%- assign sort_by = collection.sort_by | default: collection.default_sort_by -%}
+      {%- assign default_sorted = false -%}
+      {%- if sort_by == collection.default_sort_by -%}
+        {%- assign default_sorted = true -%}
+      {%- endif -%}
+      <p class="text-input">
+        Sort by:
+      </p>
+      <select class="select-sort esp" name="SortBy" id="SortBy">
+        <option value="title-ascending"{% if sort_by == collection.default_sort_by %} selected="selected"{% endif %}>Choice</option>
+        {% for option in collection.sort_options %}
+        {%- include 'bold-product' with option, hide_action: 'skip' -%}
+          <option value="{{ option.value }}" {% unless default_sorted %}{% if option.value == sort_by %}selected="selected"{% endif %}{% endunless %}>{{ option.name }}</option>
+        {% endfor %}
+      </select>
+    </div>
+  </div>
+  <div class="new-filter-mobile">
+    <p class="filter-text">
+      {{ collection.all_products_count }} products
+    </p>
+    <div class="select-custom">
+      <p class="filters" data-name=".list-filter">
+        Filter By
+        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-angle-down fa-w-10 fa-3x"><path fill="currentColor" d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-angle-up fa-w-10 fa-3x"><path fill="currentColor" d="M168.5 164.2l148 146.8c4.7 4.7 4.7 12.3 0 17l-19.8 19.8c-4.7 4.7-12.3 4.7-17 0L160 229.3 40.3 347.8c-4.7 4.7-12.3 4.7-17 0L3.5 328c-4.7-4.7-4.7-12.3 0-17l148-146.8c4.7-4.7 12.3-4.7 17 0z" class=""></path></svg>
+      </p>
+      <p class="filters" data-name=".list-sort">
+        Sort By
+        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-angle-down fa-w-10 fa-3x"><path fill="currentColor" d="M151.5 347.8L3.5 201c-4.7-4.7-4.7-12.3 0-17l19.8-19.8c4.7-4.7 12.3-4.7 17 0L160 282.7l119.7-118.5c4.7-4.7 12.3-4.7 17 0l19.8 19.8c4.7 4.7 4.7 12.3 0 17l-148 146.8c-4.7 4.7-12.3 4.7-17 0z" class=""></path></svg>
+        <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="angle-up" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" class="svg-inline--fa fa-angle-up fa-w-10 fa-3x"><path fill="currentColor" d="M168.5 164.2l148 146.8c4.7 4.7 4.7 12.3 0 17l-19.8 19.8c-4.7 4.7-12.3 4.7-17 0L160 229.3 40.3 347.8c-4.7 4.7-12.3 4.7-17 0L3.5 328c-4.7-4.7-4.7-12.3 0-17l148-146.8c4.7-4.7 12.3-4.7 17 0z" class=""></path></svg>
+      </p>
+      <ul class="lista list-filter">
+        <li class="li" pet="all">All</li>
+        <li class="li" pet="for-dogs">
+          Dogs
+        </li>
+        <li class="li" pet="for-cats">
+          Cats
+        </li>
+      </ul>
+      <ul class="lista list-sort">
+        {% for option in collection.sort_options %}
+        {%- include 'bold-product' with option, hide_action: 'skip' -%}
+          <li {% unless default_sorted %}{% if option.value == sort_by %}selected="selected"{% endif %}{% endunless %}><a href="?sort={{option.value}}">{{ option.name }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="filter-smg"><p>No products found</p></div>
+  {% schema %}
+    {
+      "name": "New filter",
+      "class": "index-section",
+      "max_blocks": 3,
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "FEATURED PRODUCTS"
+        },
+        {
+          "type": "image_picker",
+          "id": "new_icon",
+          "label": "Icon for New Products"
+        },
+        {
+          "type": "image_picker",
+          "id": "info_icon",
+          "label": "Icon for Info"
+        }
+      ],
+      "blocks": [
+        {
+          "type": "testimonial",
+          "name": "New filter",
+          "settings": [
+            {
+              "type": "product",
+              "id": "product_id",
+              "label": "Product"
+            },
+            {
+              "type": "select",
+              "id": "new",
+              "label": "New?",
+              "options": [
+                {
+                  "value": "yes",
+                  "label": "Yes"
+                },
+                {
+                  "value": "no",
+                  "label": "No"
+                }
+              ],
+              "default": "no"
+           }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "New filter",
+          "category": "Text"
+        }
+      ]
+    }
+  {% endschema %}
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+  jQuery(function($) {
+    $(window).on('load resize', function() {
+      function check_tags(_tags, selected_value) {
+        var availaible = 0
+        $(_tags).each(function(k,v) {
+          if(v == selected_value && v != '') {
+            availaible = 1
+          }
+        })
+  
+        return availaible
+      }
+  
+      $(document).on('change', 'select.select-pet', function() {
+        var self = $(this),
+        collection_handle = '{{ collection.handle }}',
+        filterby = self.val(),
+        products = $('.products .product')
+  
+        console.log(filterby)
+  
+        if(filterby != 'all') {
+          if(filterby == 'for-dogs') {
+            window.location.href = '/collections/glandex-for-dogs'
+          } else {
+            window.location.href = '/collections/glandex-for-cats'
+          }
+          /*$(products).each(function() {
+            var tags = $(this).attr('tags'),
+            self = $(this),
+            product_id = $(this).attr('product_id'),
+            $tags = []
+  
+  
+            if(tags != '') {
+              $tags = tags.split(', ')
+  
+              if(check_tags($tags, filterby) != 0) {
+                console.log(product_id)
+                $('.products .product[product_id="'+product_id+'"]').addClass('filtering').fadeIn()
+  
+                setTimeout(function() {
+                  $('.products .product:not(.filtering)').fadeOut()
+                }, 300)
+              }
+            }
+          })*/
+        } else if(filterby == 'all') {
+          //$('.products .product').removeClass('filtering').fadeIn()
+          window.location.href = '/collections/'
+        }
+      })
+  
+      if($(window).width() < 800) {
+        $(document).on('click', '.list-filter li:not(.clear-filter)', function(e) {
+          e.preventDefault()
+          var self = $(this),
+          collection_handle = '{{ collection.handle }}',
+          filterby = self.attr('pet'),
+          products = $('.products .product')
+  
+          console.log(filterby)
+  
+          if(filterby != 'all') {
+            if(filterby == 'for-dogs') {
+            window.location.href = '/collections/glandex-for-dogs'
+            } else {
+              window.location.href = '/collections/glandex-for-cats'
+            }
+            /*$(products).each(function() {
+              var tags = $(this).attr('tags'),
+              _self = $(this),
+              product_id = $(this).attr('product_id'),
+              $tags = []
+  
+              //console.log(product_id)
+  
+  
+              if(tags != '') {
+                $tags = tags.split(', ')
+                //console.log($tags)
+  
+                if(check_tags($tags, filterby) != 0) {
+                  console.log(product_id)
+                  $('.products .product[product_id="'+product_id+'"]').addClass('filtering').fadeIn()
+  
+                  setTimeout(function() {
+                    $('.products .product:not(.filtering)').fadeOut()
+                  }, 300)
+                }
+              }
+            })*/
+          } else if(filterby == 'all') {
+            window.location.href = '/collections/'
+          }
+        })
+      }
+    })
+  })
+  </script>
+  <style>
+  .clear-filter {
+    margin: 0;
+    margin-right: 10px;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: 1.6;
+    letter-spacing: 0.4px;
+    margin-left: 10px;
+    cursor: pointer;
+    display: none;
+  }
+  .filter-smg {
+    position: fixed;
+    z-index: 999;
+    top: 30%;
+    left: 45%;
+    width: 100%;
+    right: 0;
+    display: none;
+  }
+  
+  .filter-smg p {
+    display: inline-block;
+    padding: 2%;
+    background: rgb(33 150 243 / 74%);
+    color: #fff;
+    font-weight: bold;
+  }
+  </style>

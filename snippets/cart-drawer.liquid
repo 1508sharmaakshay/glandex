@@ -1,0 +1,178 @@
+{% if settings.cart_type == 'drawer' %}
+  <div id="CartDrawer" class="drawer drawer--right drawer--has-fixed-footer" style="right: -100px;">
+    <div class="drawer__fixed-header">
+      <div class="drawer__header appear-animation appear-delay-1">
+        <div class="h2 drawer__title">
+          <div class="drawer__close">
+            <button type="button" class="drawer__close-button js-drawer-close">
+              {% include 'icon-close' %}
+              <span class="icon__fallback-text">{{ 'cart.general.close_cart' | t }}</span>
+            </button>
+          </div>
+          Your Cart
+        </div>
+        <div class="cart-bar">
+          {% assign cartotal = cart.total_price | money_without_currency  %}
+          {% assign minqty = settings.mpr_cart_smg | money_without_currency %}
+
+          {% if cartotal == '0.00' %}
+            {% assign barfill = 'style="width:0%!important;"' %}
+            {% assign bartext = settings.mpr_cart_text_1 %}
+          {% endif %}
+
+          {% if cartotal > '0.00' and cartotal < minqty %}
+            {% assign barfill = 'style="width:50%!important;"' %}
+            {% assign bartext = settings.mpr_cart_text_2 %}
+          {% endif %}
+
+          {% if cartotal >= minqty %}
+            {% assign barfill = 'style="width:100%!important;"' %}
+            {% assign bartext = settings.mpr_cart_text_3 %}
+          {% endif %}
+
+          <p class="abc">{{ bartext }}</p>
+
+          <div class="bar">
+            <div class="fill" {{ barfill }}></div>
+          </div>
+          <input type="hidden" value="{{ settings.mpr_cart_smg }}" class="smg_cart_shipping_price_calculator">
+          <input type="hidden" class="shippin_bar_txt1" value="{{ settings.mpr_cart_text_1 }}" />
+          <input type="hidden" class="shippin_bar_txt2" value="{{ settings.mpr_cart_text_2 }}" />
+          <input type="hidden" class="shippin_bar_txt3" value="{{ settings.mpr_cart_text_3 }}" />
+        </div>
+      </div>
+    </div>
+    <div class="drawer__inner">
+      <div id="CartContainer" class="drawer__cart"></div>
+    </div>
+  </div>
+  <div id="CartDrawer333" class="drawer drawer--right drawer--has-fixed-footer cart-upsells" style="right:-400px;width:321px;">
+    <div class="drawer__fixed-header">
+      <div class="drawer__header appear-animation appear-delay-1">
+        <div class="h4 drawer__title" style="text-align:center;font-weight:bold;">We also recommend</div>
+      </div>
+    </div>
+
+
+    <div class="product-addons" style="display:none">
+      <h4>ADD ONS</h4>
+      {% for link in linklists.add-on.links %}
+      {% assign hl = link.url | remove: '/products/' %}
+      {% assign _addon = all_products[hl] %}
+      <div class="addon" addon_id="{{ _addon.variants.first.id }}" hl="{{ hl }}">
+        <div class="media">
+        <img src="{{ _addon | img_url }}" />
+        </div>
+        <div class="content">
+          <p class="title">{{ _addon.title }}</p>
+          <span class="price"> {{ _addon.price | money }} </span>
+        </div>
+
+        {% if _addon.variants.size > 1 %}
+          <div class="variant">
+            <select name="id" data-productid="{{ _addon.variants.first.id }}" id="ProductSelect-{{ _addon.variants.first.id }}" style="display:block;" class="product-single__variants no-js">
+              {% for variant in _addon.variants %}
+                {%- include 'bold-variant' with variant, hide_action: 'skip' -%}
+                {% if variant.available %}
+                  <option {% if variant == bold_selected_or_first_available_variant %}
+                    selected="selected" {% endif %}
+                    value="{{ variant.id }}">
+                    {{ variant.title }} - {{ bold_variant_price | money_with_currency }}
+                  </option>
+                {% else %}
+                  <option disabled="disabled">
+                    {{ variant.title }} - {{ 'products.product.sold_out' | t }}
+                  </option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+        
+        <div class="submit">
+          <button class="add-to-cart-addon" pid="{{ _addon.variants.first.id }}">Add</button>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+  /*jQuery(function($) {
+    $(window).on('load', function() {
+      $(document).on('click', '#CartDrawer333 button.add-to-cart-addon', function(e) {
+        e.preventDefault()
+        var self = $(this),
+        id = self.attr('pid')
+
+        var addData = {
+          'id':id,
+          'quantity':1
+        };
+
+        fetch('/cart/add.js', {
+          body: JSON.stringify(addData),
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With':'xmlhttprequest'
+          },
+          method: 'POST'
+        }).then(function(response) {
+          return response.json();
+        }).then(function(json) {
+          console.log(json)
+          if(json && json.key) {
+            self.addClass('add').html('added').attr('disabled', true)
+            location.reload()
+          }
+        }).catch(function(err) {
+          console.error(err)
+        });
+
+      })
+
+      $(document).on('click', '#addonsCarts button.add-to-cart-addon', function(e) {
+        e.preventDefault()
+        var self = $(this),
+        id = self.attr('pid')
+
+        var addData = {
+          'id':id,
+          'quantity':1
+        };
+
+        fetch('/cart/add.js', {
+          body: JSON.stringify(addData),
+          credentials: 'same-origin',
+          headers: {
+            'Content-Type': 'application/json',
+            'X-Requested-With':'xmlhttprequest'
+          },
+          method: 'POST'
+        }).then(function(response) {
+          return response.json();
+        }).then(function(json) {
+          console.log(json)
+          if(json && json.key) {
+            self.addClass('add').html('added').attr('disabled', true)
+            location.reload()
+          }
+        }).catch(function(err) {
+          console.error(err)
+        });
+
+      })
+    })
+  })*/
+</script>
+<style>
+.cbb-shipping-rates-calculator {
+    display: none !important;
+}
+.cs-cart-open {
+  display: block !important;
+  transform: translateX(-400px);
+}
+</style>

@@ -1,0 +1,5 @@
+<!-- DO NOT EDIT THIS SNIPPET - it's generated automatically and may be overwritten at any time -->
+{% if product-description-tabs-top %}{% assign desc = product-description-tabs-top %}{% else %}{% assign desc = product.description %}{% endif %}
+{% capture td %}<div data-station-tabs-app data-station-tabs-product="{{ product.handle }}" data-station-tabs-replace>{% include "product-description-tabs" with desc %}</div>{% endcapture %}
+{% assign td_pure_text = td | split: '<div class="easytabs-container' | first %}
+{{ td_pure_text }}

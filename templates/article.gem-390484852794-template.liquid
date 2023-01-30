@@ -1,0 +1,230 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+<link data-instant-track rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-390484852794.css' | asset_url }}" class="gf_page_style">
+<!--GEM_HEADER_END-->
+{%- assign number_of_comments = article.comments_count -%}
+
+{% if comment %}
+  {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+{% endif %}
+
+{% if section.settings.image_hero and article.image %}
+  <div class="collection-hero">
+    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    <img class="collection-hero__image image-fit lazyload"
+      src=""
+      data-src="{{ img_url }}"
+      data-aspectratio="{{ article.image.aspect_ratio }}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      alt="{{ article.image.alt | escape }}">
+    <noscript>
+      <img class="collection-hero__image image-fit"
+        src="{{ article.image | img_url: '1400x' }}"
+        alt="{{ article.image.alt | escape }}">
+    </noscript>
+
+    <div class="collection-hero__content">
+      <div class="page-width">
+        <header class="section-header section-header--hero">
+          <div class="section-header__shadow">
+            {%- include 'breadcrumbs' -%}
+            {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+              <div class="article__date">
+                {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                    {%- include 'filter-out-custom-tags' -%}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                  {% endfor %}
+                {% endif %}
+                {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                  <a href="#comments">
+                    {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                  </a> &middot;
+                {% endif %}
+                {% if section.settings.blog_show_date %}
+                  {{ article.published_at | time_tag: format: 'month_day_year' }}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <h1 class="section-header__title">
+              {{ article.title }}
+            </h1>
+
+            {% if section.settings.blog_show_author %}
+              <div class="article__author">by {{ article.author }}</div>
+            {% endif %}
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="page-width page-content">
+
+  <div class="grid">
+    <article class="grid__item widescreen--six-tenths widescreen--push-two-tenths medium-up--two-thirds medium-up--push-one-sixth article" itemscope itemtype="http://schema.org/Article">
+
+      {%- unless section.settings.image_hero and article.image -%}
+        {%- include 'breadcrumbs' -%}
+
+        <header class="section-header">
+          {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+            <div class="article__date">
+              {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                {% for tag in article.tags %}
+                  {%- include 'filter-out-custom-tags' -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                {% endfor %}
+              {% endif %}
+              {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                <a href="#comments">
+                  {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                </a> &middot;
+              {% endif %}
+              {% if section.settings.blog_show_date %}
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              {% endif %}
+            </div>
+          {% endif %}
+          <h1 class="section-header__title">{{ article.title }}</h1>
+          {% if section.settings.blog_show_author %}
+            <div class="article__author">by {{ article.author }}</div>
+          {% endif %}
+        </header>
+      {%- endunless -%}
+
+      <div class="article__body rte" itemprop="articleBody">
+        <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor">
+<div data-label="Heading" id="e-1596126923142" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1596126923142"><div class="elm text-edit gf-elm-center gf-elm-left-md gf-elm-left-sm gf-elm-left-xs gf-elm-center-lg" data-gemlang="en" data-exc=""><h4>Although dogs cannot talk to us, they can let us know when something is wrong with changes to their stool!</h4></div></div><!--gfsplit--><div data-label="Text Block" id="e-1596126923093" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1596126923093"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p><!--StartFragment--></p><p style="text-align: inherit!important;">Being a pet parent comes with a lot of responsibility. Part of that responsibility includes being vigilant when it comes to noticing changes in your pet’s stool. Watery dog poop can be caused by a number of different internal and external factors. It is important to consult your veterinarian to ensure you find the underlying cause and proper treatment method.<br></p><!--EndFragment--></div></div><!--gfsplit--><div data-label="Image" id="e-1596129594719" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1596129594719"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg" data-exc=""><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/shutterstock_143122912.jpg?v=1596129584" alt="What causes watery poop in dogs" class="gf_image" data-gemlang="en"></div></div><!--gfsplit--><div data-label="Heading" id="e-1596126923096" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1596126923096"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>What causes watery poop?</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1596126923130" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1596126923130"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p><!--StartFragment--></p><p style="text-align: inherit!important;">There are many factors that can lead to your dog suffering from watery poop. Diarrhea itself is not an illness, but rather a sign of an underlying health issue.<br><br><b>Recent diet changes</b><br>One of the most common causes of watery dog poop is a recent change in diet. It may take several days for your dog’s digestive system to adjust to a new food. To help your dog avoid any digestive discomfort, slowly introduce new food a little at a time. Over a period of 5-7 days, start by mixing the new food in with the current food until the old food as been completely transitioned out. <br><br><b>Poor diet</b><br>It is no surprise that most dogs enjoy eating just about anything they can get their paws on- even things they shouldn’t. A diet based on processed chemicals, high sugar/ salt content, and fatty foods are all things that can absent the balance of your dog’s digestive system. If a dog gets into the garbage can, this could cause them to have an upset stomach as well.<br><br><b>Food Allergies</b><br>Alike humans, dogs commonly experience food intolerance. A food allergy can lead to your pet having an upset stomach, watery stool, and gas.<br><br><b>Parasites</b><br>While loose or watery stool is usually caused by something minor, parasites are a bit more serious. If you believe your dog may have a parasite, you should contact your veterinarian as soon as possible to find the correct treatment method.<br><br><b>Anxiety/ Stress</b><br>Similar to people, dogs can experience stress and anxiety. Stress can be directly linked to irregular bowel movements which could consist of constipation or loose stool.<br><br><b>New medication/ Supplements</b><br>It is not unusual for pets to get mild stomach upset when starting any new food, treat, medication, or supplement. Introducing any of these things into your dog’s diet can cause temporary stomach/ digestion issues.<br><br><b>Dietary Indiscretion</b><br>Dietary indiscretion is the tendency for animals to feed on unusual items, or undergo drastic changes in feeding behavior. Eating things such as; garbage, sticks, or foreign body objects can lead to your dog having watery stool.<br><br><b>Bacterial Overgrowth</b><br>Overgrowth or imbalance of harmful bacteria in the gastrointestinal tract.<br></p><!--EndFragment--></div></div><!--gfsplit--><div data-label="Image" id="e-1596126923184" class="element-wrap" data-icon="gpicon-image" data-ver="1.0" data-id="1596126923184"><div class="elm gf-elm-center gf_elm-left-xs gf-elm-center-md gf-elm-center-sm gf-elm-center-xs gf-elm-center-lg" data-exc=""><img src="https://cdn.shopify.com/s/files/1/2204/0799/files/shutterstock_749530450.jpg?v=1596129397" alt="How to prevent watery dog poop in dogs" class="gf_image" data-gemlang="en"></div></div><!--gfsplit--><div data-label="Heading" id="e-1596126923153" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1596126923153"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>What Your Dog’s Poop Can Tell You</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1596126923143" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1596126923143"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>As mentioned before, dogs are unable to talk and tell their owners when something is wrong. However, a lot can be learned from their poop! Loose or watery stool alone is not a sickness but rather an alert that there may be an underlying issue.</p></div></div><!--gfsplit--><div data-label="Heading" id="e-1596126923112" class="element-wrap" data-icon="gpicon-heading" data-ver="1" data-id="1596126923112"><div class="elm text-edit gf-elm-center gf-elm-left-lg gf-elm-left-md gf-elm-left-sm gf-elm-left-xs" data-gemlang="en" data-exc=""><h3>How To Prevent Watery Stool</h3></div></div><!--gfsplit--><div data-label="Text Block" id="e-1596126923114" class="element-wrap" data-icon="gpicon-textblock" data-ver="1" data-id="1596126923114"><div class="elm text-edit gf-elm-left" data-gemlang="en"><p>An effective way to treat/ prevent diarrhea is by adding a digestive support supplement to your dog’s daily diet. A <a href="https://www.vetniquelabs.com/blogs/vets-corner/probiotics-digestive-health-in-pets" class="" target="_blank">probiotic</a> taken in conjunction with a fiber-based supplement will not only help to regulate and aid in digestion but will also modulate the immune system, inhibit the growth and activity of harmful bacteria, and support brain function.<br><br>Probiotics such as&nbsp;<a href="/collections/profivex-probiotic" class="" target="_blank"> Profivex®</a> are essential to making sure pets are healthy, active, and live a long, full healthy life. Profivex ® is considered to be the best probiotic for dogs and cats not only because of all of its amazing benefits but also because it contains fiber! Probiotics are safe to give to pets daily or when they're having tummy problems. They can help shorten occurrences of diarrhea and they are important to give if your pet is on antibiotics or steroids. Both antibiotics and steroids can kill the healthy bacteria in your pet's gut.</p><p><br></p><p>Many probiotics marketed towards pets lack the correct strains of probiotics. Profivex® , however, contains five of the most beneficial strains for dogs and cats:<br></p></div></div><!--gfsplit--><div data-label="Icon List" id="m-1596127171988" class="module-wrap" data-icon="gpicon-iconlist" data-ver="1.0" data-id="1596127171988"><div class="module gf_module-left gf_module-left-lg gf_module--md gf_module--sm gf_module--xs "><ul class="gf_icon-list"><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="1" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1596127171988-1" class="element-wrap" data-id="1596127171988-1"><div class="elm gf-elm-center" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px;"><i class="gf_icon fa fa-check-circle"></i></div></div></div></span><div class="gf-il-content item-content" data-index="1" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1596127171988-2" class="element-wrap" data-id="1596127171988-2"><div class="elm text-edit gf-elm-left">Bifidobacterium bifidum</div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="2" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1596127171988-3" class="element-wrap" data-id="1596127171988-3"><div class="elm gf-elm-center" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px;"><i class="gf_icon fa fa-check-circle"></i></div></div></div></span><div class="gf-il-content item-content" data-index="2" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1596127171988-4" class="element-wrap" data-id="1596127171988-4"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">&nbsp;Enterococcus faecium</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="3" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1596127171988-5" class="element-wrap" data-id="1596127171988-5"><div class="elm gf-elm-center" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px;"><i class="gf_icon fa fa-check-circle"></i></div></div></div></span><div class="gf-il-content item-content" data-index="3" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1596127171988-6" class="element-wrap" data-id="1596127171988-6"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Lactobacillus acidophilus</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="4" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1596127207149" class="element-wrap" data-id="1596127207149"><div class="elm gf-elm-center" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px;"><i class="gf_icon fa fa-check-circle"></i></div></div></div></span><div class="gf-il-content item-content" data-index="4" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1596127207099" class="element-wrap" data-id="1596127207099"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">&nbsp;&nbsp;&nbsp; Lactobacillus Plantarum</p></div></div></div></li><li style="margin-bottom: 15px"><span class="gf-il-icon item-content" data-index="5" data-key="content" style="width: 45px"><div data-label="Icon" id="e-1596127219081" class="element-wrap" data-id="1596127219081"><div class="elm gf-elm-center" data-exc=""><div class="gf_icon-wrap" style="font-size: 20px;"><i class="gf_icon fa fa-check-circle"></i></div></div></div></span><div class="gf-il-content item-content" data-index="5" data-key="content1" style="padding-left: 45px"><div data-label="Text Block" id="e-1596127219082" class="element-wrap" data-id="1596127219082"><div class="elm text-edit gf-elm-left"><p style="text-align: inherit!important;">Streptococcus thermophilus</p></div></div></div></li></ul></div></div><!--gfsplit--><div data-label="Liquid" id="m-1596127607879" class="module-wrap" data-icon="gpicon-liquid" data-ver="1.0" data-id="1596127607879" data-name="CSS for animation text link - important" style="background-image: none;"><div class="module gf_module- gf_module--lg gf_module--md gf_module--sm gf_module--xs {{extraClass}}"></div></div><!--gfsplit-->
+</div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+
+      </div>
+
+      {% if section.settings.social_sharing_blog %}
+        {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+      {% endif %}
+
+      {% if blog.comments_enabled? %}
+
+        {% if number_of_comments > 0 %}
+          <hr class="hr--large">
+          <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+          <hr class="hr--small hr--clear">
+        {% endif %}
+
+        {% paginate article.comments by 5 %}
+          
+          <div id="comments">
+
+            {% if comment and comment.errors == blank %}
+              <hr class="hr--small hr--clear">
+              <p class="note note--success">
+                {% if blog.moderated? %}
+                  {{ 'blogs.comments.success_moderated' | t }}
+                {% else %}
+                  {{ 'blogs.comments.success' | t }}
+                {% endif %}
+              </p>
+            {% endif %}
+
+            {% if number_of_comments > 0 %}
+              <ul class="no-bullets">
+                
+                {% if comment and comment.errors == blank %}
+                  <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                    {% include 'comment' %}
+                  </li>
+                {% endif %}
+
+                {% for comment in article.comments %}
+                  <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                    {% include 'comment' %}
+                  </li>
+
+                  {% unless forloop.last %}
+                    <li><hr class="hr--clear"></li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>
+
+              {% if paginate.pages > 1 %}
+                {% include 'pagination' %}
+              {% endif %}
+
+            {% endif %}
+
+            <hr class="hr--large">
+
+            <header class="section-header{% unless settings.type_headers_align_text %} section-header--with-link{% endunless %}">
+              <h3 class="section-header__title">{{ 'blogs.comments.title' | t }}</h3>
+            </header>
+
+            <div class="form-vertical">
+              {% form 'new_comment', article %}
+
+                {{ form.errors | default_errors }}
+
+                <div class="grid grid--small">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'author' %} error{% endif %}" type="text" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'email' %} error{% endif %}" type="email" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  </div>
+                </div>
+
+                <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+                <textarea class="input-full{% if form.errors contains 'body' %} error{% endif %}" name="comment[body]" id="CommentBody">{{ form.body }}</textarea>
+
+                {% if blog.moderated? %}
+                  <p><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+                {% endif %}
+
+                <button type="submit" class="btn btn--secondary">
+                  {{ 'blogs.comments.post' | t }}
+                </button>
+
+              {% endform %}
+            </div>
+
+          </div>
+        {% endpaginate %}
+      {% endif %}
+
+      <hr class="hr--large">
+
+    </article>
+
+  </div>
+
+  <div class="text-center">
+    <a href="{{ blog.url }}" class="btn return-link">{% include 'icon-arrow-left' %} {{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+  </div>
+</div>
+
+
+
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-390484852794.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

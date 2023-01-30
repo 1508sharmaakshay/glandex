@@ -1,0 +1,234 @@
+{% style %}
+  .offers_section_main-{{ section.id }} {
+    background-color: {{ section.settings.color_background }};
+    color: {{ section.settings.color_text }};
+  }
+{% endstyle %}
+
+<div class="offers_section_main offers_section_main-{{ section.id }}">
+    <div class="offers_section_main_inner"
+        {% if section.settings.background_image != blank %}style="background-image:url({{ section.settings.background_image | img_url: 'original' }})"
+        {% endif %}>
+      	<div class="offers_section_main_inner_image" {% if section.settings.background_image != blank %}style="background-image:url({{ section.settings.background_image | img_url: 'original' }})"
+        {% endif %}></div>
+        <div class="page-width">
+            <div class="inner_content">
+                {% if section.settings.vetnique_logo != blank or section.settings.logo_sub_text != blank %}
+                <div class="section_top">
+                    {% if section.settings.vetnique_logo != blank %}
+                    <div class="logo">
+                        <img src="{{ section.settings.vetnique_logo | img_url: 'original' }}" alt="Vetnique" />
+                    </div>
+                    {% endif %}
+                    {% if section.settings.logo_sub_text != blank %}
+                    <span class="logo_text">
+                        {{ section.settings.logo_sub_text }}
+                    </span>
+                    {% endif %}
+                </div>
+                {% endif %}
+                {% if section.settings.title != blank or section.blocks.size > 0 %}
+                <div class="section_middle">
+                    {% if section.settings.title != blank %}
+                    <div class="section_heading">
+                        <h3>{{ section.settings.title }}</h3>
+                    </div>
+                    {% endif %}
+                    {% if section.blocks.size > 0 %}
+                    <div class="offers_list_boxes">
+                        {% for block in section.blocks %}
+                        {% assign collection_url = "javascript:void(0)" %}
+                        {% if block.settings.collection_id != blank  %}
+                        {% assign collection = collections[block.settings.collection_id] %}
+                        {% if collection.url != blank  %}
+                        {% assign collection_url = collection.url %}
+                        {% endif %}
+                        {% endif %}
+                        {% if block.settings.collection_image != blank or block.settings.collection_text != blank or block.settings.collection_mobile_text != blank %}
+                        <div class="offers_list_box_item">
+                            {% if collection_url != blank %}
+                            <a href="{{ collection_url }}" class="link"></a>
+                            {% endif %}
+                            <div class="offers_list_box_item_inner">
+                                {% if block.settings.collection_image != blank %}
+                              <div class="image">
+                                <img src="{{ block.settings.collection_image | img_url: 'original' }}" alt="Offer" />
+                              </div>
+                                {% endif %}
+                                {% if block.settings.collection_text != blank %}
+                                <h6>{{ block.settings.collection_text }}</h6>
+                                {% endif %}
+                                {% if block.settings.collection_mobile_text != blank %}
+                                <p>{{ block.settings.collection_mobile_text }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                {% endif %}
+                <div class="section_bottom desktop">
+                    {% if section.settings.pawpass_logo != blank %}
+                    <div class="logo">
+                      <a href="https://www.glandex.com/account/login?return_url=%2Faccount"> <img src="{{section.settings.pawpass_logo | img_url: 'original' }}" alt="pawpass" /></a>
+                    </div>
+                    {% endif %}
+                  	{% if section.settings.subscribe_text != blank %}
+                  	<div class="cta_text mobile_only">
+                    	{{ section.settings.subscribe_text }}
+                  	</div>
+                    {% endif %}
+                    {% if section.settings.content != blank %}
+                    <div class="section-content">
+                        {{ section.settings.content }}
+                    </div>
+                    {% endif %}
+                    {% if section.settings.subscribe_text != blank or section.settings.subscribe_cta_link != blank %}
+                    <div class="section-cta">
+                        {% if section.settings.subscribe_text != blank %}
+                        <div class="cta_text">
+                            {{ section.settings.subscribe_text }}
+                        </div>
+                        {% endif %}
+                        {% if section.settings.subscribe_cta_link != blank %}
+                        <a class="cta_link btn" href="{{ section.settings.subscribe_cta_link }}">
+                            {% if section.settings.subscribe_cta_text != blank %}{{ section.settings.subscribe_cta_text }}
+                            <img src="{{ 'cta_icon.png' | asset_url }}" alt="icon" class="cta_icon" /> {% endif %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+              <div class="section_bottom mobile">
+                    {% if section.settings.pawpass_logo != blank %}
+                    <div class="logo">
+                      <a href="https://www.glandex.com/account/login?return_url=%2Faccount"> <img src="{{section.settings.pawpass_logo | img_url: 'original' }}" alt="pawpass" /></a>
+                    </div>
+                    {% endif %}
+                  	{% if section.settings.subscribe_text != blank %}
+                  	<div class="cta_text mobile_only">
+                    	{{ section.settings.subscribe_text }}
+                  	</div>
+                    {% endif %}
+                    {% if section.settings.mobile_content != blank %}
+                    <div class="section-content">
+                        {{ section.settings.mobile_content}}
+                    </div>
+                    {% endif %}
+                    {% if section.settings.subscribe_text != blank or section.settings.subscribe_cta_link != blank %}
+                    <div class="section-cta">
+                        {% if section.settings.subscribe_text != blank %}
+                        <div class="cta_text">
+                            {{ section.settings.subscribe_text }}
+                        </div>
+                        {% endif %}
+                        {% if section.settings.subscribe_cta_link != blank %}
+                        <a class="cta_link btn" href="{{ section.settings.subscribe_cta_link }}">
+                            {% if section.settings.subscribe_cta_text != blank %}{{ section.settings.subscribe_cta_text }}
+                            <img src="{{ 'cta_icon.png' | asset_url }}" alt="icon" class="cta_icon" /> {% endif %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Offers List",
+	"class": "index-section offers_list_section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "vetnique_logo",
+        "label": "Vetnique Logo"
+      }, {
+        "type": "text",
+        "id": "logo_sub_text",
+        "label": "Logo Sub Text"
+      }, {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "How can we help your pet?"
+      }, {
+        "type": "color",
+        "id": "color_background",
+        "label": "Background Color",
+        "default": "#16B9EE"
+      }, {
+        "type": "color",
+        "id": "color_text",
+        "label": "Text",
+        "default": "#FFFFFF"
+      }, {
+        "type": "image_picker",
+		"id": "background_image",
+		"label": "Background Image"
+      }, {
+        "type": "image_picker",
+		"id": "pawpass_logo",
+		"label": "Pawpass Logo"
+      }, {
+        "type": "textarea",
+		"id": "content",
+		"label": "Content"
+      },{
+        "type": "textarea",
+		"id": "mobile_content",
+		"label": "Mobile Content"
+      }, {
+        "type": "text",
+		"id": "subscribe_text",
+		"label": "Subscribe Text"
+      }, {
+        "type": "text",
+		"id": "subscribe_cta_text",
+		"label": "Subscribe CTA Text"
+      }, {
+        "type": "url",
+		"id": "subscribe_cta_link",
+		"label": "Subscribe CTA Link"
+      }
+    ],
+	"blocks": [
+      {
+        "type": "offers_selection",
+        "name": "Select New Offer",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection_id",
+            "label": "Offer"
+          },  {
+            "type": "image_picker",
+            "id": "collection_image",
+            "label": "Offer Image"
+          }, {
+            "type": "text",
+            "id": "collection_text",
+            "label": "Offer Text"
+          }, {
+            "type": "textarea",
+            "id": "collection_mobile_text",
+            "label": "Offer Mobile Text"
+          }
+		]
+      }
+	], "presets": [{
+      "name": "Offers Section",
+      "category": "Promotional"
+	}]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

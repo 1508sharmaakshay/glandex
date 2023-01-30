@@ -1,0 +1,240 @@
+<div class="feature-product-home">
+    {% if section.settings.title != blank %}
+    <h1 class="title-feature-product">
+        {{ section.settings.title }}
+    </h1>
+    {% endif %}
+    <div class="products">
+        {% for block in section.blocks %}
+        {% assign product_item = all_products[block.settings.product_id] %}
+        <div class="product">
+            <div class="product_inner">
+                <div class="front-card">
+                    <div class="container-imgs hm">
+                        {% if block.settings.new == 'yes' %}
+                        <img class="new" src="{{ 'icon-new.svg' | asset_url }}">
+                        {% endif %}
+                        {% comment %} <div class="exclamation">
+                            <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" role="img"
+                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512"
+                                class="svg-inline--fa fa-info fa-w-6 fa-2x">
+                                <path fill="currentColor"
+                                    d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"
+                                    class=""></path>
+                            </svg>
+                        </div> {% endcomment %}
+                        <a href="{{ product_item.url }}" style="margin: auto;">
+                            {% if block.settings.product_image != blank %}
+                            <img class="img-product hm" src="{{ block.settings.product_image | img_url: 'original' }}" alt="{{ block.settings.title }}">
+                            {% else %}
+                            <img class="img-product hm" src="{{ product_item.featured_image | img_url: 'original' }}" alt="{{ block.settings.title }}">
+                            {% endif %}
+                        </a>
+                    </div>
+                    <div class="container-text">
+                        <a href="{{ product_item.url }}">
+                            {% if block.settings.title != blank %}
+                            <p class="title-product hm">
+                                {{ block.settings.title }}
+                            </p>
+                            {% else %}
+                            <p class="title-product hm">
+                                {{ product_item.title }}
+                            </p>
+                            {% endif %}
+                        </a>
+                        {% if block.settings.subtext != blank %}
+                        <p class="subtext-product">{{ block.settings.subtext }}</p>
+                        {% endif %}
+                        {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product_item %}
+                        <p class="price price-{{ product_item.id }}">
+                            From <span class="price-show-{{ product_item.id }}">{{ product_item.price | money }}</span>
+                        </p>
+                    </div>
+                    {% form 'product', product_item %}
+                    <div class="form hm">
+                        <div class="form_cta_with_variant">
+                            {% assign variants = product_item.variants %}
+                            {% assign variants_size = variants | size %}
+                            <select class="variants-product" name="id" {% if variants_size <= 1 %} style="display:none;"
+                                {% endif %} data-id="{{ product_item.id }}">
+                                {% for variant in variants %}
+                                <option class="option-{{ variant.id }}" value="{{ variant.id }}"
+                                    data-productid="{{ variant.id }}" data-price="{{ variant.price | money }}">
+                                    {{ variant.title }}</option>
+                                {% endfor %}
+                            </select>
+
+                            <div class="btn-buy show-btn-buy by" data-id="{{ product_item.id }}"
+                                firstid="{{product_item.variants.first.id}}">
+                                Buy Now
+                            </div>
+                            <button type="submit" name="add" id="AddToCart-{{ product_item.id }}"
+                                class="btn-cart add-to-cart">
+                                Add To Cart
+                            </button>
+                            {% if product_item.metafields.subscriptions.subscription_id %}
+                            {% assign widget_settings = shop.metafields.subscriptions %}
+                            {% assign subscription_product = product_item.metafields.subscriptions %}
+                            {% assign subscription_id = subscription_product.subscription_id %}
+                            {% assign shipping_interval_unit_type = subscription_product.shipping_interval_unit_type | default: 'Days' %}
+                            {% assign shipping_interval_frequency = subscription_product.shipping_interval_frequency | split: ',' | default: 30 %}
+                            {% assign product_tags = product_item.tags | remove: ' ' | downcase %}
+                            {% if subscription_product.is_subscription_only == 'true' or product_tags contains 'subscriptiononly' %}
+                            {% assign subscription_only = true %}
+                            {% else %}
+                            {% assign subscription_only = false %}
+                            {% endif %}
+                            {% unless subscription_only %}
+                            {% assign label_autodeliver = widget_settings.subscribe_message | default: "Subscribe &amp; save" %}
+                            <div class="btn_div_subscription">
+                                <a class="btn_subscription button btn gf_button"
+                                    href="{{ product_item.url }}?type=subscription">{{label_autodeliver}}</a>
+                            </div>
+                            {% endunless %}
+                            {% endif %}
+                        </div>
+                        <div class="hidden-button-{{ product_item.id }}" style="display:none;">
+                            {{ form | payment_button }}
+                        </div>
+                    </div>
+                    <div class="product-feature-description">{{ block.settings.description }}</div>
+                    {% endform %}
+                </div>
+                <div class="back-card">
+                    {% if product_item.metafields.spr.reviews %}
+                    {% capture review_data %}{{ product_item.metafields.spr.reviews }}{% endcapture %}
+                    {% assign review_data1 = review_data | split: "reviewCount" %}
+                    {% assign review_data2 = review_data1[1] | split: "=" %}
+                    {% assign review_data3 = review_data2[1] | split: '"' %}
+                    {% assign review_count_value = review_data3[1] | plus: 1 | minus: 1 %}
+                    {% endif %}
+                    <div class="container-close">
+                        <svg aria-hidden="true" focusable="false" data-prefix="fal" data-icon="times" role="img"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"
+                            class="svg-inline--fa fa-times fa-w-10 fa-3x">
+                            <path fill="currentColor"
+                                d="M193.94 256L296.5 153.44l21.15-21.15c3.12-3.12 3.12-8.19 0-11.31l-22.63-22.63c-3.12-3.12-8.19-3.12-11.31 0L160 222.06 36.29 98.34c-3.12-3.12-8.19-3.12-11.31 0L2.34 120.97c-3.12 3.12-3.12 8.19 0 11.31L126.06 256 2.34 379.71c-3.12 3.12-3.12 8.19 0 11.31l22.63 22.63c3.12 3.12 8.19 3.12 11.31 0L160 289.94 262.56 392.5l21.15 21.15c3.12 3.12 8.19 3.12 11.31 0l22.63-22.63c3.12-3.12 3.12-8.19 0-11.31L193.94 256z"
+                                class=""></path>
+                        </svg>
+                    </div>
+                    <span class="shopify-product-reviews-badge" data-id="{{ product_item.id }}"></span>
+                    <p class="title-review">
+                        {% if review_count_value %}
+                        {{ review_count_value }} Reviews
+                        {% else %}
+                        0 Reviews
+                        {% endif %}
+                    </p>
+                    <p class="satisfaction">
+                        {{ product_item.metafields.arena.satisfaction }}
+                    </p>
+                    <p class="gluten">
+                        {{ product_item.metafields.arena.gluten }}
+                    </p>
+                    <p class="corn">
+                        {{ product_item.metafields.arena.corn }}
+                    </p>
+                    <p class="no-artificial">
+                        {{ product_item.metafields.arena.noartificial }}
+                    </p>
+                    <p class="preservatives">
+                        {{ product_item.metafields.arena.perservatives }}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    <div class="mobile_only product_slider_pagination">
+        <div class="inner_content">
+            <span class="active_page">1</span> of <span class="total_page">{{ section.blocks.size }}</span>
+        </div>
+    </div>
+</div>
+
+{% style %}
+.spr-badge-caption {
+display: none;
+}
+.spr-icon {
+color: white;
+margin: 0 4px;
+margin-bottom: 10px;
+}
+.spr-starrating{
+display: flex;
+justify-content: center;
+margin: 0;
+}
+{% endstyle %}
+
+{% schema %}
+{
+"name": "New featured Product",
+"class": "index-section",
+"settings": [
+{
+"type": "text",
+"id": "title",
+"label": "Heading",
+"default": "FEATURED PRODUCTS"
+}
+],
+"blocks": [
+{
+"type": "testimonial",
+"name": "New featured product",
+"settings": [
+{
+"type": "product",
+"id": "product_id",
+"label": "Product"
+},
+{
+"type": "image_picker",
+"id": "product_image",
+"label": "Product Image"
+},
+{
+"type": "text",
+"id": "title",
+"label": "Title"
+},
+{
+"type": "text",
+"id": "subtext",
+"label": "Subtext"
+},
+{
+"type": "richtext",
+"id": "description",
+"label": "Description"
+},
+{
+"type": "select",
+"id": "new",
+"label": "New?",
+"options": [
+{
+"value": "yes",
+"label": "Yes"
+},
+{
+"value": "no",
+"label": "No"
+}
+],
+"default": "no"
+}
+]
+}
+],
+"presets": [
+{
+"name": "New featured product",
+"category": "Text"
+}
+]
+}
+{% endschema %}

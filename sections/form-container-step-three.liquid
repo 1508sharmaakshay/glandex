@@ -1,0 +1,101 @@
+<!-- /sections/form-container-step-three.liquid -->
+
+<div class="container-step-three">
+    {% if section.settings.highlight_text != blank %}
+        <p class="navbar-text">
+            {{ section.settings.highlight_text }}
+        </p>
+    {% endif %}
+    <p class="inbox">
+        {{ section.settings.title }}
+    </p>
+    <h3 class="steps">
+        {{ section.settings.subtext }}
+    </h3>
+    <div class="boxes">
+        {% for block in section.blocks %}
+            <div class="box">
+                <img src="{{ block.settings.image | img_url: 'master' }}">
+                <div class="container-text">
+                    <p class="step">
+                        {{ block.settings.title }}
+                    </p>
+                    {% assign preprocessed_content = block.settings.description | replace: '<p>', '' %}
+                    {% assign preprocessed_content = preprocessed_content | replace: '</p>', ' ' %}
+                    <p class="description">{{ preprocessed_content }}</p>
+                    {% if block.settings.button_url != blank and block.settings.button_text != blank %}
+                        <a href="{{ block.settings.button_url }}" class="submit-form" target="blank">
+                            {{ block.settings.button_text }}
+                        </a>
+                    {% endif %}
+                    {% if block.settings.disclaimer != blank %}
+                        <small>
+                            {{ block.settings.disclaimer }}
+                        </small>
+                    {% endif %}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Form Step Three",
+    "settings": [
+        {
+            "type": "text",
+            "id": "highlight_text",
+            "label": "Highlight Text"
+        },
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "subtext",
+            "label": "Subtext"
+        }
+    ],
+    "blocks": [
+      {
+        "name": "Steps",
+        "type": "steps",
+        "settings": [
+            {
+                "type": "image_picker",
+                "id": "image",
+                "label": "Image"
+            },
+            {
+                "type": "text",
+                "id": "title",
+                "label": "Title"
+            },
+            {
+                "type": "richtext",
+                "id": "description",
+                "label": "Description"
+            },
+            {
+                "type": "text",
+                "id": "disclaimer",
+                "label": "Disclaimer"
+            },
+            {
+                "type": "url",
+                "id": "button_url",
+                "label": "Button Url"
+            },
+            {
+                "type": "text",
+                "id": "button_text",
+                "label": "Button Text"
+            }
+        ]
+      }
+    ]
+  }
+{% endschema %}

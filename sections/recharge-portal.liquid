@@ -1,0 +1,2225 @@
+{% unless request.design_mode %}
+
+{% capture logo_img %}
+<img class="lazyloaded" src="{{ settings.pp_logo | img_url: '400x' }}" alt="{{ settings.pp_logo.alt }}" />
+{% endcapture %}
+{% capture icon_visa %}
+<img class="lazyloaded" src="{{ 'icon-visa.png' | asset_img_url: 'medium' }}" alt="visa logo" width="40px"/>
+{% endcapture %}
+{% assign product1 = all_products['dermabliss-allergy-immune-soft-chews-for-dogs-30-chews'] %}
+{% assign product2 = all_products['dermabliss-allergy-immune-soft-chews-for-dogs-60-chews'] %}
+{% assign collection_recommend = collections[ settings.up_products_recommend ] %}
+{% assign products_recommend = collection_recommend.products %}
+
+<script>
+  var productRecommend = [
+    {% for product in products_recommend limit:5 %}
+    {{ product.id }}{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+</script>
+
+<!-- ________________ -->
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/swiper@7/swiper-bundle.min.css"
+/>
+
+<!-- Loading element -->
+{% render 'customer-pawpass-logo' %}
+<div id="custom-loading" class="cf-preload">
+  <div class="cf-preload-field cf-preload-item"></div>
+  <div class="cf-preload-label cf-preload-item"></div>
+  <div class="cf-preload-field cf-preload-item"></div>
+  <div class="cf-preload-label cf-preload-item"></div>
+  <div class="cf-preload-field cf-preload-item"></div>
+  <div class="cf-preload-label cf-preload-item"></div>
+  <div class="cf-preload-field cf-preload-item"></div>
+  <span class="cf-preload-button cf-preload-item"></span>
+</div>
+
+<!-- Recharge -->
+<div class="recharge-custom hidden">
+  <nav class="rcc_navigation">
+    <ul class="rcc_navigation__desktop">
+      <li data-ref="#your-rewards" class="rcc_navigation__item rcc_navigation__item--active">
+        <span class="rcc_navigation__item__link rcc_navigation__item__link--active">YOUR REWARDS</span>
+      </li>
+      <li data-ref="#upcoming-deliveries" class="rcc_navigation__item">
+        <span class="rcc_navigation__item__link ">UPCOMING DELIVERIES</span>
+      </li>
+      <li data-ref="#your-details" class="rcc_navigation__item">
+        <span class="rcc_navigation__item__link ">YOUR DETAILS</span>
+      </li>
+      <li data-ref="#order-history" class="rcc_navigation__item">
+        <span class="rcc_navigation__item__link ">ORDER HISTORY</span>
+      </li>
+    </ul>
+  </nav>
+  <div class="rcc_wrapper">
+    <div class="rcc_main_content">
+      <div id="your-rewards" class="rcc_section">
+        <div class="rcc_section__detail">
+          <div class="yr_section_left">
+            <h1 class="yr_first_name">HI ERICA</h1>
+            <div class="yr_title">{{ settings.yr_title }}</div>
+            <div class="yr_subtitle">{{ settings.yr_subtitle }}</div>
+            <div class="yr_no_subs hidden">You are not a Paw Pass member</div>
+          </div>
+          <div class="yr_section_right">
+            <img class="lazyloaded hidden" data-month="1" src="{{ settings.yr_image_1 | img_url: '800x' }}" alt="{{ settings.yr_image_1.alt }}" />
+            <img class="lazyloaded" data-month="2"  src="{{ settings.yr_image_2 | img_url: '800x' }}" alt="{{ settings.yr_image_2.alt }}" />
+            <img class="lazyloaded hidden" data-month="3" src="{{ settings.yr_image_3 | img_url: '800x' }}" alt="{{ settings.yr_image_3.alt }}" />
+          </div>
+        </div>
+        {% render 'customer-loyality-incentives' %}
+      </div>
+
+      <div id="upcoming-deliveries" class="rcc_section hidden">
+        <div class="rcc_section__detail">
+          <div class="up_section_left">
+            <div class="up_section_left__title">SHIPPING ADDRESS</div>
+            <!-- _____________________ -->
+            <div class="up_section_left__shipping_address">
+              <div class="up_section_left__shipping_address__info">
+                <p>Sanika Shah</p>
+                <p>2 E 8th St,</p>
+                <p>777 South State</p>
+                <p>Chicago, IL 60605</p>
+                <p>United States</p>
+              </div>
+              <div class="up_section_left__shipping_address__btn">
+                <a href="#editaddress">
+                  <div class="btn rcc_btn rcc_btn_primary btn__edit_address">UPDATE ADDRESS</div>
+                </a>
+              </div>
+            </div>
+            <!-- _____________________ -->
+          </div>
+          <div class="up_section_right">
+            <div class="up_section_right__title">SUBSCRIBED PRODUCTS (5)</div>
+            <div class="up_section_right__list_product">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                  <div class="up_section_right__slide_item">
+                    <div class="up_section_right_slide__infomation">
+                      <div class="up_section_right_slide_product__img">
+                        <img src={{ product1.featured_image.src | img_url: '400x' }} />
+                      </div>
+                      <div class="up_section_right_slide_product__info">
+                        <div class="up_section_right_slide_product__title">{{ product1.title }}</div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Product Quantity:</div>
+                          <div class="up_section_right_slide_product__info_value">30 Chews</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Order Frequency:</div>
+                          <div class="up_section_right_slide_product__info_value">Delivery Every 30 Days</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Next Order:</div>
+                          <div class="up_section_right_slide_product__info_value">October 25</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Discounted Price:</div>
+                          <div class="up_section_right_slide_product__info_value"><span style="text-decoration: line-through;">$14.99</span> $13.49</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="up_section_right_slide__buttons">
+                      <a href="#CANCELSUBSCRIPTION">
+                        <div class="btn rcc_btn rcc_btn_primary btn__modify_sub">MODIFY SUBSCRIPTION</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="up_section_right__slide_item">
+                    <div class="up_section_right_slide__infomation">
+                      <div class="up_section_right_slide_product__img">
+                        <img src={{ product1.featured_image.src | img_url: '400x' }} />
+                      </div>
+                      <div class="up_section_right_slide_product__info">
+                        <div class="up_section_right_slide_product__title">{{ product1.title }}</div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Product Quantity:</div>
+                          <div class="up_section_right_slide_product__info_value">30 Chews</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Order Frequency:</div>
+                          <div class="up_section_right_slide_product__info_value">Delivery Every 30 Days</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Next Order:</div>
+                          <div class="up_section_right_slide_product__info_value">October 25</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Discounted Price:</div>
+                          <div class="up_section_right_slide_product__info_value"><span style="text-decoration: line-through;">$14.99</span> $13.49</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="up_section_right_slide__buttons">
+                      <a href="#CANCELSUBSCRIPTION">
+                        <div class="btn rcc_btn rcc_btn_primary btn__modify_sub">MODIFY SUBSCRIPTION</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="swiper-slide">
+                  <div class="up_section_right__slide_item">
+                    <div class="up_section_right_slide__infomation">
+                      <div class="up_section_right_slide_product__img">
+                        <img src={{ product1.featured_image.src | img_url: '400x' }} />
+                      </div>
+                      <div class="up_section_right_slide_product__info">
+                        <div class="up_section_right_slide_product__title">{{ product1.title }}</div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Product Quantity:</div>
+                          <div class="up_section_right_slide_product__info_value">30 Chews</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Order Frequency:</div>
+                          <div class="up_section_right_slide_product__info_value">Delivery Every 30 Days</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Next Order:</div>
+                          <div class="up_section_right_slide_product__info_value">October 25</div>
+                        </div>
+                        <div class="up_section_right_slide_product__info_item">
+                          <div class="up_section_right_slide_product__info_label">Discounted Price:</div>
+                          <div class="up_section_right_slide_product__info_value"><span style="text-decoration: line-through;">$14.99</span> $13.49</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="up_section_right_slide__buttons">
+                      <a href="#CANCELSUBSCRIPTION">
+                        <div class="btn rcc_btn rcc_btn_primary btn__modify_sub">MODIFY SUBSCRIPTION</div>
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- If we need pagination -->
+              <div class="swiper-pagination"></div>
+
+              <!-- If we need navigation buttons -->
+              <div class="swiper-button-prev hidden"></div>
+              <div class="swiper-button-next"></div>
+
+              <!-- If we need scrollbar -->
+              <!-- <div class="swiper-scrollbar"></div> -->
+            </div>
+          </div>
+        </div>
+        <div class="rcc_section_recommend">
+          <div class="rcc_section_recommend__title">We also recommend:</div>
+          <div class="rcc_section_recommend__wrap">
+            <div class="rcc_section_recommend__slide_item">
+              <div class="rcc_section_recommend__product_img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="rcc_section_recommend__product_title">{{ product1.title }}</div>
+              <div class="rcc_section_recommend__buttons">
+                <a href="#addtocart">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" style="width: 170px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+                </a>
+                <a href="#buynow">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+                </a>
+              </div>
+            </div>
+            <div class="rcc_section_recommend__slide_item">
+              <div class="rcc_section_recommend__product_img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="rcc_section_recommend__product_title">{{ product1.title }}</div>
+              <div class="rcc_section_recommend__buttons">
+                <a href="#addtocart">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" style="width: 170px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+                </a>
+                <a href="#buynow">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+                </a>
+              </div>
+            </div>
+            <div class="rcc_section_recommend__slide_item">
+              <div class="rcc_section_recommend__product_img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="rcc_section_recommend__product_title">{{ product1.title }}</div>
+              <div class="rcc_section_recommend__buttons">
+                <a href="#addtocart">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" style="width: 170px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+                </a>
+                <a href="#buynow">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+                </a>
+              </div>
+            </div>
+            <div class="rcc_section_recommend__slide_item">
+              <div class="rcc_section_recommend__product_img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="rcc_section_recommend__product_title">{{ product1.title }}</div>
+              <div class="rcc_section_recommend__buttons">
+                <a href="#addtocart">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" style="width: 170px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+                </a>
+                <a href="#buynow">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+                </a>
+              </div>
+            </div>
+            <div class="rcc_section_recommend__slide_item">
+              <div class="rcc_section_recommend__product_img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="rcc_section_recommend__product_title">{{ product1.title }}</div>
+              <div class="rcc_section_recommend__buttons">
+                <a href="#addtocart">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" style="width: 170px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+                </a>
+                <a href="#buynow">
+                  <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="modify-subscription" class="rcc_section hidden">
+        <div class="rcc_section__detail">
+          <div class="ms_section_left">
+            <div class="ms_section_left_title">MODIFY SUBSCRIPTION</div>
+            <div class="ms_section_left__infomation">
+              <div class="ms_section_left_product__img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="ms_section_left_product__info">
+                <div class="ms_section_left_product__title">{{ product1.title }}</div>
+                <div class="ms_section_left_product__info_item">
+                  <div class="ms_section__label">Product Quantity:</div>
+                  <div class="ms_section_left_product__info_value">30 Chews</div>
+                </div>
+                <div class="ms_section_left_product__info_item">
+                  <div class="ms_section__label">Order Frequency:</div>
+                  <div class="ms_section_left_product__info_value">Delivery Every 30 Days</div>
+                </div>
+                <div class="ms_section_left_product__info_item">
+                  <div class="ms_section__label">Next Order:</div>
+                  <div class="ms_section_left_product__info_value">October 25</div>
+                </div>
+                <div class="ms_section_left_product__info_item">
+                  <div class="ms_section__label">Price:</div>
+                  <div class="ms_section_left_product__info_value">$13.49</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="ms_section_right">
+            <form>
+              <div class="ms_section_right_form">
+                <div class="ms_section_form_group">
+                  <div class="ms_section__label">Product</div>
+                  <div class="ms_section_product_title">Petbliss® Calming & Behavior Supplement Soft Chew Treats for Dogs - 60 CT</div>
+                </div>
+
+                <div class="ms_section_form_group">
+                  <label for="ms_section_form_quantity" class="ms_section__label">Product Quantity</label>
+                  <select id="ms_section_form_quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+
+                <div class="ms_section_form_group">
+                  <label for="ms_section_form_variant" class="ms_section__label">Flavor</label>
+                  <select id="ms_section_form_variant">
+                    <option value="123456">Hickory Chicken</option>
+                    <option value="78911">Calming</option>
+                  </select>
+                </div>
+
+                <div class="ms_section_form_group">
+                  <label for="ms_section_form_next_charge" class="ms_section__label">Next Order</label>
+                  <input id="ms_section_form_next_charge" type="date" />
+                </div>
+
+                <div class="ms_section_form_group">
+                  <label for="ms_section_form_order_frequency" class="ms_section__label">Order Frequency</label>
+                  <select id="ms_section_form_order_frequency">
+                    <option value="2">Every 2 weeks</option>
+                    <option value="4">Every 4 weeks</option>
+                    <option value="6">Every 6 weeks</option>
+                    <option value="8">Every 8 weeks</option>
+                    <option value="10">Every 10 weeks</option>
+                    <option value="12">Every 12 weeks</option>
+                  </select>
+                </div>
+
+                <div class="ms_section_form_group">
+                  <div class="ms_section__label">Shipping Address</div>
+                  <div class="ms_section_shipping">
+                    <p>Tom Sminth</p>
+                    <p>2 E 8th St,</p>
+                    <p>Chicago, iL 60605</p>
+                    <p>United States</p>
+                  </div>
+                </div>
+
+              </div>
+              <div class="ms_section_right_buttons">
+                <div class="btn rcc_btn rcc_btn_primary btn__update_sub">UPDATE SETTINGS</div>
+                <div class="ms_section_right_buttons_2">
+                  <div class="btn rcc_btn rcc_btn_primary btn__skip" data-charge-skip>SKIP THIS ORDER</div>
+                  <div class="btn rcc_btn rcc_btn_primary btn__cancel" data-sub-id="">CANCEL SUBSCRIPTION</div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="add-subscription" class="rcc_section hidden">
+        <div class="rcc_section__detail">
+          <div class="as_section_left">
+            <div class="as_section_left_title">ADD SUBSCRIPTION</div>
+            <div class="as_section_left__infomation">
+              <div class="as_section_left_product__img">
+                <img src={{ product1.featured_image.src | img_url: '400x' }} />
+              </div>
+              <div class="as_section_left_product__info">
+                <div class="as_section_left_product__title">{{ product1.title }}</div>
+              </div>
+            </div>
+          </div>
+          <div class="as_section_right">
+            <form>
+              <div class="as_section_right_form">
+                <div class="as_section_form_group">
+                  <div class="as_section__label">Product</div>
+                  <div class="as_section_product_title">Petbliss® Calming & Behavior Supplement Soft Chew Treats for Dogs - 60 CT</div>
+                </div>
+
+                <div class="as_section_form_group">
+                  <label for="as_section_form_quantity" class="as_section__label">Product Quantity</label>
+                  <select id="as_section_form_quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                  </select>
+                </div>
+
+                <div class="as_section_form_group">
+                  <label for="as_section_form_variant" class="as_section__label">Flavor</label>
+                  <select id="as_section_form_variant">
+                    <option value="123456">Hickory Chicken</option>
+                    <option value="78911">Calming</option>
+                  </select>
+                </div>
+
+                <div class="as_section_form_group">
+                  <label for="as_section_form_next_charge" class="as_section__label">Next Order</label>
+                  <input id="as_section_form_next_charge" type="date" />
+                </div>
+
+                <div class="as_section_form_group">
+                  <label for="as_section_form_order_frequency" class="as_section__label">Order Frequency</label>
+                  <select id="as_section_form_order_frequency">
+                    <option value="2">Every 2 weeks</option>
+                    <option value="4">Every 4 weeks</option>
+                    <option value="6">Every 6 weeks</option>
+                    <option value="8">Every 8 weeks</option>
+                    <option value="10">Every 10 weeks</option>
+                    <option value="12">Every 12 weeks</option>
+                  </select>
+                </div>
+
+                <div class="as_section_form_group">
+                  <label for="as_section_form_order_frequency" class="as_section__label">Ships To</label>
+                  <select id="as_section_form_order_address">
+                    <option value="2">Edward Rhubart 270 West End Ave </option>
+                    <option value="2">Edward Rhubart 1390 New York Highway 2</option>
+                  </select>
+                </div>
+
+              </div>
+              <div class="as_section_right_buttons">
+                <div class="btn rcc_btn rcc_btn_primary btn__add_sub">ADD SUBSCRIPTION</div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div id="your-details" class="rcc_section hidden">
+        <div class="rcc_section__detail">
+          <div class="yd_section_left">
+            <div class="yd_section_left__title">SHIPPING ADDRESS</div>
+            <div class="yd_section_left__list">
+              <div class="yd_section_left__shipping_address">
+                <div class="yd_section_left__shipping_address__left">
+                  <div class="yd_section_left__shipping_address__info">
+                    <p>Sanika Shah</p>
+                    <p>2 E 8th St,</p>
+                    <p>777 South State</p>
+                    <p>Chicago, IL 60605</p>
+                    <p>United States</p>
+                  </div>
+                  <div class="yd_section_left_shipping_address_has_sub">Has active subscription</div>
+                </div>
+                <div class="yd_section_left__shipping_address__right">
+                  <a href="#11111"><span class="btn_edit btn_edit_rotate"></span></a>
+                </div>
+              </div>
+              <div class="yd_section_left__shipping_address">
+                <div class="yd_section_left__shipping_address__left">
+                  <div class="yd_section_left__shipping_address__info">
+                    <p>Sanika Shah</p>
+                    <p>2 E 8th St,</p>
+                    <p>777 South State</p>
+                    <p>Chicago, IL 60605</p>
+                    <p>United States</p>
+                  </div>
+                  <div class="yd_section_left_shipping_address_has_sub">Has active subscription</div>
+                </div>
+                <div class="yd_section_left__shipping_address__right">
+                  <a href="#11111"><span class="btn_edit btn_edit_rotate"></span></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="yd_section_right">
+            <div class="yd_section_right__billing">
+              <div class="yd_section_right__billing_title">BILLING ADDRESS</div>
+              <div class="yd_section_right__billing_info">
+                <div class="yd_section_right__billing_info__left">
+                  <div class="yd_section_right__billing_info__info">
+                    <p>Sanika Shah</p>
+                    <p>2 E 8th St,</p>
+                    <p>777 South State</p>
+                    <p>Chicago, IL 60605</p>
+                    <p>United States</p>
+                  </div>
+                </div>
+                <div class="yd_section_right__billing_info__right">
+                  <a href="#11111"><span class="btn_edit btn_edit_rotate"></span></a>
+                </div>
+              </div>
+              <a class="yd_section_right__billing__edit" href="#editaddress">
+                <div class="btn rcc_btn rcc_btn_primary btn__edit_address">EDIT ADDRESS</div>
+              </a>
+            </div>
+            <div class="yd_section_right__payment">
+              <div class="yd_section_right__payment_title">CARD ON FILE</div>
+              <div class="yd_section_right__payment_info">
+                <div class="yd_section_right__payment_info__left">
+                  <div class="yd_section_right__payment_info__info">
+                    {{ icon_visa }}*9478 4/2022
+                  </div>
+                </div>
+                <div class="yd_section_right__payment_info__right">
+                  <a href="#11111"><span class="btn_edit btn_edit_rotate"></span></a>
+                </div>
+              </div>
+              <a class="yd_section_right__payment__edit" href="#editaddress">
+                <div class="btn rcc_btn rcc_btn_primary btn__edit_address">UPDATE CARD</div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="order-history" class="rcc_section hidden">
+        <div class="rcc_section__detail">
+          <div class="oh_section_title">ORDER HISTORY</div>
+          <div class="oh_section_table">
+            <table>
+              <tr>
+                <th>#</th>
+                <th>Order ID</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td class="item_order">*59602635</td>
+                <td>11/07/2020</td>
+                <td>$ 03.49</td>
+                <td>Finalized</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var ReChargeCustom = {};
+  (() => {
+    {% if customer %}
+      const orderShopify = [
+      {% paginate customer.orders by 500 %}
+        {% for order in customer.orders %}
+          {
+            "shopify_order_id": {{ order.id | json }},
+            "status": "SUCCESS",
+            "fulfillment_status": {{ order.fulfillment_status | json }},
+            "processed_at": {{ order.created_at | date: '%Y-%m-%d' | json }},
+            "total_price": {{ order.total_net_amount | divided_by: 100 | json }}
+          }{% unless forloop.last %},{% endunless%}
+        {% endfor%}
+      {% assign sp_paginate_by = paginate.page_size %}{% endpaginate %}
+      ];
+    {% else %}
+      const orderShopify = [];
+    {% endif%}
+    const TEXT_YOUR_REWARDS = {{ settings.yr_title | json }};
+    const logoImg = {{ logo_img | json }};
+    const iconVisa = {{ icon_visa | json }};
+    const MONTH_3 = 90
+    const MONTH_12 = 360
+
+    const linkTo = (resource, query) => {
+      const token = window.getToken()
+      return `${window.location.origin}${ReCharge.Endpoints.baseURL}${resource}?token=${token}${query ? query : ''}`
+    }
+
+    const fetchUrl = (resource, query) => {
+      const token = window.getToken()
+      return new Promise((resolve, reject) => {
+        window.fetch(linkTo(resource, query))
+          .then(res => resolve(res))
+          .catch(err => reject(err))
+      })
+    }
+
+    const fetchUrlJson = (resource, query) => {
+      return new Promise((resolve, reject) => {
+        fetchUrl(resource, query)
+          .then(res => res.json())
+          .then(res => resolve(res))
+          .catch(err => reject(err))
+      })
+    }
+
+    const fetchUrlText = (resource, query) => {
+      return new Promise((resolve, reject) => {
+        fetchUrl(resource, query)
+          .then(res => res.text())
+          .then(res => resolve(res))
+          .catch(err => reject(err))
+      })
+    }
+
+    const fetchPayment = async () => {
+      let data = []
+      const result = await fetchUrlText('payment_sources')
+      try {
+        const text = result.split('ReCharge.Prima.payment_sources = ')[2].split('function showEditBillingAdressPage')[0]
+        data = JSON.parse(text.trim().replace(/;/gi, ''))
+      } catch (error) {
+        console.warn('fetchPayment ', error)
+      }
+      return data
+    }
+
+    const addCart = (data) => {
+      return new Promise((resolve, reject) => {
+        window.fetch('/cart/add.js', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        })
+          .then((response) => response.json())
+          .then((cart) => resolve(cart))
+          .catch((error) => {
+            reject(error)
+          });
+      })
+    }
+
+    const stopLoadingEle = () => {
+      const loadingEle = document.querySelector('#custom-loading')
+      if (loadingEle) loadingEle.classList.add('hidden')
+    }
+
+    const showRcCustom = () => {
+      const rcEle = document.querySelector('.recharge-custom')
+      if (rcEle) rcEle.classList.remove('hidden')
+    }
+
+    const showRcOrigin = () => {
+      const rcEle = document.querySelector('.recharge-te')
+      if (rcEle) rcEle.style.display = 'block'
+    }
+
+    const renderUI = () => {
+      const pathName = window.location.pathname.replace(ReCharge.Endpoints.baseURL, '')
+
+      if (pathName.includes('subscriptions') && pathName.includes('new')) {
+        setTimeout(() => {
+          renderAddSubscriptionPage()
+        }, 0)
+
+        return
+      }
+      if (pathName.includes('subscriptions') && pathName.split('/')[1] && !pathName.includes('new')) {
+        setTimeout(() => {
+          renderEditSubscriptionPage()
+        }, 0)
+        return
+      }
+      if (pathName.includes('addresses') && pathName.split('/')[1] && pathName.split('/')[1] != 'new' &&!pathName.includes('payment_source')) {
+        setTimeout(() => {
+          renderEditShipingAdressPage()
+        }, 0)
+        return
+      }
+      if (pathName.includes('payment_source') && !pathName.includes('payment_sources') && pathName.includes('address') && pathName.split('/')[1] !== 'address') {
+        setTimeout(() => {
+          renderUpdateBillingPage()
+        }, 0)
+        return
+      }
+      if (pathName.includes('payment_source') && !pathName.includes('payment_sources') && pathName.includes('address')) {
+        setTimeout(() => {
+          renderAddBillingPage()
+        }, 0)
+        return
+      }
+      if (pathName == 'payment_source' && !pathName.includes('address')) {
+        setTimeout(() => {
+          renderUpdateCardPage()
+        }, 0)
+        return
+      }
+
+      const timeId = setTimeout(() => {
+        renderCustomPage()
+        clearTimeout(timeId)
+      }, 100)
+
+      return
+    }
+
+    const fetchAllData = async () => {
+      ReCharge.Cache.cacheTime = 0
+      const [
+        address,
+        charges,
+        // discounts,
+        onetimeProducts,
+        orders,
+        products,
+        // productsSearch,
+        subscriptions,
+        paymentSource,
+        resSettings,
+      ] = await Promise.all([
+        ReCharge.Prima.fetchAddresses().then(res => res).catch(e => []),
+        ReCharge.Prima.fetchCharges().then(res => res).catch(e => []),
+        // ReCharge.Prima.fetchDiscounts().then(res => res).catch(e => []),
+        ReCharge.Prima.fetchOneTimeProducts().then(res => res).catch(e => []),
+        ReCharge.Prima.fetchOrders().then(res => res).catch(e => []),
+        ReCharge.Prima.fetchProducts().then(res => res).catch(e => []),
+        // ReCharge.Prima.fetchProductsSearch().then(res => res).catch(e => []),
+        ReCharge.Prima.fetchSubscriptions().then(res => res).catch(e => []),
+        fetchPayment(),
+        fetchUrlJson('request_objects', `&schema=${ '{ "settings": {} }' }`),
+      ])
+
+      ReChargeCustom.address = address
+      ReChargeCustom.charges = charges
+      // ReChargeCustom.discounts = discounts
+      ReChargeCustom.onetimeProducts = onetimeProducts
+      ReChargeCustom.orders = orders
+      ReChargeCustom.products = products
+      // ReChargeCustom.productsSearch = productsSearch
+      ReChargeCustom.subscriptions = subscriptions.map(sub => {
+        return {
+          ...sub,
+          address: address.find(add => add.id == sub.address_id),
+        }
+      })
+      ReChargeCustom.paymentSource = paymentSource
+      ReChargeCustom.settings = resSettings.settings
+      ReChargeCustom.sortedCharges = charges
+        .filter(charge => charge.status === 'QUEUED')
+        .sort((a, b) => new Date(a.scheduled_at).getTime() - new Date(b.scheduled_at).getTime())
+      ReChargeCustom.subsActive = subscriptions.filter(sub => sub.status === 'ACTIVE' && sub.next_charge_scheduled_at !== null)
+
+      ReCharge.Prima.settings = resSettings.settings
+    }
+
+    const renderCustomPage = async () => {
+      ReCharge.Cache.cacheTime = 0
+      console.time('RUNIN')
+      await fetchAllData()
+      console.timeEnd('RUNIN')
+      renderYourRewards()
+      renderUpcomingDeliveries1()
+      renderYourDetail()
+      renderOrderHistory()
+      stopLoadingEle()
+      showRcCustom()
+      addEvent()
+    }
+
+    const renderYourRewards = () => {
+      const {
+        subscriptions,
+        paymentSource,
+        charges,
+        orders,
+      } = ReChargeCustom
+      const billingAddress = paymentSource.length && paymentSource[0].billing_address || charges.length && charges[0].billing_address || orders.length && orders[0].billing_address
+      const name = billingAddress?.first_name
+
+      const ordersBySub = orders.sort((a, b) => new Date(a.created_at).getTime() - new Date(b.created_at).getTime())
+      const totalDayBySubscriptions = subscriptions
+        .filter(sub => sub.status === 'ACTIVE')
+        .map(sub => {
+          if (!ordersBySub.length) return 0
+          const totalDate = Math.abs(
+            moment(ordersBySub[0].created_at)
+              .diff(ordersBySub[ordersBySub.length - 1].created_at, 'days')
+          ) || 0
+
+          return totalDate
+        })
+
+      const totalDayMaxium = totalDayBySubscriptions.length ? Math.max(...totalDayBySubscriptions) : 0
+
+      const month = Math.floor(totalDayMaxium / 30)
+
+      const monthText = month === 0 || month === 1
+        ? TEXT_YOUR_REWARDS.replace('%x_month%', 1).replace('months', 'month').replace('MONTHS', 'MONTH')
+        : TEXT_YOUR_REWARDS.replace('%x_month%', `${month}`)
+      const queryImgText = totalDayMaxium >= MONTH_12
+        ? 'img[data-month="3"]'
+        : totalDayMaxium >= MONTH_3
+        ? 'img[data-month="2"]'
+        : 'img[data-month="1"]'
+      const nameEle = document.querySelector('.yr_first_name')
+      const yrTitle = document.querySelector('.yr_title')
+      const yrSubTitle = document.querySelector('.yr_subtitle')
+      const yrNoSubscription = document.querySelector('.yr_no_subs')
+      const imgWrapEle = document.querySelector('.yr_section_right')
+      const imgToShow = document.querySelector(queryImgText)
+      nameEle.innerHTML = `HI ${name},`
+      if (totalDayMaxium >= MONTH_12) {
+        yrTitle.classList.add('hidden')
+      }
+
+      if (totalDayMaxium === 0) {
+        yrTitle.classList.add('hidden')
+        yrSubTitle.classList.add('hidden')
+        imgWrapEle.classList.add('hidden')
+        yrNoSubscription.classList.remove('hidden')
+        return
+      }
+
+
+      yrTitle.innerHTML = monthText
+      document.querySelectorAll('img[data-month]').forEach(el => el.classList.add('hidden'))
+      imgToShow.classList.remove('hidden')
+    }
+
+    const renderUpcomingDeliveries1 = () => {
+      const {
+        subscriptions,
+        paymentSource,
+        charges,
+        orders,
+        products,
+        sortedCharges,
+        subsActive,
+      } = ReChargeCustom
+
+      let listProductHtml = ''
+      products.filter(p => productRecommend.includes(p.shopify_product_id)).forEach(product => {
+        listProductHtml += `
+        <div class="rcc_section_recommend__slide_item">
+          <div class="rcc_section_recommend__product_img">
+            <img src="${
+              product?.shopify_details?.image?.src
+              || product?.images && product?.images.length && product?.images[0]?.large
+            }" />
+          </div>
+          <div class="rcc_section_recommend__product_title">${ product.title }</div>
+          <div class="rcc_section_recommend__buttons">
+            <span>
+              <div class="btn rcc_btn rcc_btn_second btn_add_to_cart" data-product-id="${ product?.shopify_product_id }" style="width: 170px; margin-top: 10px; letter-spacing: 1px;">ADD SUBSCRIPTION</div>
+            </span>
+            <span>
+              <div class="btn rcc_btn rcc_btn_second btn_add_buy_now" data-variant-id="${ product?.shopify_details?.variants?.length ? product?.shopify_details?.variants[0].shopify_id : '' }" style="width: 170px; letter-spacing: 1px; margin-top: 10px;">BUY NOW</div>
+            </span>
+          </div>
+        </div>
+        `
+      })
+      document.querySelector('.rcc_section_recommend__wrap').innerHTML = listProductHtml
+      if (
+        subsActive.length === 0
+        || sortedCharges.length === 0
+      ) {
+        const htmlText = `
+        <div class="up_section_left" style="margin-bottom: 350px;">
+          <div class="up_section_left__title" style="margin-bottom: 20px;">UPCOMMING DELIVERIES</div>
+          <div style="padding-left: 25px;">No upcoming deliveries!</div>
+        </div>
+        `
+        document.querySelector('#upcoming-deliveries .rcc_section__detail').innerHTML = htmlText
+        return
+      }
+
+      const {
+        address1,
+        city,
+        country,
+        first_name,
+        last_name,
+        province,
+        zip,
+      } = sortedCharges[0].shipping_address
+
+      const addressInfoHtml = `
+      <p>${ first_name || '' } ${ last_name || '' }</p>
+      <p style="font-size:18px">${ address1 || '' }</p>
+      <p style="font-size:18px">${ city || '' }</p>
+      <p style="font-size:18px">${ province || '' }, ${ zip || '' }</p>
+      <p style="font-size:18px">${ country || '' }</p>
+      `
+      const editAddressHtml = `
+        <a href="${ linkTo(`addresses/${sortedCharges[0].address_id}`) }"><div class="btn rcc_btn rcc_btn_primary btn__edit_address">UPDATE ADDRESS</div></a>
+      `
+      let listSubHtml = ``
+      subsActive.forEach(sub => {
+        const product = products.find(p => Number(p.shopify_product_id) === Number(sub.shopify_product_id))
+        const shippingFrequency = sub?.order_interval_frequency
+        const shippingUnit = sub?.order_interval_unit
+
+        listSubHtml += `
+        <div class="swiper-slide">
+          <div class="up_section_right__slide_item">
+            <div class="up_section_right_slide__infomation">
+              <div class="up_section_right_slide_product__img">
+                <img src="${ product.images[0].large }" />
+              </div>
+              <div class="up_section_right_slide_product__info">
+                <div class="up_section_right_slide_product__title">${ sub.product_title }</div>
+                <div class="up_section_right_slide_product__info_item">
+                  <div class="up_section_right_slide_product__info_label">Product Quantity:</div>
+                  <div class="up_section_right_slide_product__info_value">${ sub.quantity || 1 }</div>
+                </div>
+                <div class="up_section_right_slide_product__info_item">
+                  <div class="up_section_right_slide_product__info_label">Order Frequency:</div>
+                  <div class="up_section_right_slide_product__info_value">${
+                    shippingFrequency && shippingUnit
+                    ? `Delivery Every ${ shippingFrequency } ${shippingUnit}${shippingFrequency > 1 ? 's' : ''}`
+                    : `Onetimes`
+                  }</div>
+                </div>
+                <div class="up_section_right_slide_product__info_item">
+                  <div class="up_section_right_slide_product__info_label">Next Order:</div>
+                  <div class="up_section_right_slide_product__info_value">${ moment(sub.next_charge_scheduled_at).format('MMMM DD') }</div>
+                </div>
+                <div class="up_section_right_slide_product__info_item">
+                  <div class="up_section_right_slide_product__info_label">Price:</div>
+                  <div class="up_section_right_slide_product__info_value">$${ sub.price }</div>
+                </div>
+              </div>
+            </div>
+            <div class="up_section_right_slide__buttons">
+              <span>
+                <div class="btn rcc_btn rcc_btn_primary btn__modify_sub" data-sub-id="${ sub.id }">MODIFY SUBSCRIPTION</div>
+              </span>
+            </div>
+          </div>
+        </div>
+        `
+      })
+
+      const upcomingTitleHtml = `
+        <div>SHIPPING ADDRESS</div>
+        <div>${moment(sortedCharges[0].scheduled_at).format('DD/MM/YYYY')}</div>
+      `
+      // document.querySelector('.up_section_left__title').innerHTML = upcomingTitleHtml
+      document.querySelector('.up_section_left__shipping_address__info').innerHTML = addressInfoHtml
+      document.querySelector('.up_section_left__shipping_address__btn').innerHTML = editAddressHtml
+      document.querySelector('.up_section_right__title').innerHTML = `SUBSCRIBED PRODUCTS (${ subsActive.length })`
+      document.querySelector('.up_section_right__list_product .swiper-wrapper').innerHTML = listSubHtml
+
+
+      return
+    }
+
+    const renderUpcomingDeliveries = () => {
+      const {
+        subscriptions,
+        paymentSource,
+        charges,
+        orders,
+        products,
+        sortedCharges,
+        subsActive,
+      } = ReChargeCustom
+      if (
+        subsActive.length === 0
+        || sortedCharges.length === 0
+      ) {
+        const htmlText = `
+        <div class="up_section_left" style="margin-bottom: 350px;">
+          <div class="up_section_left__title" style="margin-bottom: 20px;">UPCOMMING DELIVERIES</div>
+          <div style="padding-left: 25px;">No upcoming deliveries!</div>
+        </div>
+        `
+        document.querySelector('#upcoming-deliveries .rcc_section__detail').innerHTML = htmlText
+        return
+      }
+
+      const {
+        address1,
+        city,
+        country,
+        first_name,
+        last_name,
+        province,
+        zip,
+      } = sortedCharges[0].shipping_address
+
+      const addressInfoHtml = `
+      <p>${ first_name || '' } ${ last_name || '' }</p>
+      <p>${ address1 || '' }</p>
+      <p>${ city || '' }</p>
+      <p>${ province || '' }, ${ zip || '' }</p>
+      <p>${ country || '' }</p>
+      `
+      const editAddressHtml = `
+        <a href="${ linkTo(`addresses/${sortedCharges[0].address_id}`) }"><span class="btn_edit"></span></a>
+      `
+      let listSubHtml = ``
+      sortedCharges[0].line_items.forEach(line => {
+        const shippingFrequency = line.type == 'SUBSCRIPTION' && subscriptions.find(p => p.id == line.subscription_id)?.order_interval_frequency
+        const shippingUnit = line.type == 'SUBSCRIPTION' && subscriptions.find(p => p.id == line.subscription_id)?.order_interval_unit
+
+        listSubHtml += `
+        <div class="up_section_left__sub">
+          <div class="up_section_left__sub_left">
+            <div class="up_section_left__infomation">
+              <div class="up_section_left_product__img">
+                <img src=${ line.images?.large } />
+              </div>
+              <div class="up_section_left_product__info">
+                <div class="up_section_left_product__title">${ line.title }</div>
+                <div class="up_section_left_product__logo">
+                  ${ logoImg }
+                </div>
+                <div class="up_section_left_product__info_item">
+                  <div class="up_section_left_product__info_label">Product Quantity:</div>
+                  <div class="up_section_left_product__info_value">${ line.quantity || 1 }</div>
+                </div>
+                <div class="up_section_left_product__info_item">
+                  <div class="up_section_left_product__info_label">Refill Frequency:</div>
+                  <div class="up_section_left_product__info_value">${
+                    shippingFrequency && shippingUnit
+                    ? `${ shippingFrequency } ${shippingUnit}${shippingFrequency > 1 ? 's' : ''}`
+                    : `Onetimes`
+                  }</div>
+                </div>
+                <div class="up_section_left_product__info_item">
+                  <div class="up_section_left_product__info_label">Price:</div>
+                  <div class="up_section_left_product__info_value">$${ line.price }</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="up_section_left__buttons">
+            ${
+              shippingFrequency && shippingUnit
+              ? `
+              <span>
+                <div class="btn rcc_btn rcc_btn_primary btn__cancel" data-sub-id="${ line.subscription_id }">CANCEL SUBSCRIPTION</div>
+              </span>
+              <span>
+                <div class="btn rcc_btn rcc_btn_primary btn__skip" data-charge-skip data-sub-id="${ line.subscription_id }">Skip this delivery</div>
+              </span>
+              `
+              : ``
+            }
+            </div>
+          </div>
+          <div class="up_section_left__sub_right">
+            ${
+              shippingFrequency && shippingUnit
+              ? `
+              <a href="${ linkTo(`subscriptions/${ line.subscription_id }`) }"><span class="btn_edit"></span></a>
+              `
+              : ``
+            }
+          </div>
+        </div>
+        `
+      })
+      let listProductHtml = ''
+      products.forEach(product => {
+        listProductHtml += `
+        <div class="swiper-slide">
+          <div class="up_section_right__slide_item">
+            <div class="up_section_right__product_img">
+              <img src="${
+                product?.shopify_details?.image?.src
+                || product?.images && product?.images.length && product?.images[0]?.large
+              }" />
+            </div>
+            <a href="${ linkTo('subscriptions/new') }&shopify_product_id=${ product?.shopify_product_id }" target="_self" rel="noreferrer">
+              <div class="btn rcc_btn rcc_btn_second btn_add_to_cart">ADD TO CART</div>
+            </a>
+            <div class="up_section_right__product_title">${ product.title }</div>
+          </div>
+        </div>
+        `
+      })
+      const upcomingTitleHtml = `
+        <div>UPCOMMING DELIVERIES</div>
+        <div>${moment(sortedCharges[0].scheduled_at).format('DD/MM/YYYY')}</div>
+      `
+      document.querySelector('.up_section_left__title').innerHTML = upcomingTitleHtml
+      document.querySelector('.up_section_left__shipping_address__info').innerHTML = addressInfoHtml
+      document.querySelector('.up_section_left__shipping_address__right').innerHTML = editAddressHtml
+      document.querySelector('.up_section_left__list_subs').innerHTML = listSubHtml
+      document.querySelector('#upcoming-deliveries .swiper-wrapper').innerHTML = listProductHtml
+
+      return
+    }
+
+    const renderModifySubscription = (id) => {
+      const {
+        subscriptions,
+        products,
+      } = ReChargeCustom
+      const sub = subscriptions.find(sub => Number(sub.id) === Number(id))
+      const product = products.find(p => p.shopify_product_id === sub?.shopify_product_id)
+      const shippingFrequency = sub?.order_interval_frequency
+      const shippingUnit = sub?.order_interval_unit
+
+      const {
+        address1,
+        city,
+        country,
+        first_name,
+        last_name,
+        province,
+        zip,
+      } = sub.address
+      const htmlModifySub = `
+        <div class="ms_section_left">
+          <div class="ms_section_left_title">MODIFY SUBSCRIPTION</div>
+          <div class="ms_section_left__infomation">
+            <div class="ms_section_left_product__img">
+              <img src="${
+                product?.shopify_details?.image?.src
+                || product?.images && product?.images.length && product?.images[0]?.large
+              }" />
+            </div>
+            <div class="ms_section_left_product__info">
+              <div class="ms_section_left_product__title">${sub.product_title}</div>
+              <div class="ms_section_left_product__info_item">
+                <div class="ms_section__label">Product Quantity:</div>
+                <div class="ms_section_left_product__info_value">${sub.quantity}</div>
+              </div>
+              <div class="ms_section_left_product__info_item">
+                <div class="ms_section__label">Order Frequency:</div>
+                <div class="ms_section_left_product__info_value">${
+                    shippingFrequency && shippingUnit
+                    ? `Delivery Every ${ shippingFrequency } ${shippingUnit}${shippingFrequency > 1 ? 's' : ''}`
+                    : `Onetimes`
+                  }</div>
+              </div>
+              <div class="ms_section_left_product__info_item">
+                <div class="ms_section__label">Next Order:</div>
+                <div class="ms_section_left_product__info_value">${ moment(sub.next_charge_scheduled_at).format('MMMM DD') }</div>
+              </div>
+              <div class="ms_section_left_product__info_item">
+                <div class="ms_section__label">Price:</div>
+                <div class="ms_section_left_product__info_value">$${ sub.price }</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ms_section_right">
+          <form>
+            <div class="ms_section_right_form">
+              <div class="ms_section_form_group">
+                <div class="ms_section__label">Product</div>
+                <div class="ms_section_product_title">Petbliss® Calming & Behavior Supplement Soft Chew Treats for Dogs - 60 CT</div>
+              </div>
+
+              <div class="ms_section_form_group">
+                <label for="ms_section_form_quantity" class="ms_section__label">Product Quantity</label>
+                <select id="ms_section_form_quantity">
+                  <option value="1" ${sub.quantity == 1 ? 'selected' : ''}>1</option>
+                  <option value="2" ${sub.quantity == 2 ? 'selected' : ''}>2</option>
+                  <option value="3" ${sub.quantity == 3 ? 'selected' : ''}>3</option>
+                  <option value="4" ${sub.quantity == 4 ? 'selected' : ''}>4</option>
+                  <option value="5" ${sub.quantity == 5 ? 'selected' : ''}>5</option>
+                  <option value="6" ${sub.quantity == 6 ? 'selected' : ''}>6</option>
+                  <option value="7" ${sub.quantity == 7 ? 'selected' : ''}>7</option>
+                  <option value="8" ${sub.quantity == 8 ? 'selected' : ''}>8</option>
+                  <option value="9" ${sub.quantity == 9 ? 'selected' : ''}>9</option>
+                  <option value="10" ${sub.quantity == 10 ? 'selected' : ''}>10</option>
+                </select>
+              </div>
+
+              <div class="ms_section_form_group" ${product.shopify_details.variants.length === 1 && product.shopify_details.variants[0].title == 'Default Title'
+                ? 'style="display:none;"': ''
+              }>
+                <label for="ms_section_form_variant" class="ms_section__label">Flavor</label>
+                <select id="ms_section_form_variant">
+                  ${ product.shopify_details.variants.map((v, index) => {
+                    return `
+                      <option value="${ v.shopify_id }" ${v.shopify_id == sub.shopify_variant_id ? 'selected' : ''}>${ v.title }</option>
+                    `
+                  }) }
+                </select>
+              </div>
+
+              <div class="ms_section_form_group">
+                <label for="ms_section_form_next_charge" class="ms_section__label">Next Order</label>
+                <input id="ms_section_form_next_charge" type="date" value="${ moment(sub.next_charge_scheduled_at).format('YYYY-MM-DD') }"/>
+              </div>
+
+              <div class="ms_section_form_group">
+                <label for="ms_section_form_order_frequency" class="ms_section__label">Order Frequency</label>
+                <select id="ms_section_form_order_frequency">
+                  <option value="2" ${sub.charge_interval_frequency == 2 ? 'selected' : ''}>Every 2 weeks</option>
+                  <option value="4" ${sub.charge_interval_frequency == 4 ? 'selected' : ''} >Every 4 weeks</option>
+                  <option value="6" ${sub.charge_interval_frequency == 6 ? 'selected' : ''} >Every 6 weeks</option>
+                  <option value="8" ${sub.charge_interval_frequency == 8 ? 'selected' : ''} >Every 8 weeks</option>
+                  <option value="10" ${sub.charge_interval_frequency == 10 ? 'selected' : ''} >Every 10 weeks</option>
+                  <option value="12" ${sub.charge_interval_frequency == 12 ? 'selected' : ''} >Every 12 weeks</option>
+                </select>
+              </div>
+
+              <div class="ms_section_form_group">
+                <div class="ms_section__label">Shipping Address</div>
+                <div class="ms_section_shipping">
+                  <p>${ first_name || '' } ${ last_name || '' }</p>
+                  <p>${ address1 || '' }</p>
+                  <p>${ city || '' }</p>
+                  <p>${ province || '' }, ${ zip || '' }</p>
+                  <p>${ country || '' }</p>
+                </div>
+              </div>
+
+            </div>
+            <div class="ms_section_right_buttons">
+              <div class="btn rcc_btn rcc_btn_primary btn__update_sub" data-sub-id="${ sub.id }">UPDATE SETTINGS</div>
+              <div class="ms_section_right_buttons_2">
+                <div class="btn rcc_btn rcc_btn_primary btn__skip" data-charge-skip data-sub-id="${ sub.id }">SKIP THIS ORDER</div>
+                <div class="btn rcc_btn rcc_btn_primary btn__cancel" data-sub-id="${ sub.id }">CANCEL SUBSCRIPTION</div>
+              </div>
+            </div>
+          </form>
+        </div>
+      `
+
+      document.querySelector('#modify-subscription .rcc_section__detail').innerHTML = htmlModifySub
+      document.querySelectorAll('.rcc_section').forEach(e => {
+        e.classList.add('hidden')
+      })
+
+      document.querySelector('#modify-subscription').classList.remove('hidden')
+    }
+
+    const renderAddSubscription = (productId) => {
+      const {
+        products,
+        sortedCharges,
+        address,
+      } = ReChargeCustom
+      const product = products.find(p => p.shopify_product_id == productId)
+
+      const htmlAddSub = `
+        <div class="as_section_left">
+          <div class="as_section_left_title">ADD SUBSCRIPTION</div>
+          <div class="as_section_left__infomation">
+            <img src="${
+              product?.shopify_details?.image?.src
+              || product?.images && product?.images.length && product?.images[0]?.large
+            }" />
+            <div class="as_section_left_product__title">${ product.title }</div>
+          </div>
+        </div>
+        <div class="as_section_right">
+          <form>
+            <div class="as_section_right_form">
+              <div class="as_section_form_group">
+                <div class="as_section__label">Product</div>
+                <div class="as_section_product_title">${ product.title }</div>
+              </div>
+
+              <div class="as_section_form_group">
+                <label for="as_section_form_quantity" class="as_section__label">Product Quantity</label>
+                <select id="as_section_form_quantity">
+                  <option value="1" selected>1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                </select>
+              </div>
+
+              <div class="as_section_form_group" ${product.shopify_details.variants.length === 1 && product.shopify_details.variants[0].title == 'Default Title'
+                ? 'style="display:none;"': ''
+              }>
+                <label for="as_section_form_variant" class="as_section__label">Flavor</label>
+                <select id="as_section_form_variant">
+                  ${ product.shopify_details.variants.map((v, index) => {
+                    return `
+                      <option value="${ v.shopify_id }" ${index == 0 ? 'selected' : ''}>${ v.title }</option>
+                    `
+                  }) }
+                </select>
+              </div>
+
+              <div class="as_section_form_group">
+                <label for="as_section_form_next_charge" class="as_section__label">Next Order</label>
+                <input id="as_section_form_next_charge" type="date" value="${ moment(sortedCharges[0].scheduled_at).format('YYYY-MM-DD') }" />
+              </div>
+
+              <div class="as_section_form_group">
+                <label for="as_section_form_order_frequency" class="as_section__label">Order Frequency</label>
+                <select id="as_section_form_order_frequency">
+                  <option value="2">Every 2 weeks</option>
+                  <option value="4" selected>Every 4 weeks</option>
+                  <option value="6">Every 6 weeks</option>
+                  <option value="8">Every 8 weeks</option>
+                  <option value="10">Every 10 weeks</option>
+                  <option value="12">Every 12 weeks</option>
+                </select>
+              </div>
+
+              <div class="as_section_form_group">
+                <label for="as_section_form_order_frequency" class="as_section__label">Ships To</label>
+                <select id="as_section_form_order_address">
+                  ${address.map((addr, index) => {
+                    const {
+                      address1,
+                      city,
+                      country,
+                      first_name,
+                      last_name,
+                      province,
+                      zip,
+                    } = addr
+                    return `
+                      <option value="${ addr.id }" ${index == 0 ? 'selected' : ''}>${ first_name } ${ last_name } ${ address1 }</option>
+                    `
+                  })}
+                </select>
+              </div>
+
+            </div>
+            <div class="as_section_right_buttons">
+              <div class="btn rcc_btn rcc_btn_primary btn__add_sub">ADD SUBSCRIPTION</div>
+            </div>
+          </form>
+        </div>
+        `
+
+      document.querySelector('#add-subscription .rcc_section__detail').innerHTML = htmlAddSub
+      document.querySelectorAll('.rcc_section').forEach(e => {
+        e.classList.add('hidden')
+      })
+
+      document.querySelector('#add-subscription').classList.remove('hidden')
+    }
+
+    const renderYourDetail = () => {
+      const {
+        address,
+        subscriptions,
+        paymentSource,
+        charges,
+        orders,
+        products,
+      } = ReChargeCustom
+
+      let listAddressHtml = ''
+      address.forEach(add => {
+        const {
+          address1,
+          city,
+          country,
+          first_name,
+          last_name,
+          province,
+          zip,
+        } = add
+
+        const s = subscriptions.find(s => s.address_id == add.id)
+        listAddressHtml += `
+        <div class="yd_section_left__shipping_address">
+          <div class="yd_section_left__shipping_address__left">
+            <div class="yd_section_left__shipping_address__info">
+              <p>${ first_name || '' } ${ last_name || '' }</p>
+              <p>${ address1 || '' }</p>
+              <p>${ city || '' }</p>
+              <p>${ province || '' }, ${ zip || '' }</p>
+              <p>${ country || '' }</p>
+            </div>
+            ${s ? `<div class="yd_section_left_shipping_address_has_sub btn__cancel" data-sub-id="${ s.id }" style="display:none;">Has active subscription</div>` : ''}
+          </div>
+          <div class="yd_section_left__shipping_address__right">
+            <a href="${ linkTo(`addresses/${add.id}`) }"><span class="btn_edit btn_edit_rotate"></span></a>
+          </div>
+        </div>
+        `
+      })
+
+      let billingHtml = ''
+      let cardHtml = ''
+      if (paymentSource && paymentSource.length) {
+        paymentSource.forEach(pay => {
+          const {
+            billing_address,
+            card_brand,
+            card_exp_month,
+            card_exp_year,
+            card_last4,
+            cardholder_name,
+            status,
+          } = pay
+          const {
+            first_name,
+            last_name,
+            address1,
+            city,
+            province,
+            zip,
+            country,
+          } = billing_address
+          billingHtml += `
+          <div class="yd_section_right__billing_title">BILLING ADDRESS</div>
+          <div class="yd_section_right__billing_info">
+            <div class="yd_section_right__billing_info__left">
+              <div class="yd_section_right__billing_info__info">
+                <p>${ first_name || '' } ${ last_name || '' }</p>
+                <p>${ address1 || '' }</p>
+                <p>${ city || '' }</p>
+                <p>${ province || '' }, ${ zip || '' }</p>
+                <p>${ country || '' }</p>
+              </div>
+            </div>
+            <div class="yd_section_right__billing_info__right">
+              <a href="${ linkTo(`payment_source/1/address`) }"><span class="btn_edit btn_edit_rotate"></span></a>
+            </div>
+          </div>
+          <a class="yd_section_right__billing__edit" href="${ linkTo(`payment_source/1/address`) }">
+            <div class="btn rcc_btn rcc_btn_primary btn__edit_address">EDIT ADDRESS</div>
+          </a>
+          `
+          cardHtml += `
+            <div class="yd_section_right__payment_title">CARD ON FILE</div>
+            <div class="yd_section_right__payment_info">
+              <div class="yd_section_right__payment_info__left">
+                <div class="yd_section_right__payment_info__info">
+                  ${
+                    status == 'active' && card_last4 && card_exp_month && card_exp_year
+                    ? `${ iconVisa } *${ card_last4 } ${ card_exp_month }/${ card_exp_year }`
+                    : `
+                    <div>
+                      If you need to update your payment settings, you should sign in to your PayPal account.
+                    </div>
+                    `
+                  }
+                </div>
+              </div>
+              <div class="yd_section_right__payment_info__right">
+                <a href="${ linkTo(`payment_source`) }"><span class="btn_edit btn_edit_rotate"></span></a>
+              </div>
+            </div>
+            <a class="yd_section_right__payment__edit" href="${ linkTo(`payment_source`) }">
+              <div class="btn rcc_btn rcc_btn_primary btn__edit_address">UPDATE CARD</div>
+            </a>
+          `
+        })
+      }
+      else {
+        billingHtml += `
+          <div class="yd_section_right__billing_title">BILLING ADDRESS</div>
+          <div class="yd_section_right__billing_info">
+            <div class="yd_section_right__billing_info__left">
+              <div class="yd_section_right__billing_info__info">
+                <p>No payment source on file</p>
+              </div>
+            </div>
+            <div class="yd_section_right__billing_info__right">
+            </div>
+          </div>
+          <a class="yd_section_right__billing__edit" href="${ linkTo(`payment_source/address`) }">
+            <div class="btn rcc_btn rcc_btn_primary btn__edit_address">ADD ADDRESS</div>
+          </a>
+          `
+          cardHtml += `
+            <div class="yd_section_right__payment_title">CARD ON FILE</div>
+            <div class="yd_section_right__payment_info">
+              <div class="yd_section_right__payment_info__left">
+                <div class="yd_section_right__payment_info__info">
+                  <p>No payment source on file</p>
+                </div>
+              </div>
+              <div class="yd_section_right__payment_info__right">
+              </div>
+            </div>
+            <a class="yd_section_right__payment__edit" href="${ linkTo(`payment_source`) }">
+              <div class="btn rcc_btn rcc_btn_primary btn__edit_address">ADD CARD</div>
+            </a>
+          `
+      }
+
+      document.querySelector('.yd_section_left__list').innerHTML = listAddressHtml
+      document.querySelector('.yd_section_right__billing').innerHTML = billingHtml
+      document.querySelector('.yd_section_right__payment').innerHTML = cardHtml
+    }
+
+    const renderOrderHistory = () => {
+      const {
+        orders,
+      } = ReChargeCustom
+      let listOrderHtml = `
+      <tr>
+        <th>#</th>
+        <th>Order ID</th>
+        <th>Date</th>
+        <th>Amount</th>
+        <th>Status</th>
+      </tr>
+      `
+      const listOrder = orders
+
+      listOrder.forEach((order, index) => {
+        listOrderHtml += `
+          <tr>
+            <td>${index + 1}</td>
+            <td class="item_order btn__view_history" data-order-id="${ order.id }">*${`${ order.shopify_order_id }`.substr(-8)}</td>
+            <td>${ moment(order.processed_at).format('MM/DD/YYYY')}</td>
+            <td>$ ${order.total_price}</td>
+            <td>${ order.status == 'SUCCESS' || order.fulfillment_status == 'fulfilled'
+              ? 'Finalized'
+              : 'Pending'
+            }</td>
+          </tr>
+        `
+      })
+      document.querySelector('.oh_section_table table').innerHTML = listOrderHtml
+    }
+
+    const addEvent = () => {
+      addEventNavigationChange()
+      addEventSwiper()
+      addEventClickModifySub()
+      addEventAddBuyNow()
+      addEventClickAddSubscription()
+      addEventViewHistory()
+      // addEventCancelSubscription()
+      // addEventSkipDelivery()
+    }
+
+    const addEventNavigationChange = () => {
+      const naviEles = document.querySelectorAll('.rcc_navigation__item')
+      naviEles.forEach(ele => {
+        ele.addEventListener('click', function() {
+          naviEles.forEach(e => {
+            e.classList.remove('rcc_navigation__item--active')
+          })
+          document.querySelectorAll('.rcc_section').forEach(e => {
+            e.classList.add('hidden')
+          })
+          ele.classList.add('rcc_navigation__item--active')
+          document.querySelector(ele.getAttribute('data-ref'))?.classList.remove('hidden')
+        })
+      })
+    }
+
+    const addEventSwiper = () => {
+      const {
+        sortedCharges,
+        subsActive,
+      } = ReChargeCustom
+      const isMultiSub = subsActive.length > 1
+      const options = isMultiSub
+        ? {
+          direction: 'horizontal',
+          loop: false,
+          slidesPerView: 1,
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        }
+        : {
+          direction: 'horizontal',
+          loop: false,
+          slidesPerView: 1,
+          pagination: {
+            el: '.swiper-pagination',
+          },
+          navigation: {
+            nextEl: '.swiper-button-next',
+            prevEl: '.swiper-button-prev',
+          },
+        }
+      const swiper = new Swiper('.up_section_right__list_product', options);
+      const prevEl = document.querySelector('.swiper-button-prev')
+      const nextEl = document.querySelector('.swiper-button-next')
+      swiper.on('slideChange', function(e) {
+        if (e.snapIndex === 0) {
+          prevEl.classList.add('hidden')
+          nextEl.classList.remove('hidden')
+          return
+        }
+        if (e.snapIndex === subsActive.length - 1) {
+          prevEl.classList.remove('hidden')
+          nextEl.classList.add('hidden')
+          return
+        }
+        nextEl.classList.remove('hidden')
+        prevEl.classList.remove('hidden')
+      })
+    }
+
+    const addEventCancelSubscription = () => {
+      async function showRetentionStrategyOption(ev, subscription) {
+        const cancellationStrategies = await ReCharge.Prima.fetchRetentionStrategies(subscription.id);
+        const strategyId = ReCharge.query(
+          '[name=retention_strategy_id]:checked',
+          ReCharge.Prima.sidebar.menu
+        ).elems[0].value;
+        const retentionStrategy = cancellationStrategies.find(
+          strategy => strategy.id == strategyId
+        );
+
+        let strategyTemplate = ReCharge.Prima.Templates.Cancellations.default(subscription, retentionStrategy);
+
+        if (retentionStrategy.incentive_type === 'discount') {
+          const address = subscription.address
+          strategyTemplate = ReCharge.Prima.Templates.Cancellations.discount(address, retentionStrategy);
+        } else if (retentionStrategy.incentive_type === 'skip_charge') {
+          strategyTemplate = ReCharge.Prima.Templates.Cancellations.skip(subscription, retentionStrategy);
+        } else if (retentionStrategy.incentive_type === 'swap_product' && !ReCharge.Utils.isPrepaid(subscription)) {
+          strategyTemplate = ReCharge.Prima.Templates.Cancellations.swap(subscription, retentionStrategy);
+        } else if (retentionStrategy.incentive_type === 'delay_subscription') {
+          strategyTemplate = ReCharge.Prima.Templates.Cancellations.delay(subscription, retentionStrategy);
+        }
+
+        ReCharge.Sidebar.queueTemplate(strategyTemplate);
+
+        ReCharge.query('[data-cancel-subscription]', ReCharge.Prima.sidebar.menu)
+          .addRule('click', ev => {
+            let strategyTemplate = ReCharge.Prima.Templates.Cancellations.default(subscription, retentionStrategy);
+
+            ReCharge.Sidebar.queueTemplate(strategyTemplate);
+          })
+      }
+
+      function hasCaliforniaProvince(charge, address) {
+        const shipping =
+          charge?.shipping_address?.province === 'California' && charge.shipping_address?.country === 'United States' ||
+          address?.province === 'California' && address?.country === 'United States';
+        const billing = charge?.billing_address?.province === 'California' && charge?.billing_address?.country === 'United States';
+
+        return shipping || billing;
+      }
+
+      function filterReasons(cancellationStrategies, settings, subscription) {
+        // Exclude swap incentive_type for prepaid subscription
+        let filteredStrategies = ReCharge.Utils.isPrepaid(subscription)
+          ? cancellationStrategies.filter(reason => reason.incentive_type !== 'swap_product')
+          : cancellationStrategies;
+
+        // Implement store settings for cancellation reasons
+        return filteredStrategies.filter(reason => {
+          if (
+            (reason.incentive_type === 'discount' && settings.customer_portal.discount_input) ||
+            (reason.incentive_type === 'skip_charge' && settings.customer_portal.subscription.skip_scheduled_order) ||
+            (reason.incentive_type === 'swap_product' && settings.customer_portal.subscription.change_product) ||
+            reason.incentive_type === 'delay_subscription' ||
+            !reason.incentive_type
+          ){
+            return reason;
+          }
+        });
+      }
+
+      async function showCancellationFlow(subId) {
+        const subscription = ReChargeCustom.subscriptions.find(s => s.id == subId);
+        const charge = ReChargeCustom.sortedCharges[0];
+        const allowCancel = true;
+        let cancelSubscriptionTemplate = '';
+
+        if (
+          (allowCancel) ||
+          hasCaliforniaProvince(charge, subscription.address)
+        ) {
+          const cancellationStrategies = await ReCharge.Prima.fetchRetentionStrategies(subscription.id);
+
+          const filteredStrategies = filterReasons(cancellationStrategies, ReCharge.Prima.settings, subscription);
+
+          cancelSubscriptionTemplate = ReCharge.Prima.Templates.Subscriptions.cancel(filteredStrategies);
+        } else {
+          cancelSubscriptionTemplate = ReCharge.Prima.Templates.Cancellations.contactStore();
+        }
+
+        ReCharge.Sidebar.loadTemplate(cancelSubscriptionTemplate);
+
+        ReCharge.query('[data-cancellation-reason-step-1]', ReCharge.Prima.sidebar.menu)
+          .addRule('click', (ev) => showRetentionStrategyOption(ev, subscription));
+
+        ReCharge.Sidebar.open();
+      }
+
+      document.querySelectorAll('.btn__cancel').forEach(ele => {
+        ele.addEventListener('click', () => {
+          const subId = ele.getAttribute('data-sub-id')
+          showCancellationFlow(subId)
+        })
+      })
+    }
+
+    const addEventSkipDelivery = () => {
+      const template = (subscription) => {
+        const type = 'skip';
+        const title = `Skip this order`;
+        const buttonVerbiage = `SKIP THIS ORDER`;
+        const product = ReChargeCustom.products.find(prod => prod.shopify_product_id == subscription.shopify_product_id);
+        const productList =  `
+        <div class="rct_products__list__item rct_product">
+          <div class="rct_product__image__container">
+            <img
+              src="${ ReCharge.Utils.getProductImageUrl(product) }"
+              alt="${ subscription.product_title }"
+              class="rct_product__image"
+            >
+          </div>
+          <div class="rct_product__info">
+            <strong>${ subscription.product_title }</strong>
+            ${ (subscription.variant_title ? `<p class="rct_text--small">${ subscription.variant_title }</p>` : '') }
+            <p class="rct_text--small">${ ReCharge.Currency.format(subscription.price) } x ${ subscription.quantity }</p>
+            <p class="rct_text--small">${ ReCharge.Prima.getRecurringLabel(subscription) }</p>
+          </div>
+        </div>`
+
+        return `
+        <header class="rct_sidebar__header">
+          <span class="rct_sidebar__header__title">${ title }</span>
+          <span class="rct_sidebar__close">
+            <i class="fa fa-times"></i>
+          </span>
+        </header>
+        <section class="rct_sidebar__content">
+          <div class="rct_notice">
+            <p>
+              This update will affect the following products associated with this charge
+            </p>
+          </div>
+          <div class="rct_products__list">
+            ${ productList }
+          </div>
+          <div class="rct_form__actions">
+            <button
+              type="submit"
+              class="rct_button rct_button--primary rct_button--block"
+              data-charge-skip-confirmation="${ type }"
+              data-sub-id="${ subscription.id }"
+            >
+              ${ buttonVerbiage }
+            </button>
+          </div>
+        </section>`;
+      }
+
+      async function sendSkipRequests(ev) {
+        ev.preventDefault();
+
+        if (window.locked) {
+          return false;
+        }
+        window.locked = true;
+
+        ReCharge.Forms.toggleSpinner(ev.target);
+
+        const subId = ev.target.getAttribute('data-sub-id');
+        const data = {};
+        const url = ReCharge.Endpoints.skip_subscription_url(subId);
+        const requestObjs = [{
+          url,
+          method: 'post',
+          data
+        }]
+
+        ReCharge.Prima.RequestHandler.enqueue(requestObjs);
+
+        try {
+          await ReCharge.Prima.RequestHandler.process();
+
+          ReCharge.Toast.addToast('success', `Order skipped successfully`);
+          ReCharge.Cache.clear('charges');
+          ReCharge.Cache.clear('subscriptions');
+          ReCharge.Cache.clear('onetimes');
+          window.location.assign(linkTo('subscriptions'));
+        } catch (error) {
+          console.log(error);
+          if (error.response && error.response.data.error) {
+            ReCharge.Toast.addToast('error', error.response.data.error);
+          } else {
+            ReCharge.Toast.addToast('error', `Something went wrong. Please try again later`);
+          }
+          ReCharge.Forms.toggleSpinner(ev.target);
+          delete window.locked;
+        }
+      }
+
+      document.querySelectorAll('.btn__skip').forEach(ele => {
+        ele.addEventListener('click', () => {
+          const subId = ele.getAttribute('data-sub-id')
+          const subscription = ReChargeCustom.subscriptions.find(s => s.id == subId)
+          const chargeSkipConfirmationTemplate = template(subscription)
+          ReCharge.Sidebar.loadTemplate(chargeSkipConfirmationTemplate);
+          ReCharge.query('[data-charge-skip-confirmation]', ReCharge.Prima.sidebar.menu)
+            .addRule('click', sendSkipRequests);
+          ReCharge.Sidebar.open();
+        })
+      })
+    }
+
+    const addEventLogo = () => {
+      const logoEle = document.querySelector('.pawpass_logo .img')
+      if (logoEle) {
+        logoEle.addEventListener('click', () => {
+          window.location.href = linkTo('subscriptions')
+        })
+      }
+    }
+
+    const changeReturnUrl = () => {
+      const listEle = document.querySelectorAll('[name="redirect_url"]')
+      listEle.forEach(ele => {
+        ele.value = linkTo('subscriptions')
+      })
+    }
+
+    const addEventAddBuyNow = () => {
+      const listEle = document.querySelectorAll('.btn_add_buy_now')
+      listEle.forEach(ele => {
+        ele.addEventListener('click', () => {
+          const variantId = ele.getAttribute('data-variant-id')
+          if (!variantId) return
+          ele.setAttribute('disabled', 'disabled')
+          ele.innerHTML = 'Waiting...'
+          const data = {
+            id: variantId,
+            quantity: 1,
+          }
+          addCart(data)
+            .then(res => {
+              window.location.href = '/checkout'
+            })
+            .catch(error => {
+              window.location.reload()
+            })
+          })
+      })
+    }
+
+    const addEventClickModifySub = () => {
+      const allBtnModify = document.querySelectorAll('.btn__modify_sub')
+      allBtnModify.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const subId = btn.getAttribute('data-sub-id')
+          renderModifySubscription(subId)
+          addEventCancelSubscription()
+          addEventSkipDelivery()
+          addEventUpdateSettings()
+        })
+      })
+    }
+
+    const addEventClickAddSubscription = () => {
+      const allBtnAdd = document.querySelectorAll('.btn_add_to_cart')
+      allBtnAdd.forEach(btn => {
+        btn.addEventListener('click', () => {
+          const productId = btn.getAttribute('data-product-id')
+          renderAddSubscription(productId)
+          addEventAddSubscription()
+          window.scrollTo({
+            top: 20,
+            behavior: "smooth",
+          })
+        })
+      })
+    }
+
+    const handleEventUpdateSub = (id) => {
+      const quantity = document.querySelector('#ms_section_form_quantity')
+      const variantId = document.querySelector('#ms_section_form_variant')
+      const nextCharge = document.querySelector('#ms_section_form_next_charge')
+      const frequency = document.querySelector('#ms_section_form_order_frequency')
+
+      const [yyyy, mm, dd] = nextCharge.value.split('-')
+      const data = {
+        charge_interval_frequency: Number(frequency.value),
+        order_interval_frequency: Number(frequency.value),
+        order_interval_unit: "week",
+        quantity: Number(quantity.value),
+        shopify_variant_id: variantId.value,
+      }
+      window.fetch(linkTo(`subscriptions/${ id }`), {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(r => r.json())
+        .then(r => {
+          if (moment(nextCharge.value).isSame(r.subscription.next_charge_scheduled_at, 'day')) {
+            window.location.reload()
+            return
+          }
+
+          window.fetch(linkTo(`subscriptions/${ id }/set_next_charge_date`), {
+            method: 'POST',
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              date: nextCharge.value,
+            }),
+          })
+            .then(r => r.json())
+            .then(r => {
+              window.location.reload()
+              return
+            })
+            .catch(e => console.error(e))
+        })
+        .catch(e => console.error(e))
+    }
+
+    const addEventUpdateSettings = () => {
+      const templateUpdate = (id) => {
+        return `
+        <header class="rct_sidebar__header">
+          <span class="rct_sidebar__header__title">UPDATE SETTINGS</span>
+          <span class="rct_sidebar__close">
+            <i class="fa fa-times"></i>
+          </span>
+        </header>
+        <section class="rct_sidebar__content">
+          <div class="rct_form__actions">
+            <button
+              type="submit"
+              class="rct_button rcc_btn rct_button--primary rct_button--block btn_confirm_update_settings"
+            >
+              CONFIRM
+            </button>
+          </div>
+        </section>
+        `
+      }
+      const btnUpdateSettings = document.querySelectorAll('.btn__update_sub')
+      btnUpdateSettings.forEach(ele => {
+        const subId = ele.getAttribute('data-sub-id')
+        ele.addEventListener('click', (event) => {
+          ReCharge.Sidebar.loadTemplate(templateUpdate(subId));
+          const btn = document.querySelector('.btn_confirm_update_settings')
+          btn.addEventListener('click', () => {
+            if (window.locked) {
+              return false;
+            }
+            window.locked = true;
+
+            btn.setAttribute('disabled', 'disabled')
+            btn.innerHTML = 'Loading...'
+            handleEventUpdateSub(subId)
+          })
+          ReCharge.Sidebar.open();
+        })
+      })
+    }
+
+    const handleEventAddSub = () => {
+      const quantity = document.querySelector('#as_section_form_quantity')
+      const variantId = document.querySelector('#as_section_form_variant')
+      const nextCharge = document.querySelector('#as_section_form_next_charge')
+      const frequency = document.querySelector('#as_section_form_order_frequency')
+      const address = document.querySelector('#as_section_form_order_address')
+
+      const data = {
+        charge_interval_frequency: Number(frequency.value),
+        order_interval_frequency: Number(frequency.value),
+        order_interval_unit: "week",
+        quantity: Number(quantity.value),
+        shopify_variant_id: variantId.value,
+        address_id: address.value,
+        next_charge_scheduled_at: nextCharge.value,
+        purchase_type: 'subscription',
+      }
+
+      window.fetch(linkTo(`subscriptions`), {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
+      })
+        .then(r => r.json())
+        .then(r => {
+          window.location.reload()
+          return
+        })
+        .catch(e => console.error(e))
+    }
+
+    const addEventAddSubscription = () => {
+      const btnAddSubscription = document.querySelectorAll('.btn__add_sub')
+      btnAddSubscription.forEach(ele => {
+        ele.addEventListener('click', (event) => {
+          ele.setAttribute('disabled', 'disabled')
+          ele.innerHTML = 'Loading...'
+          handleEventAddSub()
+        })
+      })
+    }
+
+    const addEventViewHistory = () => {
+      const allBtnView = document.querySelectorAll('.btn__view_history')
+      allBtnView.forEach(ele => {
+        const orderId = ele.getAttribute('data-order-id')
+        ele.addEventListener('click', () => handleViewHistory(orderId))
+      })
+    }
+
+    const templateHistory = (order) => {
+      const {
+        line_items,
+        processed_at,
+        shipping_lines,
+        shopify_order_number,
+        tax_lines,
+        total_price,
+        total_discounts,
+      } = order
+      return `
+      <header class="rct_sidebar__header">
+        <span class="rct_sidebar__header__title">Order details</span>
+        <span class="rct_sidebar__close">
+          <i class="fa fa-times"></i>
+        </span>
+      </header>
+
+      <section class="rct_sidebar__content">
+        <div class="ohs_item">
+          <div class="ohs_left">Date</div>
+          <div class="ohs_right">${ moment(processed_at).format('MMMM DD, YYYY') }</div>
+        </div>
+        <hr />
+
+        <div class="ohs_item">
+          <div class="ohs_left">Order #</div>
+          <div class="ohs_right">${ shopify_order_number }</div>
+        </div>
+        <hr />
+
+        ${line_items.map(item => {
+          return `
+          <div class="ohs_item" style="margin-bottom:15px">
+            <div class="ohs_left">
+              <img src="${ item.images.small }" alt="product image"/>
+              <div class="ohs_product_title">${ item.title } x ${ item.quantity }</div>
+              ${item.variant_title ? `<div>${ item.variant_title }</div>` : ''}
+            </div>
+            <div class="ohs_right">$${ (Number(item.price) * item.quantity).toFixed(2) }</div>
+          </div>
+            `
+        }).join('')}
+        <hr />
+
+        <div class="ohs_item">
+          <div class="ohs_left">
+            <div class="ohs_label" style="font-weight:600">Shipping</div>
+            <div>${ shipping_lines[0].title }</div>
+          </div>
+          <div class="ohs_right">$${ shipping_lines[0].price }</div>
+        </div>
+        <hr />
+
+        ${tax_lines.map(tax => {
+          return `
+          <div class="ohs_item">
+            <div class="ohs_left">${ tax.title } (${ tax.rate }%)</div>
+            <div class="ohs_right">$${ tax.price }</div>
+          </div>
+          <hr />
+          `
+        }).join('')}
+
+        <div class="ohs_item">
+          <div class="ohs_left">Discounts</div>
+          <div class="ohs_right">$${ total_discounts }</div>
+        </div>
+        <hr />
+
+        <div class="ohs_item">
+          <div class="ohs_left">Total</div>
+          <div class="ohs_right" style="font-weight:600">$${ total_price }</div>
+        </div>
+
+      </section>
+      `
+    }
+
+    const handleViewHistory = (orderId) => {
+      const {
+        orders,
+      } = ReChargeCustom
+
+      const order = orders.find(o => o.id == orderId)
+      const htmlSidebarHistory = templateHistory(order)
+      ReCharge.Sidebar.loadTemplate(htmlSidebarHistory);
+      ReCharge.Sidebar.open();
+    }
+
+    const renderAddSubscriptionPage = () => {
+      const selectSubEle = document.querySelector('[data-purchase-option="subscription"]')
+      const selectOnetimeEle = document.querySelector('[data-purchase-option="onetime"]')
+      const sectionEle = document.querySelector('.rct_content')
+      const titleEle = document.createElement('h3')
+
+      titleEle.innerHTML = 'Add product to subscription'
+      // sectionEle.prepend(titleEle)
+      changeReturnUrl()
+      selectSubEle.click()
+      selectOnetimeEle.style.display = 'none'
+
+      stopLoadingEle()
+      showRcOrigin()
+    }
+
+    const renderEditSubscriptionPage = () => {
+      stopLoadingEle()
+      showRcOrigin()
+      changeReturnUrl()
+    }
+
+    const renderEditShipingAdressPage = () => {
+      stopLoadingEle()
+      showRcOrigin()
+      changeReturnUrl()
+    }
+
+    const renderUpdateBillingPage = () => {
+      stopLoadingEle()
+      showRcOrigin()
+      changeReturnUrl()
+    }
+
+    const renderAddBillingPage = () => {
+      stopLoadingEle()
+      showRcOrigin()
+      changeReturnUrl()
+    }
+
+    const renderUpdateCardPage = () => {
+      stopLoadingEle()
+      showRcOrigin()
+      changeReturnUrl()
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      addEventLogo()
+      renderUI()
+    })
+  })()
+</script>
+
+
+{{ 'moment.min.js' | asset_url | script_tag }}
+<script src="https://unpkg.com/swiper@7/swiper-bundle.min.js" async></script>
+{% endunless %}
+
+{% if sp_paginate_by %}{% render 'spurit_po2_collection_template_snippet', paginate_by: sp_paginate_by %}{% endif %}

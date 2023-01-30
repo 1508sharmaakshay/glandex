@@ -1,0 +1,131 @@
+<!-- /sections/form-container-step-two.liquid -->
+
+<div class="container-step-two">
+    {% if section.settings.highlight_text != blank %}
+        <p class="navbar-text">
+            {{ section.settings.highlight_text }}
+        </p>
+    {% endif %}
+    <div class="img-with-counter">
+        <img class="img-static" src="{{ section.settings.image_left | img_url: 'master' }}" alt="{{ section.settings.image_left.alt }}">
+        <p class="subtitle">
+            {{ section.settings.expire_text }}
+        </p>
+        <div class="countdown">
+            <input id="countdown-timer" type="hidden" style="display:none;" data-days="{{ section.settings.days }}" data-hrs="{{ section.settings.hrs }}" data-min="{{ section.settings.min }}" data-sec="{{ section.settings.sec }}">
+            <div class="contain">
+                <div class="value">
+                    0
+                </div>
+                <span>
+                    Days
+                </span>
+            </div>
+            <div class="contain">
+                <div class="value">
+                    0
+                </div>
+                <span>
+                    Hrs
+                </span>
+            </div>
+            <div class="contain">
+                <div class="value">
+                    0
+                </div>
+                <span>
+                    Min
+                </span>
+            </div>
+            <div class="contain">
+                <div class="value">
+                    0
+                </div>
+                <span>
+                    Sec
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="container-form">
+        {{ section.settings.form_embed }}
+        <p class="text-small">
+            <small>
+                {{ section.settings.form_disclaimer }}
+            </small>
+        </p>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Form Step Two",
+    "settings": [
+      {
+        "type": "text",
+        "id": "highlight_text",
+        "label": "Highlight Text"
+      },
+      {
+        "type": "image_picker",
+        "id": "image_left",
+        "label": "Left Image"
+      },
+      {
+        "type": "text",
+        "id": "expire_text",
+        "label": "Expire Text"
+      },
+      {
+        "type": "html",
+        "id": "form_embed",
+        "label": "Form embed"
+      },
+      {
+        "type": "text",
+        "id": "form_disclaimer",
+        "label": "Form Disclaimer"
+      },
+      {
+        "type": "header",
+        "content": "Countdown Control"
+      },
+      {
+        "type": "range",
+        "id": "days",
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "label": "Days",
+        "default": 0
+      },
+      {
+        "type": "range",
+        "id": "hrs",
+        "min": 0,
+        "max": 23,
+        "step": 1,
+        "label": "Hours",
+        "default": 4
+      },
+      {
+        "type": "range",
+        "id": "min",
+        "min": 0,
+        "max": 59,
+        "step": 1,
+        "label": "Minutes",
+        "default": 30
+      },
+      {
+        "type": "range",
+        "id": "sec",
+        "min": 0,
+        "max": 59,
+        "step": 1,
+        "label": "Seconds",
+        "default": 39
+      }
+    ]
+  }
+{% endschema %}

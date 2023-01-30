@@ -1,0 +1,228 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+<link data-instant-track rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-390485016634.css' | asset_url }}" class="gf_page_style">
+<!--GEM_HEADER_END-->
+{%- assign number_of_comments = article.comments_count -%}
+
+{% if comment %}
+  {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+{% endif %}
+
+{% if section.settings.image_hero and article.image %}
+  <div class="collection-hero">
+    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}
+
+    <img class="collection-hero__image image-fit lazyload"
+      src=""
+      data-src="{{ img_url }}"
+      data-aspectratio="{{ article.image.aspect_ratio }}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      alt="{{ article.image.alt | escape }}">
+    <noscript>
+      <img class="collection-hero__image image-fit"
+        src="{{ article.image | img_url: '1400x' }}"
+        alt="{{ article.image.alt | escape }}">
+    </noscript>
+
+    <div class="collection-hero__content">
+      <div class="page-width">
+        <header class="section-header section-header--hero">
+          <div class="section-header__shadow">
+            {%- include 'breadcrumbs' -%}
+            {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+              <div class="article__date">
+                {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                    {%- include 'filter-out-custom-tags' -%}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                  {% endfor %}
+                {% endif %}
+                {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                  <a href="#comments">
+                    {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                  </a> &middot;
+                {% endif %}
+                {% if section.settings.blog_show_date %}
+                  {{ article.published_at | time_tag: format: 'month_day_year' }}
+                {% endif %}
+              </div>
+            {% endif %}
+
+            <h1 class="section-header__title">
+              {{ article.title }}
+            </h1>
+
+            {% if section.settings.blog_show_author %}
+              <div class="article__author">by {{ article.author }}</div>
+            {% endif %}
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+{% endif %}
+
+<div class="page-width page-content">
+
+  <div class="grid">
+    <article class="grid__item widescreen--six-tenths widescreen--push-two-tenths medium-up--two-thirds medium-up--push-one-sixth article" itemscope itemtype="http://schema.org/Article">
+
+      {%- unless section.settings.image_hero and article.image -%}
+        {%- include 'breadcrumbs' -%}
+
+        <header class="section-header">
+          {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+            <div class="article__date">
+              {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                {% for tag in article.tags %}
+                  {%- include 'filter-out-custom-tags' -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                {% endfor %}
+              {% endif %}
+              {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                <a href="#comments">
+                  {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                </a> &middot;
+              {% endif %}
+              {% if section.settings.blog_show_date %}
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              {% endif %}
+            </div>
+          {% endif %}
+          <h1 class="section-header__title">{{ article.title }}</h1>
+          {% if section.settings.blog_show_author %}
+            <div class="article__author">by {{ article.author }}</div>
+          {% endif %}
+        </header>
+      {%- endunless -%}
+
+      <div class="article__body rte" itemprop="articleBody">
+        <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor"></div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+
+      </div>
+
+      {% if section.settings.social_sharing_blog %}
+        {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+      {% endif %}
+
+      {% if blog.comments_enabled? %}
+
+        {% if number_of_comments > 0 %}
+          <hr class="hr--large">
+          <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+          <hr class="hr--small hr--clear">
+        {% endif %}
+
+        {% paginate article.comments by 5 %}
+          
+          <div id="comments">
+
+            {% if comment and comment.errors == blank %}
+              <hr class="hr--small hr--clear">
+              <p class="note note--success">
+                {% if blog.moderated? %}
+                  {{ 'blogs.comments.success_moderated' | t }}
+                {% else %}
+                  {{ 'blogs.comments.success' | t }}
+                {% endif %}
+              </p>
+            {% endif %}
+
+            {% if number_of_comments > 0 %}
+              <ul class="no-bullets">
+                
+                {% if comment and comment.errors == blank %}
+                  <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                    {% include 'comment' %}
+                  </li>
+                {% endif %}
+
+                {% for comment in article.comments %}
+                  <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                    {% include 'comment' %}
+                  </li>
+
+                  {% unless forloop.last %}
+                    <li><hr class="hr--clear"></li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>
+
+              {% if paginate.pages > 1 %}
+                {% include 'pagination' %}
+              {% endif %}
+
+            {% endif %}
+
+            <hr class="hr--large">
+
+            <header class="section-header{% unless settings.type_headers_align_text %} section-header--with-link{% endunless %}">
+              <h3 class="section-header__title">{{ 'blogs.comments.title' | t }}</h3>
+            </header>
+
+            <div class="form-vertical">
+              {% form 'new_comment', article %}
+
+                {{ form.errors | default_errors }}
+
+                <div class="grid grid--small">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'author' %} error{% endif %}" type="text" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'email' %} error{% endif %}" type="email" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  </div>
+                </div>
+
+                <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+                <textarea class="input-full{% if form.errors contains 'body' %} error{% endif %}" name="comment[body]" id="CommentBody">{{ form.body }}</textarea>
+
+                {% if blog.moderated? %}
+                  <p><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+                {% endif %}
+
+                <button type="submit" class="btn btn--secondary">
+                  {{ 'blogs.comments.post' | t }}
+                </button>
+
+              {% endform %}
+            </div>
+
+          </div>
+        {% endpaginate %}
+      {% endif %}
+
+      <hr class="hr--large">
+
+    </article>
+
+  </div>
+
+  <div class="text-center">
+    <a href="{{ blog.url }}" class="btn return-link">{% include 'icon-arrow-left' %} {{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+  </div>
+</div>
+
+
+
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-390485016634.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

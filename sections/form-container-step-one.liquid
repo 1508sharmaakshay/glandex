@@ -1,0 +1,36 @@
+<!-- /sections/form-container-step-one.liquid -->
+
+<div class="container-step-one">
+    <img class="img-static" src="{{ section.settings.image_left | img_url: 'master' }}" alt="{{ section.settings.image_left.alt }}">
+    <div class="container-form">
+        {{ section.settings.form_embed }}
+        <p class="text-small">
+            <small>
+                {{ section.settings.form_disclaimer }}
+            </small>
+        </p>
+    </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Form Step One",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "image_left",
+        "label": "Left Image"
+      },
+      {
+        "type": "html",
+        "id": "form_embed",
+        "label": "Form embed"
+      },
+      {
+        "type": "text",
+        "id": "form_disclaimer",
+        "label": "Form Disclaimer"
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,244 @@
+{% unless limit %}
+{%- assign limit = main_menu.links.size -%}
+{% endunless %}
+{% unless offset %}
+{%- assign offset = 0 -%}
+{% endunless %}
+
+<ul class="site-nav site-navigation small--hide" {% unless disable_aria %} role="navigation" aria-label="Primary"
+    {% endunless %}>
+    {% for link in main_menu.links limit: limit offset: offset %}
+    {%- assign has_dropdown = false -%}
+    {%- assign is_megamenu = false -%}
+    {% if link.links != blank %}
+    {%- assign has_dropdown = true -%}
+    {% if link.levels > 1 %}
+    {%- assign is_megamenu = true -%}
+    {% endif %}
+    {% endif %}
+
+    <li class="site-nav__item site-nav__expanded-item{% if has_dropdown %} site-nav--has-dropdown{% endif %}{% if is_megamenu %} site-nav--is-megamenu{% endif %}"
+        {% if has_dropdown %}aria-haspopup="true" {% endif %}>
+
+        <a href="{{ link.url }}"
+            class="site-nav__link site-nav__link--underline{% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+            {{ link.title }}
+            {% if has_dropdown %} <i class="fa fa-angle-down"></i>{% endif %}
+
+        </a>
+        {% if forloop.index == 1 %}
+        <div class="shop_mega_menu">
+            <div class="shop_mega_menu_overlay"></div>
+            <div class="shop_mega_menu_inner">
+                <div class="page-width">
+                    <div class="mega_menu_sections">
+                        {% if section.settings.shop_all_heading != blank or section.settings.shop_all_image != blank or section.settings.shop_all_link_text != blank or section.settings.dog_image != blank or section.settings.dog_link_text != blank or section.settings.cat_link_text != blank or section.settings.cat_image != blank %}
+                        <div class="left_section">
+                            <div class="left_section_outer">
+                                {% if section.settings.shop_all_heading != blank %}
+                                <div class="heading">
+                                    {{ section.settings.shop_all_heading }}
+                                </div>
+                                {% endif %}
+                                {% if section.settings.shop_all_image != blank %}
+                                <div class="image">
+                                    <img src="{{ section.settings.shop_all_image | img_url: 'original' }}"
+                                        alt="block.settings.product_image" />
+                                </div>
+                                {% endif %}
+                                {% if section.settings.shop_all_link_text != blank %}
+                                <div class="link_div">
+                                    <a href="{{ section.settings.shop_all_link }}" class="link btn">
+                                        {{ section.settings.shop_all_link_text }}
+                                    </a>
+                                </div>
+                                {% endif %}
+                                {% if section.settings.dog_image != blank or section.settings.dog_link_text != blank or section.settings.cat_image != blank  or section.settings.cat_link_text != blank %}
+                                <div class="dog_cat_section">
+                                    {% if section.settings.dog_image != blank or section.settings.dog_link_text != blank %}
+                                    <div class="dog_section">
+                                        <a href="{{ section.settings.dog_link }}" class="link">
+                                            <img src="{{ section.settings.dog_image | img_url: 'original' }}"
+                                                alt="dog_image" />
+                                            <span class="text">{{ section.settings.dog_link_text }}</span>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                    {% if section.settings.cat_image != blank or section.settings.cat_link_text != blank %}
+                                    <div class="cat_section">
+                                        <a href="{{ section.settings.cat_link }}" class="link">
+                                            <img src="{{ section.settings.cat_image | img_url: 'original' }}"
+                                                alt="cat_image" />
+                                            <span class="text">{{ section.settings.cat_link_text }}</span>
+                                        </a>
+                                    </div>
+                                    {% endif %}
+                                </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        {% endif %}
+                        {% assign product_blocks = section.blocks | where: 'type', 'product_items' %}
+                        {% if product_blocks.size > 0 %}
+                        <div class="right_section {% if product_blocks.size > 6 %}collapce_items{% endif %}">
+                            <div class="collection_list {% if product_blocks.size > 6 %}collapce_items{% endif %}">
+                                {% for block in product_blocks %}
+                                <div class="collection_item">
+                                    <div class="image">
+                                      	{% if block.settings.product_image != blank %}
+                                        	<a href="{{ block.settings.product_link }}" class=""><img src="{{ block.settings.product_image | img_url: "original" }}" alt="{{ block.settings.product_name }}" />
+                                      		</a>
+                                        {% else %}
+                                      		<img src="{{ 'blank_product.png' | asset_url }}" alt="{{ product.title }}" />
+                                      	{% endif %}
+                                    </div>
+                                    <div class="content">
+                                        <span>{{ block.settings.product_name }}</span>
+                                        <a href="{{ block.settings.product_link }}" class="site-nav__link btn">
+                                            {{ block.settings.product_link_text }}
+                                        </a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="bottom_section">
+                        <div class="blue_cta_section_inner"
+                            {% if section.settings.pawpass_background_image != blank %}style="background-image: url({{ section.settings.pawpass_background_image | img_url: 'original'}})"
+                            {% endif %}>
+                            {% if section.settings.pawpass_background_image != blank %}
+                            <div class="logo">
+                                <img src="{{section.settings.pawpass_logo | img_url: 'original' }}" alt="pawpass" />
+                            </div>
+                            {% endif %}
+                            {% if section.settings.pawpass_subscribe_text != blank %}
+                            <div class="mobile_cta_text">
+                                {{ section.settings.pawpass_subscribe_text }}
+                            </div>
+                            {% endif %}
+                            {% if section.settings.pawpass_content != blank %}
+                            <div class="section-content">
+                                {{ section.settings.pawpass_content }}
+                            </div>
+                            {% endif %}
+                            {% if section.settings.pawpass_subscribe_text != blank or section.settings.pawpass_subscribe_cta_link != blank %}
+                            <div class="section-cta">
+                                {% if section.settings.pawpass_subscribe_text != blank %}
+                                <div class="cta_text">
+                                    {{ section.settings.pawpass_subscribe_text }}
+                                </div>
+                                {% endif %}
+                                {% if section.settings.pawpass_subscribe_cta_link != blank %}
+                                <a class="cta_link btn" href="{{ section.settings.pawpass_subscribe_cta_link }}">
+                                    {% if section.settings.pawpass_subscribe_cta_text != blank %}{{ section.settings.pawpass_subscribe_cta_text }}
+                                    <img src="{{ 'blue_thumb.png' | asset_url }}" alt="icon" class="cta_icon" />
+                                    {% endif %}
+                                </a>
+                                {% endif %}
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="bottom_mobile_links"></div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+        {% if is_megamenu %}
+        {%- assign previous_column_type = '' -%}
+        {%- assign animation_column = 1 -%}
+
+        <div class="site-nav__dropdown megamenu text-left">
+            <div class="page-width">
+                <div class="grid{% if dropdown_alignment == 'center' %} grid--center{% endif %}">
+                    <div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
+                        {%- assign animation_column = animation_column | plus: 1 -%}
+
+                        {% for childlink in link.links %}
+                        {%- assign create_new_column = false -%}
+
+                        {% if childlink.levels > 0 and forloop.index != 1 %}
+                        {%- assign create_new_column = true -%}
+                        {% endif %}
+
+                        {% if childlink.levels == 0 and previous_column_type == 'full' %}
+                        {%- assign create_new_column = true -%}
+                        {% endif %}
+
+                        {% if create_new_column %}
+                    </div>
+                    <div class="grid__item medium-up--one-fifth appear-animation appear-delay-{{ animation_column }}">
+                        {%- assign animation_column = animation_column | plus: 1 -%}
+                        {% endif %}
+
+                        {%- assign subcollection_drop = false -%}
+                        {% if childlink.levels > 0 and childlink.url contains '/collections/' %}
+                        {%- assign subcollection_handle = childlink.url | remove: '/collections/' -%}
+                        {%- assign subcollection_drop = collections[subcollection_handle] -%}
+                        {% if subcollection_drop.image != blank %}
+                        <a href="{{ childlink.url }}" class="megamenu__colection-image"
+                            style="background-image: url({{ collections[subcollection_handle].image | img_url: '400x' }})"></a>
+                        {% endif %}
+                        {% endif %}
+
+                        <div class="h5">
+                            <a href="{{ childlink.url }}"
+                                class="site-nav__dropdown-link site-nav__dropdown-link--top-level">{{ childlink.title }}</a>
+                        </div>
+
+                        {% if childlink.levels > 0 %}
+                        {%- assign previous_column_type = 'full' -%}
+                        {% else %}
+                        {%- assign previous_column_type = 'single' -%}
+                        {% endif %}
+
+                        {% for grandchildlink in childlink.links %}
+                        <div>
+                            <a href="{{ grandchildlink.url }}" class="site-nav__dropdown-link">
+                                {{grandchildlink.title}}
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% elsif has_dropdown %}
+        <ul class="site-nav__dropdown text-left">
+            {% for childlink in link.links %}
+            {%- assign has_sub_dropdown = false -%}
+            {% if childlink.links != blank %}
+            {%- assign has_sub_dropdown = true -%}
+            {% endif %}
+
+            <li class="{% if has_sub_dropdown %} site-nav__deep-dropdown-trigger{% endif %}">
+                <a href="{{ childlink.url }}"
+                    class="site-nav__dropdown-link site-nav__dropdown-link--second-level {% if has_sub_dropdown %} site-nav__dropdown-link--has-children{% endif %}">
+                    {{ childlink.title | escape }}
+                    {% if has_sub_dropdown %}
+                    <svg aria-hidden="true" focusable="false" role="presentation"
+                        class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16">
+                        <path d="M1.57 1.59l12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000" fill="none"
+                            fill-rule="evenodd" /></svg>
+                    {% endif %}
+                </a>
+                {% if has_sub_dropdown %}
+                <ul class="site-nav__deep-dropdown">
+                    {% for grandchildlink in childlink.links %}
+                    <li>
+                        <a href="{{ grandchildlink.url }}"
+                            class="site-nav__dropdown-link">{{ grandchildlink.title | escape }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>

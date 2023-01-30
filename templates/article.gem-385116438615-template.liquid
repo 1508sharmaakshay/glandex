@@ -1,0 +1,158 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!--GEM_HEADER-->
+
+
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css" class="gf-style">
+<link data-instant-track rel="stylesheet" type="text/css" href="https://d1um8515vdn9kb.cloudfront.net/files/vendor.css?refresh=1" class="gf-style" />
+<link data-instant-track rel="stylesheet" type="text/css" href="{{ 'gem-article-385116438615.css' | asset_url }}" class="gf_page_style">
+<link data-instant-track class="gf_fonts" data-fonts="Montserrat" href="//fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900" rel="stylesheet" type="text/css" />
+<!--GEM_HEADER_END-->
+{%- assign number_of_comments = article.comments_count -%}{% if comment %}
+  {%- assign number_of_comments = article.comments_count | plus: 1 -%}
+{% endif %}{% if section.settings.image_hero and article.image %}
+  <div class="collection-hero">
+    {%- assign img_url = article.image | img_url: '1x1' | replace: '_1x1.', '_{width}x.' -%}    <img class="collection-hero__image image-fit lazyload"
+      src=""
+      data-src="{{ img_url }}"
+      data-aspectratio="{{ article.image.aspect_ratio }}"
+      data-sizes="auto"
+      data-parent-fit="cover"
+      alt="{{ article.image.alt | escape }}1">
+    <noscript>
+      <img class="collection-hero__image image-fit"
+        src="{{ article.image | img_url: '1400x' }}"
+        alt="{{ article.image.alt | escape }}">
+    </noscript>    <div class="collection-hero__content">
+      <div class="page-width">
+        <header class="section-header section-header--hero">
+          <div class="section-header__shadow">
+            {%- include 'breadcrumbs' -%}
+            {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+              <div class="article__date">
+                {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                  {% for tag in article.tags %}
+                    {%- include 'filter-out-custom-tags' -%}
+                    <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                  {% endfor %}
+                {% endif %}
+                {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                  <a href="#comments">
+                    {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                  </a> &middot;
+                {% endif %}
+                {% if section.settings.blog_show_date %}
+                  {{ article.published_at | time_tag: format: 'month_day_year' }}
+                {% endif %}
+              </div>
+            {% endif %}            <h1 class="section-header__title">
+              {{ article.title }}
+            </h1>            {% if section.settings.blog_show_author %}
+              <div class="article__author">by {{ article.author }}</div>
+            {% endif %}
+          </div>
+        </header>
+      </div>
+    </div>
+  </div>
+{% endif %}<div class="page-width page-content">  <div class="grid">
+    <article class="grid__item widescreen--six-tenths widescreen--push-two-tenths medium-up--two-thirds medium-up--push-one-sixth article" itemscope itemtype="http://schema.org/Article">      {%- unless section.settings.image_hero and article.image -%}
+        {%- include 'breadcrumbs' -%}        <header class="section-header">
+          {% if section.settings.blog_show_date or article.tags.size > 0 or articles.comments_count > 0 %}
+            <div class="article__date">
+              {% if section.settings.blog_show_tags and article.tags.size > 0 %}
+                {% for tag in article.tags %}
+                  {%- include 'filter-out-custom-tags' -%}
+                  <a href="{{ blog.url }}/tagged/{{ tag | handle }}">{{ tag }}</a> &middot;
+                {% endfor %}
+              {% endif %}
+              {% if section.settings.blog_show_comments and article.comments_count > 0 %}
+                <a href="#comments">
+                  {{ 'blogs.comments.with_count' | t: count: number_of_comments }}
+                </a> &middot;
+              {% endif %}
+              {% if section.settings.blog_show_date %}
+                {{ article.published_at | time_tag: format: 'month_day_year' }}
+              {% endif %}
+            </div>
+          {% endif %}
+          <h1 class="section-header__title">{{ article.title }}</h1>
+          {% if section.settings.blog_show_author %}
+            <div class="article__author">by {{ article.author }}</div>
+          {% endif %}
+        </header>
+      {%- endunless -%}      <div class="article__body rte" itemprop="articleBody">
+        <!--Gem_Page_Main_Editor--><div class="clearfix"></div><div class="gryffeditor"><div data-label="Text Block" class="element-wrap" data-description="" data-key="text-block" id="e-1670654046021" data-icon="gpicon-textblock" data-ver="1" data-id="1670654046021"><div class="elm text-edit gf_gs-text-paragraph-1"><p><img src="https://cdn.shopify.com/s/files/1/0848/9668/files/Ankita_Glandex_1_480x480.jpg?v=1601473936" alt="Glandex Anal Gland Dog of the Month Ankita" style="display: block; margin-left: auto; margin-right: auto;"></p><p>This beautiful girl is Ankita, a beautiful 12-year-old German Shepherd. Ankita is our October 2020 Glandex® <a href="https://www.glandex.com/pages/glandex-pet-of-the-month" target="_blank" rel="noopener noreferrer" class="">Pet of the Month</a>! This is what her mom had to say about using Glandex® for her...</p><p><span style="color: #15b7ed;">"</span><span style="font-weight: 400;"><span style="color: #15b7ed;">Ankita has been suffering from perianal fistula for many years. We used to have to take her to the vet regularly to clean her abscesses and express her. Our vet told us that her GSD suffered the same way and she had to put her pet down at 9 years old and we would probably have to do the same. We refused to put Ankita down but it tugged on our hearts to see her strain herself and not be able to go. I started looking on the Internet to see if I could find anything, natural, herbal, Rx, anything. We had tried pumpkin and sweet potato, any advice friends gave that had worked on their pets. Nothing worked. Until I found Glandex and several GSD owners praising its wonders and magic. We decided to try it. That was 5 years ago. We have never looked back. She does not take Glandex every day as before but on an as-needed basis. But one thing's for sure, we're so very glad not to have taken our vet's advice. We have saved $$$s in vet bills and have one happy pup.&nbsp;Thank you Vetnique for such a superb product!" - Sukanya</span></span></p><p><span style="font-weight: 400; color: #000000;">Ankita is very loving and motherly. We now have a young 5-month GSD and she mothers her around and comes running and licks her when we train the pup to not do something she ought not to do.</span></p></div></div><!--gfsplit--><script>window.__gemStoreData = {};window.__gemStoreData.gemKeyValid = {};window.__gemStoreData.gemKeyValid.bestWayAddToCart = 1;</script></div><div id="divContentBk"></div><!--End_Gem_Page_Main_Editor-->
+      </div>      {% if section.settings.social_sharing_blog %}
+        {% include 'social-sharing', share_title: article.title, share_permalink: article.url, share_image: article.image %}
+      {% endif %}      {% if blog.comments_enabled? %}        {% if number_of_comments > 0 %}
+          <hr class="hr--large">
+          <h3>{{ 'blogs.comments.with_count' | t: count: number_of_comments }}</h3>
+          <hr class="hr--small hr--clear">
+        {% endif %}        {% paginate article.comments by 5 %}
+          
+          <div id="comments">            {% if comment and comment.errors == blank %}
+              <hr class="hr--small hr--clear">
+              <p class="note note--success">
+                {% if blog.moderated? %}
+                  {{ 'blogs.comments.success_moderated' | t }}
+                {% else %}
+                  {{ 'blogs.comments.success' | t }}
+                {% endif %}
+              </p>
+            {% endif %}            {% if number_of_comments > 0 %}
+              <ul class="no-bullets">
+                
+                {% if comment and comment.errors == blank %}
+                  <li id="{{ comment.id }}" class="comment first{% if article.comments_count == 0 %} last{% endif %}">
+                    {% include 'comment' %}
+                  </li>
+                {% endif %}                {% for comment in article.comments %}
+                  <li id="{{ comment.id }}" class="comment{% unless number_of_comments > article.comments_count %}{% if forloop.first %} first{% endif %}{% endunless %}{% if forloop.last %} last {% endif %}">
+                    {% include 'comment' %}
+                  </li>                  {% unless forloop.last %}
+                    <li><hr class="hr--clear"></li>
+                  {% endunless %}
+                {% endfor %}
+              </ul>              {% if paginate.pages > 1 %}
+                {% include 'pagination' %}
+              {% endif %}            {% endif %}            <hr class="hr--large">            <header class="section-header{% unless settings.type_headers_align_text %} section-header--with-link{% endunless %}">
+              <h3 class="section-header__title">{{ 'blogs.comments.title' | t }}</h3>
+            </header>            <div class="form-vertical">
+              {% form 'new_comment', article %}                {{ form.errors | default_errors }}                <div class="grid grid--small">
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentAuthor">{{ 'blogs.comments.name' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'author' %} error{% endif %}" type="text" name="comment[author]" id="CommentAuthor" value="{{ form.author }}" autocapitalize="words">
+                  </div>
+                  <div class="grid__item medium-up--one-half">
+                    <label for="CommentEmail">{{ 'blogs.comments.email' | t }}</label>
+                    <input class="input-full{% if form.errors contains 'email' %} error{% endif %}" type="email" name="comment[email]" id="CommentEmail" value="{{ form.email }}" autocorrect="off" autocapitalize="off">
+                  </div>
+                </div>                <label for="CommentBody">{{ 'blogs.comments.message' | t }}</label>
+                <textarea class="input-full{% if form.errors contains 'body' %} error{% endif %}" name="comment[body]" id="CommentBody">{{ form.body }}</textarea>                {% if blog.moderated? %}
+                  <p><small>{{ 'blogs.comments.moderated' | t }}</small></p>
+                {% endif %}                <button type="submit" class="btn btn--secondary">
+                  {{ 'blogs.comments.post' | t }}
+                </button>              {% endform %}
+            </div>          </div>
+        {% assign sp_paginate_by = paginate.page_size %}{% endpaginate %}
+      {% endif %}      <hr class="hr--large">    </article>  </div>  <div class="text-center">
+    <a href="{{ blog.url }}" class="btn return-link"><svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-left" viewBox="0 0 50 15"><path d="M50 5.38v4.25H15V15L0 7.5 15 0v5.38z"/></svg> {{ 'blogs.article.back_to_blog' | t: title: blog.title }}</a>
+  </div>
+</div>{% if sp_paginate_by %}{% render 'spurit_po2_collection_template_snippet', paginate_by: sp_paginate_by %}{% endif %}
+
+<!--GEM_FOOTER-->
+{% capture GEM_FOOTER_SCRIPT %}
+<script data-instant-track type="text/javascript">
+	var pageLibs = [		'{{ 'gem-article-385116438615.js' | asset_url }}',	];
+</script>
+<script data-instant-track type="text/javascript">
+	var GEMVENDOR = GEMVENDOR || (function(){		var _js = {};		return {			init: function(Args) {				_js = Args;			},			getLibs: function() {				return _js;			}		};	}());	GEMVENDOR.init(pageLibs);</script>
+<script data-instant-track type="text/javascript" src="https://d1um8515vdn9kb.cloudfront.net/files/gempagev2.js?v=1.0" class="gf-script" defer></script>
+{% endcapture %}
+<!--GEM_FOOTER_END-->

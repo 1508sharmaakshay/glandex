@@ -1,0 +1,143 @@
+<section class="veterinarian-recommended">
+    <div class="contain">
+          <div class="slider-primary">
+          {% for block in section.blocks %}
+          <div class="item">
+            <div class="item-contain">
+              <div class="container-img">
+                <img class="big-image" src="{{ block.settings.big_image | img_url: '500x' }}">
+                {% if block.settings.small_image != blank %}
+                <img class="small-image" src="{{ block.settings.small_image | img_url: '500x' }}">
+                {% endif %}
+              </div>
+              <div class="container-text">
+                {% if block.settings.stars != blank %}
+                  <img class="start" src="{{ block.settings.stars | img_url: 'medium' }}" alt="Veterinarian Recommended" width="146">
+                {% else %}
+                  <img class="start" src="{{ 'stars.png' | asset_img_url: 'medium' }}" alt="Veterinarian Recommended" width="146">
+                {% endif %}
+                <p class="text">
+                  {{ block.settings.quote }}
+                </p>
+                <ul class="author">
+                  {% if block.settings.name != blank %}
+                    <li>
+                      -{{ block.settings.name }}
+                    </li>
+                  {% endif %}
+                </ul>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+        </div>
+    </div>
+    <div class="contain min">
+        <div class="sub-contain">
+          <div class="group">
+              <div class="slider-secondary">
+              {% for block in section.blocks %}
+              <div id="img-min-{{forloop.index}}" class="item">
+                <div class="item-contain">
+                  <img class="img-second" src="{{ block.settings.big_image | img_url: 'medium' }}">
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- <section class="veterinarian-recommended">
+    <div class="slider-primary">
+  
+        {% for block in section.blocks %}
+          <div class="item">
+            <div class="container-img">
+              <img class="big-image" src="{{ block.settings.big_image | img_url: '500x' }}">
+              {% if block.settings.small_image != blank %}
+              <img class="small-image" src="{{ block.settings.small_image | img_url: '500x' }}">
+              {% endif %}
+            </div>
+            <div class="container-text">
+              {% if block.settings.stars != blank %}
+                <img class="start" src="{{ block.settings.stars | img_url: 'medium' }}" alt="Veterinarian Recommended" width="146">
+              {% else %}
+                <img class="start" src="{{ 'stars.png' | asset_img_url: 'medium' }}" alt="Veterinarian Recommended" width="146">
+              {% endif %}
+              <p class="text">
+                {{ block.settings.quote }}
+              </p>
+              <ul class="author">
+                {% if block.settings.name != blank %}
+                  <li>
+                    -{{ block.settings.name }}
+                  </li>
+                {% endif %}
+              </ul>
+            </div>
+          </div>
+        {% endfor %}
+   
+    </div>
+    <div class="slider-secondary">
+      {% for block in section.blocks %}
+        <img class="img-second" src="{{ block.settings.big_image | img_url: 'medium' }}">
+      {% endfor %}
+    </div>
+  </section> -->
+  
+  
+  {% schema %}
+    {
+      "name": "Veterianrian Recommended",
+      "settings": [],
+      "blocks": [
+        {
+          "type": "slider",
+          "name": "Slider",
+          "settings": [
+            {
+              "id": "big_image",
+              "type": "image_picker",
+              "label": "Big Image"
+            },
+            {
+              "id": "small_image",
+              "type": "image_picker",
+              "label": "Small Image"
+            },
+            {
+              "id": "quote",
+              "type": "textarea",
+              "label": "Quote"
+            },
+            {
+              "id": "name",
+              "type": "text",
+              "label": "Name"
+            },
+            {
+              "id": "stars",
+              "type": "image_picker",
+              "label": "Stars",
+              "info": "Star image optional, not required"
+            }
+          ]
+        }
+      ],
+      "presets": [
+        {
+          "name": "Veterianrian Recommended"
+        }
+      ]
+    }
+  {% endschema %}
+  
+  {% stylesheet %}
+  {% endstylesheet %}
+  
+  {% javascript %}
+  {% endjavascript %}
+  

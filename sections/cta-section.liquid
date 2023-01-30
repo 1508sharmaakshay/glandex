@@ -1,0 +1,118 @@
+<div class="blue_cta_section">
+  <div class="page-width">
+    <div class="blue_cta_section_inner desktop" {% if section.settings.background_image != blank %}style="background-image: url({{ section.settings.background_image | img_url: 'original'}})"{% endif %}>
+      {% if section.settings.background_image != blank %}
+      <div class="logo">
+        <a href="https://www.glandex.com/account/login?return_url=%2Faccount"><img src="{{section.settings.logo | img_url: 'original' }}" alt="pawpass" /></a>
+      </div>
+      {% endif %}
+      {% if section.settings.subscribe_text != blank %}
+          	<div class="mobile_cta_text">
+          		{{ section.settings.subscribe_text }}
+          	</div>
+          {% endif %}
+      {% if section.settings.content != blank %}
+        <div class="section-content desktop">
+          {{ section.settings.content }}
+        </div>
+      {% endif %}
+      {% if section.settings.subscribe_text != blank or section.settings.subscribe_cta_link != blank %}
+        <div class="section-cta">
+          {% if section.settings.subscribe_text != blank %}
+          	<div class="cta_text">
+          		{{ section.settings.subscribe_text }}
+          	</div>
+          {% endif %}
+          {% if section.settings.subscribe_cta_link != blank %}
+          	<a class="cta_link btn" href="{{ section.settings.subscribe_cta_link }}">
+          		{% if section.settings.subscribe_cta_text != blank %}{{ section.settings.subscribe_cta_text }} <img src="{{ 'cta_icon.png' | asset_url }}" alt="icon" class="cta_icon" /> {% endif %}
+          	</a>
+          {% endif %}
+        </div>
+      {% endif %}
+    </div>
+   <div class="blue_cta_section_inner mobile" {% if section.settings.background_image != blank %}style="background-image: url({{ section.settings.background_image | img_url: 'original'}})"{% endif %}>
+      {% if section.settings.background_image != blank %}
+      <div class="logo">
+        <a href="https://www.glandex.com/account/login?return_url=%2Faccount"><img src="{{section.settings.logo | img_url: 'original' }}" alt="pawpass" /></a>
+      </div>
+      {% endif %}
+      {% if section.settings.subscribe_text != blank %}
+          	<div class="mobile_cta_text">
+          		{{ section.settings.subscribe_text }}
+          	</div>
+          {% endif %}
+      {% if section.settings.mobile_content != blank %}
+        <div class="section-content mobile">
+          {{ section.settings.mobile_content }}
+        </div>
+      {% endif %}
+      {% if section.settings.subscribe_text != blank or section.settings.subscribe_cta_link != blank %}
+        <div class="section-cta">
+          {% if section.settings.subscribe_text != blank %}
+          	<div class="cta_text">
+          		{{ section.settings.subscribe_text }}
+          	</div>
+          {% endif %}
+          {% if section.settings.subscribe_cta_link != blank %}
+          	<a class="cta_link btn" href="{{ section.settings.subscribe_cta_link }}">
+          		{% if section.settings.subscribe_cta_text != blank %}{{ section.settings.subscribe_cta_text }} <img src="{{ 'cta_icon.png' | asset_url }}" alt="icon" class="cta_icon" /> {% endif %}
+          	</a>
+          {% endif %}
+        </div>
+      {% endif %}
+      </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "CTA Section",
+	"class": "index-section cta_section_index",
+    "settings": [
+      {
+        "type": "image_picker",
+		"id": "background_image",
+		"label": "Background Image"
+      }, {
+        "type": "image_picker",
+		"id": "logo",
+		"label": "Logo"
+      }, {
+        "type": "textarea",
+		"id": "content",
+		"label": "Content"
+      },{
+        "type": "textarea",
+		"id": "mobile_content",
+		"label": "Mobile Content"
+      }, {
+        "type": "text",
+		"id": "subscribe_text",
+		"label": "Subscribe Text"
+      }, {
+        "type": "text",
+		"id": "subscribe_cta_text",
+		"label": "Subscribe CTA Text"
+      }, {
+        "type": "url",
+		"id": "subscribe_cta_link",
+		"label": "Subscribe CTA Link"
+      }, {
+        "type": "url",
+		"id": "blue_cta_link",
+		"label": "Blue CTA Link"
+      }
+    ],
+	"presets": [{
+      "name": "Blue CTA Section",
+      "category": "Promotional"
+	}]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

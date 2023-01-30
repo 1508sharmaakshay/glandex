@@ -1,0 +1,304 @@
+<footer class="site-footer custom_style">
+  <div class="page-width">
+
+    <div class="grid">
+      {%- assign row_width = 0 -%}
+      {% for block in section.blocks %}
+        {%- assign row_width = row_width | plus: block.settings.container_width -%}
+        {% if row_width > 100 %}
+          <div class="footer__clear small--hide"></div>
+          {%- assign row_width = row_width | minus: 100 -%}
+        {% endif %}
+
+        <div {{ block.shopify_attributes }} class="grid__item footer__item--{{ block.id }}" data-type="{{ block.type }}">
+          {% style %}
+            @media only screen and (min-width: 769px) and (max-width: 959px) {
+              .footer__item--{{ block.id }} {
+                width: 50%;
+                padding-top: 40px;
+              }
+              .footer__item--{{ block.id }}:nth-child(2n + 1) {
+                clear: left;
+              }
+            }
+            @media only screen and (min-width: 960px) {
+              .footer__item--{{ block.id }} {
+                width: {{ block.settings.container_width }}%;
+              }
+
+            }
+          {% endstyle %}
+
+          {% case block.type %}
+          {% when 'logo_social' %}
+            {% include 'footer-logo', block: block %}
+          {% when 'custom' %}
+            {% include 'footer-custom-text', block: block %}
+          {% when 'newsletter' %}
+            {% include 'footer-newsletter', block: block %}
+          {% when 'menu' %}
+            <p class="title-footer-one">
+              Boot the scoot
+            </p>
+            <p class="title-footer-two">
+              Explore our Brands
+            </p>
+            {% include 'footer-menu', block: block %}
+          {% when 'customi' %}
+            {% include 'customfootimg', block: block %}
+          {% endcase %}
+        </div>
+      {% endfor %}
+      {% for block in section.blocks %}
+        {% if block.type == 'logo' %}
+          <div class="grid__item medium-up--hide">
+            {% include 'footer-logo', block: block %}
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    {% if section.settings.show_payment_icons %}
+      {% unless shop.enabled_payment_types == empty %}
+        <ul class="inline-list payment-icons">
+          {% for type in shop.enabled_payment_types %}
+            <li class="icon--payment">
+              {{ type | payment_type_svg_tag: class:'icon icon--full-color' }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endunless %}
+    {% endif %}
+
+    {% if section.settings.show_copyright %}
+      <p class="footer__small-text">
+        &copy; {{ 'now' | date: '%Y' }} {{ shop.name }}
+        {% if section.settings.copyright_text != blank %}
+          {{ section.settings.copyright_text }}
+        {% endif %}
+      </p>
+    {% endif %}
+<img src="https://cdn.shopify.com/s/files/1/2204/0799/files/vetnique-logo-white_1000x300_e9fcf7a5-1cc0-4d3b-a0ea-88ccb87a5d11.png?v=1569429809" alt="vetnique labs" width="200px" align="right"><br><br><br>
+
+  </div>
+  <script type="text/javascript">
+    (function(e,t,o,n,p,r,i){e.visitorGlobalObjectAlias=n;e[e.visitorGlobalObjectAlias]=e[e.visitorGlobalObjectAlias]||function(){(e[e.visitorGlobalObjectAlias].q=e[e.visitorGlobalObjectAlias].q||[]).push(arguments)};e[e.visitorGlobalObjectAlias].l=(new Date).getTime();r=t.createElement("script");r.src=o;r.async=true;i=t.getElementsByTagName("script")[0];i.parentNode.insertBefore(r,i)})(window,document,"https://diffuser-cdn.app-us1.com/diffuser/diffuser.js","vgo");
+    vgo('setAccount', '65825262');
+    vgo('setTrackByDefault', true);
+
+    vgo('process');
+  </script>
+  <script type="text/javascript">
+      	setTimeout(function(){
+            var s = document.createElement("script");
+            s.type = "text/javascript";
+            s.src = "https://vetniquelabs.activehosted.com/f/embed.php?id=86";
+            jQuery("body").prepend(s);
+        },30000);  
+    </script>
+ 
+</footer>
+<style>
+p.title-footer-one,
+p.title-footer-two {
+  display: none;
+}
+.footer__logo {
+    margin-bottom: 0px;
+}
+.site-footer__linklist li:first-child a {
+    font-weight: 600;
+    text-transform: uppercase;
+}
+</style>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "max_blocks": 12,
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_payment_icons",
+        "label": "Show payment icons",
+        "default": false
+      },
+      {
+        "type": "checkbox",
+        "id": "show_copyright",
+        "label": "Show copyright"
+      },
+      {
+        "type": "text",
+        "id": "copyright_text",
+        "label": "Additional copyright text"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "logo_social",
+        "name": "Logo",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "logo",
+            "label": "Logo image"
+          },
+          {
+            "type": "range",
+            "id": "desktop_logo_height",
+            "label": "Logo height",
+            "default": 50,
+            "min": 20,
+            "max": 120,
+            "unit": "px"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 25,
+            "min": 15,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "menu",
+        "name": "Navigation",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show heading"
+          },
+          {
+            "type": "link_list",
+            "id": "menu",
+            "label": "Choose a menu",
+            "default": "footer",
+            "info": "This menu won't show dropdown items"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 25,
+            "min": 15,
+            "max": 100,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "newsletter",
+        "name": "Newsletter and social",
+        "limit": 1,
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show heading",
+            "default": true
+          },
+          {
+            "type": "paragraph",
+            "content": "Any customers who sign up will have an account created for them in Shopify. [View customers](/admin/customers)."
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Sign up and save"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "info": "Optional",
+            "default": "<p>Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals.</p>"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 25,
+            "min": 15,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "custom",
+        "name": "Custom text",
+        "settings": [
+          {
+            "type": "checkbox",
+            "id": "show_footer_title",
+            "label": "Show heading",
+            "default": true
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Heading",
+            "default": "Custom text"
+          },
+          {
+            "type": "image_picker",
+            "id": "image",
+            "label": "Image"
+          },
+          {
+            "type": "richtext",
+            "id": "text",
+            "label": "Text",
+            "default": "<p>Add your own custom text here.</p>"
+          },
+          {
+            "type": "range",
+            "id": "container_width",
+            "label": "Column width",
+            "default": 25,
+            "min": 15,
+            "max": 95,
+            "unit": "%"
+          }
+        ]
+      },
+      {
+        "type": "customi",
+        "name": "Custom image",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "image_custom_1",
+            "label": "Image 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_custom_2",
+            "label": "Image 2"
+          }
+        ]
+      }
+    ],
+    "default": {
+      "settings": {},
+      "blocks": [
+        {
+          "type": "menu",
+          "settings": {}
+        },
+        {
+          "type": "logo_social",
+          "settings": {}
+        }
+      ]
+    }
+  }
+{% endschema %}

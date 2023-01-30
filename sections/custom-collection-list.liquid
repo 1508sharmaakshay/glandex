@@ -1,0 +1,179 @@
+<div class="custom_collection_tab_section">
+  <div class="page-width">
+    <div class="custom_collection_tab_section_inner">
+    {% if section.settings.title != blank %}
+      <div class="section-header">
+        <h2 class="section-header__title">{{ section.settings.title }}</h2>
+      </div>
+    {% endif %}
+     <div class="custom_collection_tab_list">
+     	<div class="custom_collection_tabs">
+          	{% assign count = 0 %}
+          {% for block in section.blocks %}
+          	{% assign count = count | plus: 1 %}
+    	      	<div class="custom_collection_tab_item {% if block.settings.default_active == true %}active{% endif %}">
+	            	<div class="item_data desktop_only" data-tab="tab{{count}}">
+                    	<div class="item_icon">
+                	      {% if block.settings.collection_icon != blank %}
+            	          	<img class="icon-collection normal" src="{{ block.settings.collection_icon | img_url: 'original' }}" alt="block.settings.product_image" >
+        	              {% endif %}
+    	                  {% if block.settings.collection_icon_hover != blank %}
+	                      	<img class="icon-collection hover" src="{{ block.settings.collection_icon_hover | img_url: 'original' }}" alt="block.settings.product_image" >
+                      	{% endif %}
+                    	</div>
+                    	{% if block.settings.collection_text != blank %}
+                    		<div class="item_heading">
+                    			{{ block.settings.collection_text }}
+                    		</div>
+                    	{% endif %}
+                  	</div>
+                  	{% assign collection_url = "javascript:void(0)" %}
+                  	{% if block.settings.collection_id != blank  %}
+                      {% assign collection = collections[block.settings.collection_id] %}
+                      {% if collection.url != blank  %}
+                          {% assign collection_url = collection.url %}
+                      {% endif %}
+                  	{% endif %}
+                  	<div class="item_data mobile_only">
+                      <a href="{{ collection_url }}">
+                        <div class="image">
+                          {% if block.settings.collection_image != blank %}
+            	          	<img class="icon-collection normal" src="{{ block.settings.collection_image | img_url: 'thumbnail' }}" alt="block.settings.product_image" >
+        	              {% endif %}
+                        </div>
+                        <div class="content">
+                          {% if block.settings.collection_text != blank  %}
+                          	<span class="collection_heading">{{ block.settings.collection_text }}</span>
+                          {% endif %}
+                          {% if block.settings.collection_mobile_text != blank  %}
+                          	<span class="collection_excerpt">{{ block.settings.collection_mobile_text }}</span>
+                          {% endif %}
+                        </div>
+                      </a>
+                  	</div>
+          		</div>
+          	{% endfor %}
+     	</div>
+       <div class="custom_collection_tabs_content">
+         	{% assign count = 0 %}
+         {% for block in section.blocks %}
+           	{% assign collection_url = "javascript:void(0)" %}
+           	{% if block.settings.collection_id != blank  %}
+             {% assign collection = collections[block.settings.collection_id] %}
+             {% if collection.url != blank  %}
+             	{% assign collection_url = collection.url %}
+             {% endif %}
+           	{% endif %}
+          	{% assign count = count | plus: 1 %}
+         	<div class="custom_collection_tab_item_content  {% if block.settings.default_active == true %}active{% endif %}" id="tab{{count}}">
+              <div class="left_content">
+                {% if block.settings.collection_text != blank %}
+                <div class="heading">
+                	{{ block.settings.collection_text }}
+                </div>
+                {% endif %}
+                 {% if block.settings.collection_sub_heading != blank %}
+                <div class="sub_heading">
+                	{{ block.settings.collection_sub_heading }}
+                </div>
+                {% endif %}
+                {% if block.settings.collection_content != blank %}
+                <div class="content">
+					{{ block.settings.collection_content }}
+                </div>
+                {% endif %}
+                {% if block.settings.collection_cta_text != blank and collection_url != blank %}
+                  <div class="cta">
+                    <a href="{{ block.settings.collection_url }}" class="btn">{{ block.settings.collection_cta_text }}</a>
+                  </div>
+                {% endif %}
+              </div>	
+              <div class="right_image">
+              	{% if block.settings.collection_image != blank %}
+                	<img class="icon-collection normal" src="{{ block.settings.collection_image | img_url: 'original' }}  alt="block.settings.product_image" >
+                {% endif %}
+              </div>	
+         	</div>
+         {% endfor %}
+       </div>
+     </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Collections Tab List",
+	"class": "index-section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "FEATURED COLLECTIONS"
+      }
+    ],
+	"blocks": [
+      {
+        "type": "collectiontab",
+        "name": "New Collection",
+        "settings": [
+          {
+            "type": "collection",
+            "id": "collection_id",
+            "label": "Collection"
+          }, {
+            "type": "image_picker",
+            "id": "collection_icon",
+            "label": "Collection Icon"
+          }, {
+            "type": "image_picker",
+            "id": "collection_icon_hover",
+            "label": "Collection Icon Hover"
+          }, {
+            "type": "text",
+            "id": "collection_text",
+            "label": "Collection Text"
+          }, {
+            "type": "text",
+            "id": "collection_sub_heading",
+            "label": "Collection Sub Heading"
+          }, {
+            "type": "textarea",
+            "id": "collection_mobile_text",
+            "label": "Collection Mobile Text"
+          }, {
+            "type": "textarea",
+            "id": "collection_content",
+            "label": "Collection Info"
+          }, {
+            "type": "text",
+            "id": "collection_cta_text",
+            "label": "Collection CTA"
+          },  {
+            "type": "image_picker",
+            "id": "collection_image",
+            "label": "Collection Image"
+          },{
+            "type": "url",
+            "id": "collection_url",
+            "label": "Collection URL"
+          },  {
+            "type": "checkbox",
+            "id": "default_active",
+            "label": "Set Default Active"
+          }
+		]
+      }
+	], "presets": [{
+      "name": "Collections Tab List",
+      "category": "Promotional"
+	}]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

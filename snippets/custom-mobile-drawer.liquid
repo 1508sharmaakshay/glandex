@@ -1,0 +1,229 @@
+{%- assign overlay_header = false -%}
+{% if template_name == 'index' and section.settings.sticky_index %}
+{%- assign overlay_header = true -%}
+{% endif %}
+{% if template_name == 'collection' and collection.image and section.settings.sticky_collection %}
+{%- assign overlay_header = true -%}
+{% endif %}
+<div class="mobile_drawer">
+    <div class="mobile_drawer_outer">
+        <div class="currency_section">
+            <div class="currency_left">
+                {% unless overlay_header %}
+                {% if settings.enable_currencies or section.settings.toolbar_social or section.settings.toolbar_menu != blank %}
+                {% include 'toolbar', overlay_header: overlay_header  %}
+                {% endif %}
+                {% endunless %}
+            </div>
+            <div class="close_right">
+                <a href="javascript:void(0)" class="close_mobile_menu">
+                    <img src="{{ 'close_menu.png' | asset_url }}" alt="close" />
+                </a>
+            </div>
+        </div>
+        <div class="glandex_section">
+            <div class="acc_heading_part">
+                {% if section.settings.mobile_glandex_text != blank %}
+                {{ section.settings.mobile_glandex_text }}
+                {% else %}
+                Shop Glandex®
+                {% endif %}
+            </div>
+            <div class="acc_content_part">
+                <div class="glandex_section_items">
+                    <div class="item">
+                        {% if section.settings.shop_all_link != blank %}
+                        <a href="{{ section.settings.shop_all_link }}" class="link btn">
+                            {% endif %}
+                            <div class="item_inner">
+                                {% if section.settings.shop_all_image != blank %}
+                                <div class="image">
+                                    <img src="{{ section.settings.shop_all_image | img_url: 'original' }}"
+                                        alt="shop_all_image" />
+                                </div>
+                                {% endif %}
+                                {% if section.settings.shop_all_link_text != blank %}
+                                <span class="text">{{ section.settings.shop_all_link_text }}</span>
+                                {% endif %}
+                            </div>
+                            {% if section.settings.shop_all_link != blank %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="item">
+                        {% if section.settings.dog_link != blank %}
+                        <a href="{{ section.settings.dog_link }}" class="link btn">
+                            {% endif %}
+                            <div class="item_inner">
+                                {% if section.settings.dog_image != blank %}
+                                <div class="image">
+                                    <img src="{{ section.settings.dog_image | img_url: 'original' }}"
+                                        alt="shop_all_image" />
+                                </div>
+                                {% endif %}
+                                {% if section.settings.dog_link_text != blank %}
+                                <span class="text">{{ section.settings.dog_link_text }}</span>
+                                {% endif %}
+                            </div>
+                            {% if section.settings.dog_link != blank %}
+                        </a>
+                        {% endif %}
+                    </div>
+                    <div class="item">
+                        {% if section.settings.cat_link != blank %}
+                        <a href="{{ section.settings.cat_link }}" class="link btn">
+                            {% endif %}
+                            <div class="item_inner">
+                                {% if section.settings.cat_image != blank %}
+                                <div class="image">
+                                    <img src="{{ section.settings.cat_image | img_url: 'original' }}"
+                                        alt="shop_all_image" />
+                                </div>
+                                {% endif %}
+                                {% if section.settings.cat_link_text != blank %}
+                                <span class="text">{{ section.settings.cat_link_text }}</span>
+                                {% endif %}
+                            </div>
+                            {% if section.settings.cat_link != blank %}
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vetnique_section">
+            <div class="acc_heading_part">
+                {% if section.settings.mobile_vetnique_text != blank %}
+                {{ section.settings.mobile_vetnique_text }}
+                {% else %}
+                shop other vetnique® products
+                {% endif %}
+            </div>
+            <div class="acc_content_part">
+                {% assign product_blocks = section.blocks | where: 'type', 'product_items' %}
+                {% if product_blocks.size > 0 %}
+                <div class="vetnique_section_inner  {% if product_blocks.size > 6 %}collapce_items{% endif %}">
+                    <div class="collection_list">
+                        {% for block in product_blocks %}
+                        <div class="collection_item">
+                            {% if block.settings.product_link != blank %}
+                            <a href="{{ block.settings.product_link }}" class="box_link"></a>
+                            {% endif %}
+                            <div class="image">
+                                {% if block.settings.product_image != blank %}
+                                <img src="{{ block.settings.product_image | img_url: "original" }}" alt="{{ block.settings.product_name }}" />
+                                {% else %}
+                                <img src="{{ 'blank_product.png' | asset_url }}" alt="{{ block.settings.product_name }}" />
+                                {% endif %}
+                            </div>
+                            {% if block.settings.product_name != blank %}
+                            <div class="content">
+                                {{ block.settings.product_name }}
+                            </div>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="pawpass_section">
+            <div class="blue_cta_section_inner"
+                {% if section.settings.pawpass_background_image != blank %}style="background-image: url({{ section.settings.pawpass_background_image | img_url: 'original'}})"
+                {% endif %}>
+                {% if section.settings.pawpass_background_image != blank %}
+                <div class="logo">
+                    <img src="{{section.settings.pawpass_logo | img_url: 'original' }}" alt="pawpass" />
+                </div>
+                {% endif %}
+                {% if section.settings.pawpass_mobile_text != blank %}
+                <div class="mobile_cta_text">
+                    {{ section.settings.pawpass_mobile_text }}
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="mobile_menu">
+            <div class="mobile_menu_inner">
+                {% unless limit %}
+                {%- assign limit = mobile_menu.links.size -%}
+                {% endunless %}
+                {% unless offset %}
+                {%- assign offset = 0 -%}
+                {% endunless %}
+                <ul class="site-nav site-navigation small--hide" {% unless disable_aria %} role="navigation"
+                    aria-label="Primary" {% endunless %}>
+                    {% for link in mobile_menu.links limit: limit offset: offset %}
+                    {%- assign has_dropdown = false -%}
+                    {% if link.links != blank %}
+                    {%- assign has_dropdown = true -%}
+                    {% endif %}
+
+                    <li class="site-nav__item site-nav__expanded-item{% if has_dropdown %} site-nav--has-dropdown{% endif %}"
+                        {% if has_dropdown %}aria-haspopup="true" {% endif %}>
+                        <a href="{{ link.url }}"
+                            class="site-nav__link site-nav__link--underline{% if has_dropdown %} site-nav__link--has-dropdown{% endif %}">
+                            {{ link.title }}
+                            {% if has_dropdown %} <i class="fa fa-angle-down"></i>{% endif %}
+                        </a>
+                        <ul class="site-nav__dropdown text-left">
+                            {% for childlink in link.links %}
+                            {%- assign has_sub_dropdown = false -%}
+                            {% if childlink.links != blank %}
+                            {%- assign has_sub_dropdown = true -%}
+                            {% endif %}
+
+                            <li class="{% if has_sub_dropdown %} site-nav__deep-dropdown-trigger{% endif %}">
+                                <a href="{{ childlink.url }}"
+                                    class="site-nav__dropdown-link site-nav__dropdown-link--second-level {% if has_sub_dropdown %} site-nav__dropdown-link--has-children{% endif %}">
+                                    {{ childlink.title | escape }}
+                                    {% if has_sub_dropdown %}
+                                    <svg aria-hidden="true" focusable="false" role="presentation"
+                                        class="icon icon--wide icon-chevron-down" viewBox="0 0 28 16">
+                                        <path d="M1.57 1.59l12.76 12.77L27.1 1.59" stroke-width="2" stroke="#000"
+                                            fill="none" fill-rule="evenodd" /></svg>
+                                    {% endif %}
+                                </a>
+                                {% if has_sub_dropdown %}
+                                <ul class="site-nav__deep-dropdown">
+                                    {% for grandchildlink in childlink.links %}
+                                    <li>
+                                        <a href="{{ grandchildlink.url }}"
+                                            class="site-nav__dropdown-link">{{ grandchildlink.title | escape }}</a>
+                                    </li>
+                                    {% endfor %}
+                                </ul>
+                                {% endif %}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+        {% if section.settings.login_link_text != blank or section.settings.login_link != blank or section.settings.wholesale_link_text != blank or section.settings.wholesale_link != blank %}
+        <div class="custom_links">
+            <div class="link_list">
+                <a href="{% if section.settings.login_link != blank %}{{ section.settings.login_link }}{% else %}javascript:void(0){% endif %}" class="link_item">
+                    {% if section.settings.login_link_text != blank %}
+                    {{ section.settings.login_link_text }}
+                    {% else %}
+                    Login
+                    {% endif %}
+                    <img src="{{ 'blue_arrow.png' | asset_url }}" alt="arrow" />
+                </a>
+                <a href="{% if section.settings.wholesale_link != blank %}{{ section.settings.wholesale_link }}{% else %}javascript:void(0){% endif %}" class="link_item">
+                    {% if section.settings.wholesale_link_text != blank %}
+                    {{ section.settings.wholesale_link_text }}
+                    {% else %}
+                    Login
+                    {% endif %}
+                    <img src="{{ 'blue_arrow.png' | asset_url }}" alt="arrow" />
+                </a>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</div>

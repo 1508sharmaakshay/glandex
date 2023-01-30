@@ -1,0 +1,177 @@
+{% comment %}
+	GEMPAGE BUILDER (https://apps.shopify.com/gempage)
+
+	You SHOULD NOT modify source code in this page because
+	It is automatically generated from GEMPAGE BUILDER
+	Try to edit page with the live editor.
+{% endcomment %}
+<!doctype html>
+<html class="no-js" lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_button }}">
+  <link rel="canonical" href="{{ canonical_url }}">
+  <meta name="format-detection" content="telephone=no">
+
+  {%- if settings.favicon -%}
+    <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png" />
+  {%- endif -%}
+
+  {% include 'seo-title' %}
+  <title>{{ seo_title }}</title>
+
+  {%- if page_description -%}
+  <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  {% include 'social-meta-tags' %}
+
+  {% include 'font-face' %}
+  {{ 'theme.scss.css' | asset_url | stylesheet_tag }}
+
+  {% style %}
+    .collection-item__title {
+      font-size: {{ settings.type_collection_size | times: 0.8 }}px;
+    }
+
+    @media screen and (min-width: 769px) {
+      .collection-item__title {
+        font-size: {{ settings.type_collection_size }}px;
+      }
+    }
+  {% endstyle %}
+
+  <script>
+    document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
+
+    window.theme = window.theme || {};
+    theme.strings = {
+      addToCart: {{ 'products.product.add_to_cart' | t | json }},
+      soldOut: {{ 'products.product.sold_out' | t | json }},
+      unavailable: {{ 'products.product.unavailable' | t | json }},
+      stockLabel: {{ 'products.product.stock_label' | t: count: '[count]' | json }},
+      willNotShipUntil: {{ 'products.product.will_not_ship_until' | t: date: '[date]' | json }},
+      willBeInStockAfter: {{ 'products.product.will_be_in_stock_after' | t: date: '[date]' | json }},
+      waitingForStock: {{ 'products.product.waiting_for_stock' | t | json }},
+      savePrice: {{ 'products.general.save_html' | t: saved_amount: '[saved_amount]' | json }},
+      cartEmpty: {{ 'cart.general.empty' | t | json }},
+      cartTermsConfirmation: {{ 'cart.general.terms_confirm' | t | json }}
+    };
+    theme.settings = {
+      dynamicVariantsEnable: true,
+      dynamicVariantType: {{ settings.variant_type | json }},
+      cartType: {{ settings.cart_type | json }},
+      currenciesEnabled: {{ settings.enable_currencies | json }},
+      nativeMultiCurrency: {{ shop.enabled_currencies.size }} > 1 ? true : false,
+      moneyFormat: {{ shop.money_format | json }},
+      saveType: {{ settings.product_save_type | json }},
+      recentlyViewedEnabled: false,
+      predictiveSearch: {{ settings.predictive_search_enabled }},
+      predictiveSearchType: {{ settings.search_type | json }},
+      inventoryThreshold: {{ settings.inventory_threshold }},
+      quickView: {{ settings.quick_shop_enable }},
+      themeName: 'Impulse',
+      themeVersion: "2.5.0"
+    };
+  </script>
+
+  {{ content_for_header }}
+
+  <script src="{{ 'vendor-scripts-v4.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+
+  {% if settings.enable_currencies %}
+    {% unless shop.enabled_currencies.size > 1 %}
+      <script src="/services/javascripts/currencies.js" defer="defer"></script>
+      <script src="{{ 'currencies.jquery.min.js' | asset_url | split: '?' | first }}" defer="defer"></script>
+    {% endunless %}
+    <link rel="stylesheet" href="{{ 'currency-flags.css' | asset_url }}">
+  {% endif %}
+
+  <script src="{{ 'theme.js' | asset_url }}" defer="defer"></script>
+
+  {%- if template contains 'customers' -%}
+    <script src="{{ 'shopify_common.js' | shopify_asset_url }}" defer="defer"></script>
+  {%- endif -%}
+<!--Gem_Page_Header_Script-->
+{% include 'gem-app-header-scripts' %}
+<!--End_Gem_Page_Header_Script-->
+
+  
+
+  {% render 'shogun-head' %}
+</head>
+
+<body>
+<div class="gem-container">
+	{{ content_for_layout }}
+ {% include 'station-tabs' %}
+</div><!-- end .gem-container -->
+<!--Gem_Page_Footer_Script-->
+{% include 'gem-app-footer-scripts' %}
+<!--End_Gem_Page_Footer_Script-->
+   <style>
+  p a{
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    position: relative;
+    display: inline-block;
+}
+    p a:not(.btn):hover:after, p a:not(.btn):focus:after, p a:not(.btn):hover:after, p a:not(.btn):focus:after, p a:hover:after {
+    width: 100%;
+}
+    p a a:not(.btn):after, p a:not(.btn):after, p a:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid currentColor;
+    transition: width 0.5s ease;
+    }
+    
+/*   for div   */
+     div a{
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    position: relative;
+    display: inline-block;
+}
+    div a:not(.btn):hover:after, div a:not(.btn):focus:after, div a:not(.btn):hover:after, div a:not(.btn):focus:after, div a:hover:after {
+    width: 100%;
+}
+    div a a:not(.btn):after, div a:not(.btn):after, div a:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid currentColor;
+    transition: width 0.5s ease;
+    }
+    
+/*   for span   */
+    
+     
+     span a{
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    position: relative;
+    display: inline-block;
+}
+    span a:not(.btn):hover:after, span a:not(.btn):focus:after, span a:not(.btn):hover:after, span a:not(.btn):focus:after, span a:hover:after {
+    width: 100%;
+}
+    span a a:not(.btn):after, span a:not(.btn):after, span a:after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    border-bottom: 2px solid currentColor;
+    transition: width 0.5s ease;
+    }
+  </style>
+</body>
+</html>

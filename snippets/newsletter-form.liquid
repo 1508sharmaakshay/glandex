@@ -1,0 +1,25 @@
+{%- assign newsletter_form_id = 'newsletter-' | append: section_id -%}
+{% form 'customer', id: newsletter_form_id %}
+  {% if form.posted_successfully? %}
+    <div class="note note--success">{{ 'general.newsletter_form.newsletter_confirmation' | t }}</div>
+  {% endif %}
+  {% if form.errors and form.context == snippet_context %}
+    {{ form.errors | default_errors }}
+  {% endif %}
+
+  <label for="Email-{{ section_id }}" class="hidden-label">{{ 'general.newsletter_form.newsletter_email' | t }}</label>
+  <input type="hidden" name="contact[tags]" value="prospect,newsletter">
+  <input type="hidden" name="contact[context]" value="{{ snippet_context }}">
+  <div class="input-group newsletter__input-group">
+    <input type="email" value="{% if customer %}{{ customer.email }}{% endif %}" placeholder="{{ 'general.newsletter_form.newsletter_email' | t }}" name="contact[email]" id="Email-{{ section_id }}" class="input-group-field newsletter__input" autocorrect="off" autocapitalize="off">
+    <div class="input-group-btn">
+      <button type="submit" class="btn" name="commit">
+        <span class="form__submit--large">{{ 'general.newsletter_form.submit' | t }}</span>
+        <span class="form__submit--small">
+<!--           <svg aria-hidden="true" focusable="false" role="presentation" class="icon icon--wide icon-arrow-right" viewBox="0 0 50 15"><path d="M0 9.63V5.38h35V0l15 7.5L35 15V9.63z"/></svg> -->
+          <svg width="13px" height="22px" viewBox="0 0 13 22" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg"><path d="M1.19692 0.17464L0.180435 1.15822C-0.060145 1.39102 -0.060145 1.76849 0.180435 2.00135L9.45755 11L0.180435 19.9986C-0.060145 20.2314 -0.060145 20.6089 0.180435 20.8418L1.19692 21.8254C1.4375 22.0582 1.82758 22.0582 2.06821 21.8254L12.8196 11.4216C13.0601 11.1888 13.0601 10.8113 12.8196 10.5785L2.06821 0.17464C1.82758 -0.0582132 1.4375 -0.0582132 1.19692 0.17464Z" transform="matrix(1 2.1456883E-07 2.1456883E-07 -1 0 22)" id="Path-Copy-4" fill="#FFFFFF" stroke="none" /></svg>
+        </span>
+      </button>
+    </div>
+  </div>
+{% endform %}
